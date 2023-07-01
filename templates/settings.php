@@ -157,6 +157,57 @@ if ( defined('GNPUB_PRO_VERSION') ) {
  		?>
 		</ul>
 
+    <p><?php _e( 'Flipboard RSS feeds at:', 'gn-publisher' ); ?></p>
+
+		<ul>
+ 		<?php 
+
+		
+      $feed_url=esc_url( $permalinks_enabled ? trailingslashit( home_url() ) . 'feed/flipboard' : add_query_arg( 'feed', 'flipboard', home_url() ) );
+			echo '<li><input type="text" class="gn-input" value="'.$feed_url.'" id="flipboard-feed-0" size="60" readonly>
+      <div class="gn-tooltip">
+      <button class="gn-btn" onclick="gn_copy('."'flipboard-feed-0'".')" onmouseout="gn_out('."'flipboard-feed-0'".')">
+        <span class="gn-tooltiptext" id="flipboard-feed-0-tooltip">Copy URL</span>
+        Copy
+        </button>
+      </div></li>';
+			$categories = get_categories(); 
+			foreach( $categories as $category ) {
+				$gn_category_link = get_category_link( $category->term_id );
+
+        //Fix for Feed Url link if category is hidden by adding (.) in category base in wordpress permalinks section
+        $gn_category_link = str_replace('/./','/',$gn_category_link); 
+
+        /* Fix Feed Url when user have added custom text in custom permalink (Ex:'lifestyle/%postname%') 
+           and Yoast SEO have removed category base 
+        */
+        $permalink_structure=get_option('permalink_structure');
+        if ( defined( 'WPSEO_VERSION' ) && is_callable( array( 'WPSEO_Options', 'get' ) ) && WPSEO_Options::get( 'stripcategorybase' ) == true && !empty($permalink_structure)) {
+          $permalink_prepend = "";
+          if(strlen($permalink_structure)>3)
+          {
+            $permalink_array=explode('/%',$permalink_structure);
+            if($permalink_array && count($permalink_array)>1)
+            {
+              $permalink_prepend =trailingslashit($permalink_array[0]);
+            }
+          }
+          $gn_category_link = str_replace($permalink_prepend,'/',$gn_category_link);
+        }
+
+				$gn_category_link = $permalinks_enabled ? trailingslashit( $gn_category_link ) . 'feed/flipboard' : add_query_arg( 'feed', 'flipboard', $gn_category_link );
+        echo '<li><input type="text" class="gn-input" value="'.esc_url( $gn_category_link ).'" id="flipboard-feed-'.$category->term_id.'" size="60" readonly>
+      <div class="gn-tooltip">
+      <button class="gn-btn" onclick="gn_copy('."'flipboard-feed-".$category->term_id."'".')" onmouseout="gn_out('."'flipboard-feed-".$category->term_id."'".')">
+        <span class="gn-tooltiptext" id="flipboard-feed-'.$category->term_id.'-tooltip">Copy URL</span>
+        Copy
+        </button>
+      </div></li>';
+			
+			} 
+ 		?>
+		</ul>
+
 <p><?php _e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
 
 <p><?php _e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
@@ -435,6 +486,15 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         <br><br>
         <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
         <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a>
+        </td>
+      </tr>
+      <tr>
+        <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
+        <td>
+        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        <br><br>
+        <?php echo esc_html__(' This option will only work if you have', 'gn-publisher') ?>
+        <a href="flipboard.com" target="_blank">  <?php echo esc_html__('Flipboard.com sites', 'gn-publisher') ?></a>
         </td>
       </tr>
       </table>

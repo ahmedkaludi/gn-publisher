@@ -274,3 +274,18 @@ function gnpub_remove_potentially_dangerous_tags( $content ) {
 
 	return $content;
 }
+
+/**
+ * gnpub_get_requested_feedid function
+ *
+ * @since 1.5.9 
+ * 
+ * @param string|mixed $content
+ * @return string|mixed
+ */
+
+ function gnpub_get_requested_feedid( $requestUri ) {
+	$arr = explode('/', $requestUri);
+	$count = count($arr);
+	return $arr[$count - 2];
+}
