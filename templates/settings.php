@@ -468,8 +468,21 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   </div>
   <div id="gn-compatibility" class="gn-tabcontent">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
+  <?php
+    $default_options = array('gnpub_pp_flipboard_com' => false );
+    $gnpub_options = get_option( 'gnpub_new_options', $default_options );
+    $gnpub_pp_flipboard_com = $gnpub_options['gnpub_pp_flipboard_com'];
+  ?>
+  <form action="" method="post">
       <p>
     <table class="form-table">
+      <tr>
+        <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
+        <td>
+          <input type="checkbox" name="gnpub_pp_flipboard_com" id="gnpub_pp_flipboard_com" <?php checked( $gnpub_pp_flipboard_com, true ); ?> value="1" />
+          <label for="gnpub_pp_flipboard_com"><?php _e( 'Enable flipboard.com compability in GN publisher feeds.<br><br> This option will only work if you have <a href="https://flipboard.com/" target="_blank"> Flipboard sites</a>', 'gn-publisher' ); ?></label>
+        </td>
+      </tr>
       <tr>
         <th><?php _e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
         <td>
@@ -488,21 +501,20 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a>
         </td>
       </tr>
-      <tr>
-        <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
-        <td>
-        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        <br><br>
-        <?php echo esc_html__(' This option will only work if you have', 'gn-publisher') ?>
-        <a href="flipboard.com" target="_blank">  <?php echo esc_html__('Flipboard.com sites', 'gn-publisher') ?></a>
-        </td>
-      </tr>
+    
       </table>
       </p> 
+      <p class="submit">
+      <input type="hidden" name="gnpub_form_tab" value="compat">
+        <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
+        <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher-pro' ); ?>" />
+      </p>
+  </form>	
   <?php } else { 
      do_action('gnpub_pro_compat_form');
     
     } ?>
+    
 
   </div>
   <div id="gn-upgrade" class="gn-tabcontent" style="text-align: center;">

@@ -289,3 +289,20 @@ function gnpub_remove_potentially_dangerous_tags( $content ) {
 	$count = count($arr);
 	return $arr[$count - 2];
 }
+
+/**
+ * gnpub_flipboard function
+ *
+ * @since 1.5.9 
+ * 
+ * @param string|mixed $content
+ * @return string|mixed
+ */
+function gnpub_flipboard( $content ) {
+	$gnpub_options = get_option( 'gnpub_new_options' );
+	
+	if(!empty($gnpub_options) && isset( $gnpub_options['gnpub_pp_flipboard_com'] ) && true == $gnpub_options['gnpub_pp_flipboard_com'] && function_exists( 'trp_translate' ) ) {
+		$content = trp_translate( $content, null, false );
+	}
+	return $content;
+}
