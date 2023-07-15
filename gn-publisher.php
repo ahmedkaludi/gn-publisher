@@ -306,3 +306,7 @@ function gnpub_flipboard( $content ) {
 	}
 	return $content;
 }
+
+function compareDates($date1, $date2){ 
+	return strtotime($date1->post_date) < strtotime($date2->post_date); 
+} 
