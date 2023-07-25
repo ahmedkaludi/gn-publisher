@@ -36,6 +36,13 @@ class GNPUB_Settings {
 				return;
 			}
 
+			if(isset($_POST['gnpub_news_sitmap']) && !empty($_POST['gnpub_news_sitmap'])){
+				$data = serialize($_POST['gnpub_news_sitmap']);
+				if ( !empty($data) ) {
+					update_option( 'gnpub_news_sitmap', $data );
+				}
+			}
+
 			// if ( isset( $_POST['gnpub_include_featured_image'] ) ) {
 			// 	update_option( 'gnpub_include_featured_image', true );
 			// } else {

@@ -55,9 +55,6 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 	<div class="gn-tab">
   <button class="gn-tablinks" onclick="openTab(event, 'gn-intro')" id="defaultOpen"><?php echo esc_html__('Dashboard', 'gn-publisher') ?></button>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-google-feed')" id="gn-feed"><?php echo esc_html__('Google News Feed Setup', 'gn-publisher') ?></button>
-  <?php if(defined('GNPUB_PRO_VERSION')){ ?>
-    <button class="gn-tablinks" onclick="openTab(event, 'gn-sitemap')"><?php echo esc_html__('Sitemap', 'gn-publisher') ?></button>
-  <?php } ?>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-features')"><?php echo esc_html__('Features', 'gn-publisher') ?></button>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-compatibility')"><?php echo esc_html__('Compatibility', 'gn-publisher') ?></button>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-troubleshooting')"><?php echo esc_html__('Troubleshooting', 'gn-publisher') ?></button>
@@ -406,12 +403,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 
 	
 </div>
-<div id="gn-sitemap" class="gn-tabcontent">
-    <?php if(defined('GNPUB_PRO_VERSION')){
-      do_action('gnpub_pro_sitemap_form');
-    } 
-    ?>
-</div>
+
 <div id="gn-services" class="gn-tabcontent">
 
 <div class="gn-flex-container-services">
