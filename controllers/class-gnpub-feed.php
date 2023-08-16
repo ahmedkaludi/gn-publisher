@@ -72,11 +72,10 @@ class GNPUB_Feed {
 	 * @param bool $for_comments Whether the feed request was for comments.
 	 */
 	public function do_news_feed( $for_comments ) {
-		$feedid = gnpub_get_requested_feedid($_SERVER['REQUEST_URI']);
+		$feedid = gnpub_get_requested_feedid();
 		$gnpub_options = get_option( 'gnpub_new_options' );
-		$flipboard_com = $gnpub_options['gnpub_pp_flipboard_com'];
-		
-		if($feedid == 'flipboard' && !empty($flipboard_com) && isset($flipboard_com) && true == $flipboard_com){
+		$flipboard_com = isset($gnpub_options['gnpub_pp_flipboard_com'])?$gnpub_options['gnpub_pp_flipboard_com']:false;
+		if($feedid == 'flipboard' && true == $flipboard_com){
 			load_template( GNPUB_PATH . 'templates/flipboard-news-feed.php' );
 		}
 		if($feedid == 'gn'){

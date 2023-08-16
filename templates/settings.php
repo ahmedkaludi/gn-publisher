@@ -156,9 +156,11 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 			} 
  		?>
 		</ul>
-
+<?php $gnpub_options = get_option( 'gnpub_new_options' );
+		$flipboard_com = isset($gnpub_options['gnpub_pp_flipboard_com'])?$gnpub_options['gnpub_pp_flipboard_com']:false;
+   if(isset($flipboard_com) && $flipboard_com==true) {
+    ?>
     <p><?php _e( 'Flipboard RSS feeds at:', 'gn-publisher' ); ?></p>
-
 		<ul>
  		<?php 
 
@@ -207,7 +209,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 			} 
  		?>
 		</ul>
-
+<?php } ?>
 <p><?php _e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
 
 <p><?php _e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
@@ -481,7 +483,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_pp_flipboard_com" id="gnpub_pp_flipboard_com" <?php checked( $gnpub_pp_flipboard_com, true ); ?> value="1" />
-          <label for="gnpub_pp_flipboard_com"><?php _e( 'Enable flipboard.com compability in GN publisher feeds.<br><br> This option will only work if you have <a href="https://flipboard.com/" target="_blank"> Flipboard sites</a>', 'gn-publisher' ); ?></label>
+          <label for="gnpub_pp_flipboard_com"><?php _e( 'Enable flipboard.com compability in GN publisher feeds.<br><br> Use this  option when you need feeds for <a href="https://flipboard.com/" target="_blank"> Flipboard</a>', 'gn-publisher' ); ?></label>
         </td>
       </tr>
       <tr>

@@ -123,6 +123,7 @@ class GNPUB_Settings {
 				$gnpub_options['gnpub_pp_flipboard_com']= false;
 				if ( isset( $_POST['gnpub_pp_flipboard_com'] )) {
 					$gnpub_options['gnpub_pp_flipboard_com']= true;	
+					flush_rewrite_rules(false);
 				}
 				$option_update=true;
 			}
