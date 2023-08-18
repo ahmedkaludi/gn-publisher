@@ -36,7 +36,7 @@ class GNPUB_Settings {
 				return;
 			}
 
-			if(isset($_POST['gnpub_news_sitmap']) && !empty($_POST['gnpub_news_sitmap']) && save_gnpub_settings_modal){
+			if(isset($_POST['gnpub_news_sitmap']) && !empty($_POST['gnpub_news_sitmap'])){
 				$data = serialize($_POST['gnpub_news_sitmap']);
 				if ( !empty($data) ) {
 					update_option( 'gnpub_news_sitmap', $data );
@@ -75,14 +75,13 @@ class GNPUB_Settings {
 					$gnpub_options['gnpub_enable_copy_protection']= false;
 					$option_update=true;
 				}
-			
 				if ( isset( $_POST['gnpub_enable_gnsitemap'] )) {
 					$gnpub_options['gnpub_enable_gnsitemap']= true;
 					$option_update=true;
-				}else {
+				}else{
 					$gnpub_options['gnpub_enable_gnsitemap']= false;
 					$option_update=true;
-			}
+				}
 
 				if ( isset( $_POST['gnpub_show_upto_value'] ) ) {
 					$safe_value = intval( $_POST['gnpub_show_upto_value'] );

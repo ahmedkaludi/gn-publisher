@@ -490,10 +490,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
                 <span style="cursor: pointer;"><?= _e( 'No Thanks, I will stick with FREE version for now.', 'gn-publisher' ) ?></span>
             </button>
         </a>
-  <?php } else { 
-     do_action('gnpub_pro_setup_form');
-    
-    } ?>
+  <?php } ?>
 
   </div>
 <div id="gn-license" class="gn-tabcontent">
