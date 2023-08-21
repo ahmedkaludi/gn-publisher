@@ -36,6 +36,13 @@ class GNPUB_Settings {
 				return;
 			}
 
+			if(isset($_POST['gnpub_news_sitmap']) && !empty($_POST['gnpub_news_sitmap'])){
+				$data = serialize($_POST['gnpub_news_sitmap']);
+				if ( !empty($data) ) {
+					update_option( 'gnpub_news_sitmap', $data );
+				}
+			}
+
 			// if ( isset( $_POST['gnpub_include_featured_image'] ) ) {
 			// 	update_option( 'gnpub_include_featured_image', true );
 			// } else {
@@ -54,6 +61,8 @@ class GNPUB_Settings {
 								 	'gnpub_exclude_categories'=>[],
 								 	'gnpub_pp_authors_compat'=>false, 
 									'gnpub_pp_translate_press' => false,
+									'gnpub_pp_flipboard_com' => false,
+									'gnpub_enable_gnsitemap' => false,
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
 			$option_update=false;
@@ -64,6 +73,14 @@ class GNPUB_Settings {
 					$option_update=true;
 				}else {
 					$gnpub_options['gnpub_enable_copy_protection']= false;
+					$option_update=true;
+				}
+				if ( isset( $_POST['gnpub_enable_gnsitemap'] )) {
+					$gnpub_options['gnpub_enable_gnsitemap']= true;
+					flush_rewrite_rules(false);
+					$option_update=true;
+				}else{
+					$gnpub_options['gnpub_enable_gnsitemap']= false;
 					$option_update=true;
 				}
 
@@ -111,6 +128,10 @@ class GNPUB_Settings {
 				$gnpub_options['gnpub_pp_translate_press']= false;
 				if ( isset( $_POST['gnpub_pp_translate_press'] )) {
 					$gnpub_options['gnpub_pp_translate_press']= true;	
+				}
+				$gnpub_options['gnpub_pp_flipboard_com']= false;
+				if ( isset( $_POST['gnpub_pp_flipboard_com'] )) {
+					$gnpub_options['gnpub_pp_flipboard_com']= true;	
 				}
 				$option_update=true;
 			}

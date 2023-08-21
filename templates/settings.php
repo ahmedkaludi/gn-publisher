@@ -156,7 +156,6 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 			} 
  		?>
 		</ul>
-
 <p><?php _e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
 
 <p><?php _e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
@@ -352,6 +351,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 
 	
 </div>
+
 <div id="gn-services" class="gn-tabcontent">
 
 <div class="gn-flex-container-services">
@@ -408,6 +408,13 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
+
+      <tr>
+        <th><?php _e( 'Google News Sitemap', 'gn-publisher' ); ?></th>
+        <td>
+        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        </td>
+      </tr>
       </table>
       </p> 
   <?php } else { 
@@ -417,8 +424,22 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   </div>
   <div id="gn-compatibility" class="gn-tabcontent">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
+  <?php
+    $default_options = array('gnpub_pp_flipboard_com' => false );
+    $gnpub_options = get_option( 'gnpub_new_options', $default_options );
+    $gnpub_pp_flipboard_com = $gnpub_options['gnpub_pp_flipboard_com'];
+  ?>
+  <form action="" method="post">
       <p>
     <table class="form-table">
+      <tr>
+        <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
+        <td>
+        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        <br><br>
+          <?php _e( 'Use this  option when you need feeds for <a href="https://flipboard.com/" target="_blank"> Flipboard.com</a>', 'gn-publisher' ); ?>
+        </td>
+      </tr>
       <tr>
         <th><?php _e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
         <td>
@@ -437,12 +458,20 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a>
         </td>
       </tr>
+    
       </table>
       </p> 
+      <p class="submit">
+      <input type="hidden" name="gnpub_form_tab" value="compat">
+        <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
+        <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher-pro' ); ?>" />
+      </p>
+  </form>	
   <?php } else { 
      do_action('gnpub_pro_compat_form');
     
     } ?>
+    
 
   </div>
   <div id="gn-upgrade" class="gn-tabcontent" style="text-align: center;">
@@ -461,10 +490,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
                 <span style="cursor: pointer;"><?= _e( 'No Thanks, I will stick with FREE version for now.', 'gn-publisher' ) ?></span>
             </button>
         </a>
-  <?php } else { 
-     do_action('gnpub_pro_setup_form');
-    
-    } ?>
+  <?php } ?>
 
   </div>
 <div id="gn-license" class="gn-tabcontent">

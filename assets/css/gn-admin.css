@@ -423,3 +423,9 @@ div#gn-upgrade .button-gnp-ugrade {
 {
   vertical-align: unset;
 }
+.gnpub_checkbox {
+  margin: 4px !important;
+}
+.gnpub-regular-text, .gnpub_select{
+  width: 25em;
+}

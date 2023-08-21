@@ -7,7 +7,7 @@
  * Plugin Name: GN Publisher
  * Plugin URI: https://gnpublisher.com/
  * Description: GN Publisher: The easy way to make Google News Publisher compatible RSS feeds.
- * Version: 1.5.8
+ * Version: 1.5.9
  * Author: Chris Andrews
  * Author URI: https://gnpublisher.com/
  * Text Domain: gn-publisher
@@ -40,7 +40,7 @@ function gnpub_feed_bootstrap() {
 		return;
 	}
  
-	define( 'GNPUB_VERSION', '1.5.8' );
+	define( 'GNPUB_VERSION', '1.5.9' );
 	define( 'GNPUB_PATH', plugin_dir_path( __FILE__ ) );
     define( 'GNPUB_URL', plugins_url( '', __FILE__) );
 	define( 'GNPUB_PLUGIN_FILE', __FILE__ );
@@ -272,5 +272,35 @@ function gnpub_remove_potentially_dangerous_tags( $content ) {
 	if( false !== stripos( $content, 'style="' ) )
 		$content = preg_replace("/style=\".*?\"/i", '', $content);
 
+	return $content;
+}
+
+/**
+ * gnpub_get_requested_feedid function
+ *
+ * @since 1.5.9 
+ * 
+ * @param string|mixed $content
+ * @return string|mixed
+ */
+
+ function gnpub_get_requested_feedid() {
+	return get_query_var( 'feed','');
+}
+
+/**
+ * gnpub_flipboard function
+ *
+ * @since 1.5.9 
+ * 
+ * @param string|mixed $content
+ * @return string|mixed
+ */
+function gnpub_flipboard( $content ) {
+	$gnpub_options = get_option( 'gnpub_new_options' );
+	
+	if(!empty($gnpub_options) && isset( $gnpub_options['gnpub_pp_flipboard_com'] ) && true == $gnpub_options['gnpub_pp_flipboard_com'] && function_exists( 'trp_translate' ) ) {
+		$content = trp_translate( $content, null, false );
+	}
 	return $content;
 }

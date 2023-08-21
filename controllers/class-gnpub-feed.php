@@ -15,7 +15,7 @@ class GNPUB_Feed {
 	/**
 	 * This is used in the feed URL to select the GN Publisher feed.
 	 */
-	const FEED_ID = 'gn';
+	const FEED_ID = ['gn', 'flipboard'];
 
 	/**
 	 * This text will be present in the Google FeedFetcher user-agent string, used
@@ -26,7 +26,7 @@ class GNPUB_Feed {
 	const FEED_FETCHER_UA = "FeedFetcher-Google";
 
 	public function __construct() {
-		add_action( 'init', array( $this, 'add_google_news_feed' ) );
+		add_action( 'init', array( $this, 'add_news_feed' ) );
 		add_action( 'wp', array( $this, 'remove_problematic_functions' ) );
 
 		// Documented in wp-includes/class-wp-query.php -> WP_Query::parse_query()
@@ -56,8 +56,11 @@ class GNPUB_Feed {
 	 * @since 1.0.0
 	 * @uses add_feed
 	 */
-	public function add_google_news_feed() {
-		add_feed( self::FEED_ID, array( $this, 'do_google_news_feed' ) );
+	public function add_news_feed() {
+		foreach(self::FEED_ID as $feedidval){
+			add_feed( $feedidval, array( $this, 'do_news_feed' ) );
+		}
+		
 	}
 
 	/**
@@ -68,8 +71,16 @@ class GNPUB_Feed {
 	 * 
 	 * @param bool $for_comments Whether the feed request was for comments.
 	 */
-	public function do_google_news_feed( $for_comments ) {
-		load_template( GNPUB_PATH . 'templates/google-news-feed.php' );
+	public function do_news_feed( $for_comments ) {
+		$feedid = gnpub_get_requested_feedid();
+		$gnpub_options = get_option( 'gnpub_new_options' );
+		$flipboard_com = isset($gnpub_options['gnpub_pp_flipboard_com'])?$gnpub_options['gnpub_pp_flipboard_com']:false;
+		if($feedid == 'flipboard' && true == $flipboard_com){
+			load_template( GNPUB_PATH . 'templates/flipboard-news-feed.php' );
+		}
+		if($feedid == 'gn'){
+			load_template( GNPUB_PATH . 'templates/google-news-feed.php' );
+		}
 	}
 
 	/**
@@ -83,15 +94,18 @@ class GNPUB_Feed {
 		if ( ! $query->is_feed ) {
 			return;
 		}
-
+	
 		/*
 			This checks:
 			1. Is the queried feed the GN Publisher feed, if so continue.
 			2. Is the queried feed the default feed, and
 			3. Is the default feed the GN Publisher feed, if so continue.
 		*/
-		if ( $query->get( 'feed' ) !== self::FEED_ID && ( $query->get( 'feed' ) !== 'feed' && get_default_feed() !== self::FEED_ID ) ) {
-			return;
+		
+		foreach(self::FEED_ID as $feedidval){
+			if ( $query->get( 'feed' ) !== $feedidval && ( $query->get( 'feed' ) !== 'feed' && get_default_feed() !== $feedidval ) ) {
+				return;
+			}
 		}
 
 		if ( gnpub_is_feedfetcher() ) {
@@ -115,8 +129,10 @@ class GNPUB_Feed {
 	 * @return string
 	 */
 	public function add_feature_image_to_item( $content, $feed_type ) {
-		if ( $feed_type !== self::FEED_ID ) {
-			return $content;
+		foreach(self::FEED_ID as $feedidval){
+			if ( $feed_type !== $feedidval ) {
+				return $content;
+			}
 		}
 
 		// $use_featured_image = get_option( 'gnpub_include_featured_image', 1 );
@@ -145,8 +161,10 @@ class GNPUB_Feed {
 	 * @return string
 	 */
 	public function strip_srcset_from_content( $content, $feed_type ) {
-		if ( $feed_type !== self::FEED_ID ) {
-			return $content;
+		foreach(self::FEED_ID as $feedidval){
+			if ( $feed_type !== $feedidval ) {
+				return $content;
+			}
 		}
 		if(!$content){ 
 			return $content; 
@@ -296,9 +314,9 @@ class GNPUB_Feed {
 	 */
 	public function set_default_feed( $default_feed ) {
 		$is_default = boolval( get_option( 'gnpub_is_default_feed', true ) );
-
+		
 		if ( $is_default ) {
-			$default_feed = self::FEED_ID;
+			$default_feed = 'gn';
 		}
 
 		return $default_feed;
@@ -370,25 +388,25 @@ class GNPUB_Feed {
 	 */
 	public function correct_feed_canonical_url( $redirect_url, $requested_url ) {
 		global $wp_rewrite;
-		
-		$feed_path = '/feed/' . self::FEED_ID;
+		foreach(self::FEED_ID as $feedidval){
+			$feed_path = '/feed/' . $feedidval;
+		}
+			if ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() && is_feed( self::FEED_ID ) ) {
+				while ( substr_count( $redirect_url, $feed_path ) > 1 ) {
+					$last_start = strrpos( $redirect_url, $feed_path );
 
-		if ( is_object( $wp_rewrite ) && $wp_rewrite->using_permalinks() && is_feed( self::FEED_ID ) ) {
-			while ( substr_count( $redirect_url, $feed_path ) > 1 ) {
-				$last_start = strrpos( $redirect_url, $feed_path );
+					// Check if the $feed_path is the final part of $redirect_url
+					if ( $last_start + strlen( $feed_path ) === strlen( $redirect_url ) ) {
+						$redirect_url = substr( $redirect_url, 0, $last_start);
+					} else {
+						$start = substr( $redirect_url, 0, $last_start );
+						$end = substr( $redirect_url, $last_start + strlen( $feed_path ) );
 
-				// Check if the $feed_path is the final part of $redirect_url
-				if ( $last_start + strlen( $feed_path ) === strlen( $redirect_url ) ) {
-					$redirect_url = substr( $redirect_url, 0, $last_start);
-				} else {
-					$start = substr( $redirect_url, 0, $last_start );
-					$end = substr( $redirect_url, $last_start + strlen( $feed_path ) );
-
-					$redirect_url = $start . $end;
+						$redirect_url = $start . $end;
+					}
 				}
 			}
-		}
-
+		
 		return $redirect_url;
 	}
 
