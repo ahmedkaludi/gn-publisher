@@ -77,6 +77,7 @@ class GNPUB_Settings {
 				}
 				if ( isset( $_POST['gnpub_enable_gnsitemap'] )) {
 					$gnpub_options['gnpub_enable_gnsitemap']= true;
+					flush_rewrite_rules(false);
 					$option_update=true;
 				}else{
 					$gnpub_options['gnpub_enable_gnsitemap']= false;
@@ -131,7 +132,6 @@ class GNPUB_Settings {
 				$gnpub_options['gnpub_pp_flipboard_com']= false;
 				if ( isset( $_POST['gnpub_pp_flipboard_com'] )) {
 					$gnpub_options['gnpub_pp_flipboard_com']= true;	
-					flush_rewrite_rules(false);
 				}
 				$option_update=true;
 			}
