@@ -108,7 +108,7 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 * Added : Compatible Feed for flipboard.com  #28 
 * Tweak : Optimized for  WordPress 6.3 #63
 
-1.5.8 - (10 May 2023) =
+= 1.5.8 - (10 May 2023) =
 
 * Added : Added compatibility with No Category Base #54
 * Bug   : Featured image not diplaying in feed content #53
