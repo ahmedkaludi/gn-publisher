@@ -2,9 +2,9 @@
 Contributors: gnpublisher
 Tags: google news, google, news, publisher center, rss, feed, feeds
 Requires at least: 3.5
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 5.4
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -24,6 +24,12 @@ The plugin addresses common RSS compatiblity issues publishers experience when u
 -  Delayed crawling by Google
 
 After installing, click on the *'Dashboard'* under GN Publisher on your plugins page for additional information about applying and troubleshooting issues related to the Google News Publisher Center.
+
+**New in 1.5.9**
+
+Added Google News Sitemap option
+
+Added compatibility with flipboard.com
 
 **New in 1.5.8**
 
@@ -96,7 +102,14 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 == Changelog ==
 
-= 1.5.8 - (10 May 2023) =
+= 1.5.9 - (21 August 2023) =
+
+* Added : Added Google news sitemap #45
+* Added : Compatible Feed for flipboard.com  #28 
+* Tweak : Optimized for  WordPress 6.3 #63
+
+1.5.8 - (10 May 2023) =
+
 * Added : Added compatibility with No Category Base #54
 * Bug   : Featured image not diplaying in feed content #53
 * Tweak : Strip all unnecessary attributes and inline CSS #47
