@@ -45,6 +45,8 @@ Bug reports for GN Publisher: Google News Compatible RSS Feeds are [welcomed on 
 
 ### PRO Version
 
+Take you Google News Feed experience to next level by using our [GN Publisher PRO](https://gnpublisher.com/pricing/#pricing) plugin which contains the following features amd many more coming.
+
 * Content Scraping Protection 
 * Exclude Categories From Main Feed 
 * Google News Sitemap 
