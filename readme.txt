@@ -25,32 +25,6 @@ The plugin addresses common RSS compatiblity issues publishers experience when u
 
 After installing, click on the *'Dashboard'* under GN Publisher on your plugins page for additional information about applying and troubleshooting issues related to the Google News Publisher Center.
 
-**New in 1.5.9**
-
-Added Google News Sitemap option
-
-Added compatibility with flipboard.com
-
-**New in 1.5.8**
-
-Added compatibility with No Category Base
-
-Added compatibility with Translate Press
-
-**New in 1.5.7**
-
-Added new feature to exclude categories from main feed.
-
-Added compatibility with the plugin PublishPress Authors.
-
-**New in 1.5.1**
-
-Added New feature for content scraping protection.
-
-**New in 1.4**
-
-Refreshed UI and improved assets usage . Added Support Form .
-
 **New in 1.0.9**
 
 GN Publisher now displays the time of the most recent ping and feed fetch from Google. This helps when troubleshooting the dreaded 'empty sections' issue in the Google News Publisher Center.
@@ -69,6 +43,14 @@ We try our best to provide support on [WordPress GN Publisher plugin support for
 
 Bug reports for GN Publisher: Google News Compatible RSS Feeds are [welcomed on GitHub](https://github.com/ahmedkaludi/gn-publisher/issues/). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
 
+### PRO Version
+
+* Content Scraping Protection 
+* Exclude Categories From Main Feed 
+* Google News Sitemap 
+* Compatibility with Flipboard.com
+* Compatibility with PublishPress Authors
+* Compatibility with Translate Press
 
 == Frequently Asked Questions ==
 
