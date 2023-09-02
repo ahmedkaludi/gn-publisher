@@ -129,10 +129,9 @@ class GNPUB_Feed {
 	 * @return string
 	 */
 	public function add_feature_image_to_item( $content, $feed_type ) {
-		foreach(self::FEED_ID as $feedidval){
-			if ( $feed_type !== $feedidval ) {
-				return $content;
-			}
+		global $wp_query;
+		if ( !in_array($wp_query->get( 'feed' ),self::FEED_ID) ) {
+			return $content;
 		}
 
 		// $use_featured_image = get_option( 'gnpub_include_featured_image', 1 );
