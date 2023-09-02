@@ -4,7 +4,7 @@ Tags: google news, google, news, publisher center, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.3
 Requires PHP: 5.4
-Stable tag: 1.5.9
+Stable tag: 1.5.9.1
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,32 +25,6 @@ The plugin addresses common RSS compatiblity issues publishers experience when u
 
 After installing, click on the *'Dashboard'* under GN Publisher on your plugins page for additional information about applying and troubleshooting issues related to the Google News Publisher Center.
 
-**New in 1.5.9**
-
-Added Google News Sitemap option
-
-Added compatibility with flipboard.com
-
-**New in 1.5.8**
-
-Added compatibility with No Category Base
-
-Added compatibility with Translate Press
-
-**New in 1.5.7**
-
-Added new feature to exclude categories from main feed.
-
-Added compatibility with the plugin PublishPress Authors.
-
-**New in 1.5.1**
-
-Added New feature for content scraping protection.
-
-**New in 1.4**
-
-Refreshed UI and improved assets usage . Added Support Form .
-
 **New in 1.0.9**
 
 GN Publisher now displays the time of the most recent ping and feed fetch from Google. This helps when troubleshooting the dreaded 'empty sections' issue in the Google News Publisher Center.
@@ -69,6 +43,16 @@ We try our best to provide support on [WordPress GN Publisher plugin support for
 
 Bug reports for GN Publisher: Google News Compatible RSS Feeds are [welcomed on GitHub](https://github.com/ahmedkaludi/gn-publisher/issues/). Please note GitHub is not a support forum, and issues that aren't properly qualified as bugs will be closed.
 
+### PRO Version
+
+Take you Google News Feed experience to next level by using our [GN Publisher PRO](https://gnpublisher.com/pricing/#pricing) plugin which contains the following features.
+
+* Content Scraping Protection 
+* Exclude Categories From Main Feed 
+* Google News Sitemap 
+* Compatibility with Flipboard.com
+* Compatibility with PublishPress Authors
+* Compatibility with Translate Press
 
 == Frequently Asked Questions ==
 
@@ -101,6 +85,10 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.9.1 - (02 September 2023) =
+
+* Fixed : Featured image not showing in gn feeds #69
 
 = 1.5.9 - (21 August 2023) =
 
