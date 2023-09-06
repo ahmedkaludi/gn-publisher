@@ -96,7 +96,10 @@ do_action( 'rss_tag_pre', 'rss2' );
 			<link><?php gnpub_feed_post_link(get_the_permalink()); ?></link>
 			<pubDate><?php echo $pub_date; ?></pubDate>
 			<?php $gnpub_authors = '<dc:creator><![CDATA['.get_the_author().']]></dc:creator>'; ?>
-			<?php echo apply_filters('gnpub_pp_authors_compat',$gnpub_authors );?>
+			<?php $gnpub_authors = apply_filters('gnpub_pp_authors_compat',$gnpub_authors );
+				  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
+				  echo $gnpub_authors;
+			?>
 			<guid isPermaLink="false"><?php the_guid(); ?></guid>
 <?php 
 $content = get_the_content_feed( GNPUB_Feed::FEED_ID );

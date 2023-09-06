@@ -450,6 +450,15 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         </td>
       </tr>
       <tr>
+        <th><?php _e( 'Molongui Authorship', 'gn-publisher' ); ?></th>
+        <td>
+        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        <br><br>
+        <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
+        <a href="https://wordpress.org/plugins/molongui-authorship/" target="_blank">  <?php echo esc_html__('Author Box for Authors, Co-Authors, Multiple Authors and Guest Authors – Molongui', 'gn-publisher') ?></a>
+        </td>
+      </tr>
+      <tr>
         <th><?php _e( 'Translate Press', 'gn-publisher' ); ?></th>
         <td>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
