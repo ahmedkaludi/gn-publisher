@@ -4,7 +4,7 @@ Tags: google news, google, news, publisher center, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.3
 Requires PHP: 5.4
-Stable tag: 1.5.9.1
+Stable tag: 1.5.10
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,12 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.10 - (12 September 2023) =
+
+* Tweak : Displayed proper message on license activation/deactivation timeout #64
+* Fixed : Multi language compatibility in multisite #68
+* Feature : Added compatibility for Molongui author profile plugin #70
 
 = 1.5.9.1 - (02 September 2023) =
 
