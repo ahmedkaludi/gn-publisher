@@ -99,7 +99,10 @@ do_action( 'rss_tag_pre', 'rss2' );
 			<pubDate><?php echo $pub_date; ?></pubDate>
 			<?php $gnpub_authors = '<dc:creator><![CDATA['.get_the_author().']]></dc:creator>'; ?>
 			
-			<?php echo apply_filters('gnpub_pp_authors_compat',$gnpub_authors );?>
+			<?php $gnpub_authors = apply_filters('gnpub_pp_authors_compat',$gnpub_authors );
+				  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
+				  echo $gnpub_authors;
+			?>
 			
 <?php 
 $content = get_the_content_feed( GNPUB_Feed::FEED_ID );

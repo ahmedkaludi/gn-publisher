@@ -60,6 +60,7 @@ class GNPUB_Settings {
 								 	'gnpub_show_upto_unit'=>'paragraph',
 								 	'gnpub_exclude_categories'=>[],
 								 	'gnpub_pp_authors_compat'=>false, 
+								 	'gnpub_molongui_authors_compat'=>false, 
 									'gnpub_pp_translate_press' => false,
 									'gnpub_pp_flipboard_com' => false,
 									'gnpub_enable_gnsitemap' => false,
@@ -124,6 +125,10 @@ class GNPUB_Settings {
 				$gnpub_options['gnpub_pp_authors_compat']= false;
 				if ( isset( $_POST['gnpub_pp_authors_compat'] )) {
 					$gnpub_options['gnpub_pp_authors_compat']= true;	
+				}
+				$gnpub_options['gnpub_molongui_authors_compat']= false;
+				if ( isset( $_POST['gnpub_molongui_authors_compat'] )) {
+					$gnpub_options['gnpub_molongui_authors_compat']= true;	
 				}
 				$gnpub_options['gnpub_pp_translate_press']= false;
 				if ( isset( $_POST['gnpub_pp_translate_press'] )) {
