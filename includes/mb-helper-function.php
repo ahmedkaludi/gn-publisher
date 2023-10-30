@@ -14,9 +14,15 @@ if( !defined( 'ABSPATH' ) )
  * @return bool
  */
 function gnpub_is_plugins_page() {
-    global $pagenow;
-
-    return ( 'plugins.php' === $pagenow );
+    if(function_exists('get_current_screen')){
+        $screen = get_current_screen();
+            if(is_object($screen)){
+                if($screen->id == 'plugins' || $screen->id == 'plugins-network'){
+                    return true;
+                }
+            }
+    }
+    return false;
 }
 
 function gnpub_get_current_url(){
@@ -135,9 +141,7 @@ function gnpub_enqueue_makebetter_email_js(){
     );
 }
 
-if( is_admin() && gnpub_is_plugins_page()) {
-    add_filter('admin_footer', 'gnpub_add_deactivation_feedback_modal');
-}
+add_filter('admin_footer', 'gnpub_add_deactivation_feedback_modal');
 
 
 function gn_send_query_message(){   
