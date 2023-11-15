@@ -22,6 +22,7 @@ class GNPUB_Settings {
 		add_action( 'admin_init', array( $this, 'save_settings' ) );
 	}
 
+
 	/**
 	 * Save the settings form when it has been submitted.
 	 * 
@@ -64,11 +65,27 @@ class GNPUB_Settings {
 									'gnpub_pp_translate_press' => false,
 									'gnpub_pp_flipboard_com' => false,
 									'gnpub_enable_gnsitemap' => false,
+									'gnpub_google_rev_snippet' => '',
+									'gnpub_google_rev_snippet_name' => '',
+									'gnpub_enable_google_revenue_manager' => false,
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
 			$option_update=false;
 
 			if ( isset( $_POST['gnpub_form_tab'] ) && $_POST['gnpub_form_tab']=='feature') {
+
+				if(isset($_POST['gnpub_enable_google_revenue_manager'])){
+					$gnpub_options['gnpub_enable_google_revenue_manager']= true;
+					if(isset($_POST['gnpub_google_rev_snippet'])){
+						$gnpub_options['gnpub_google_rev_snippet']= $_POST['gnpub_google_rev_snippet'];
+						$gnpub_options['gnpub_google_rev_snippet_name']=sanitize_text_field($_POST['gnpub_google_rev_snippet_name']);
+					}else{
+						$gnpub_options['gnpub_enable_google_revenue_manager']=false;
+					}
+					$option_update=true;
+				}else{
+					$gnpub_options['gnpub_enable_google_revenue_manager']= false;
+				}
 				if ( isset( $_POST['gnpub_enable_copy_protection'] ) ) {
 					$gnpub_options['gnpub_enable_copy_protection']= true;
 					$option_update=true;

@@ -391,8 +391,52 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   </div>
 </div>
 
+<?php 
+$default_options=array('gnpub_enable_google_revenue_manager'=>false, 'gnpub_enable_google_revenue_manager' => '', "gnpub_google_rev_snippet_name" => "");
+$gnpub_options = get_option( 'gnpub_new_options', $default_options );
+$gnpub_enable_google_revenue_manager = $gnpub_options['gnpub_enable_google_revenue_manager'];
+$gnpub_google_rev_snippet = $gnpub_options['gnpub_google_rev_snippet'];
+$gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name'];
 
+?>
 <div id="gn-features" class="gn-tabcontent">
+  <p>
+    <form action="" method="post">
+    <p>
+    <table class="form-table">
+
+      <tr>
+        <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
+        <td>
+          <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
+          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?></label>
+          <span><a target="_blank" style="text-decoration:none;" href="https://support.google.com/news/publisher-center/answer/11449914?hl=en&ref_topic=11493750&sjid=11669392988591413059-AP">learn more</a></span>
+        </td>
+      </tr>
+      <tr id="gnpub_val_tr_revenue_snippname" style="display:none">
+        <th><?php _e( 'Snippet Name', 'gn-publisher' ); ?></th>
+        <td>
+          <input type="gnpub_google_rev_snippet_name" name="gnpub_google_rev_snippet_name" id="gnpub_google_rev_snippet_name" value="<?php echo $gnpub_google_rev_snippet_name; ?>" style="width: 40%;" placeholder="Name of snippet">
+        </td>
+      </tr>
+      <tr id="gnpub_val_tr_revenue" style="display:none">
+        <th><?php _e( 'Enter snippet code from Google', 'gn-publisher' ); ?></th>
+        <td>
+          <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo $gnpub_google_rev_snippet; ?></textarea>
+        </td>
+      </tr>      
+      <tr>
+      </tr>  
+    </table>
+    </p>
+    <p id="gnpub_val_tr_revenue_save" class="submit" style="display:none">
+    <input type="hidden" name="gnpub_form_tab" value="feature">
+      <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
+      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
+    </p>
+
+    </form>
+</p>
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
       <p>
     <table class="form-table">

@@ -1,4 +1,29 @@
+var gnpub_pro_checkbox1=document.getElementById('gnpub_enable_google_revenue_manager');
+if(gnpub_pro_checkbox1)
+{
+  check_for_copy_checkbox_rev();
+  gnpub_pro_checkbox1.addEventListener('click', event => {
+    check_for_copy_checkbox_rev();
+  });
+}
 
+
+function check_for_copy_checkbox_rev()
+{
+  if(gnpub_pro_checkbox1)
+  {
+  if(gnpub_pro_checkbox1.checked) {
+    document.getElementById('gnpub_val_tr_revenue').style.display="table-row";
+    document.getElementById('gnpub_val_tr_revenue_save').style.display="table-row";
+    document.getElementById('gnpub_val_tr_revenue_snippname').style.display="table-row";
+}
+else{
+  document.getElementById('gnpub_val_tr_revenue').style.display="none";
+  document.getElementById('gnpub_val_tr_revenue_save').style.display="none";
+  document.getElementById('gnpub_val_tr_revenue_snippname').style.display="none";
+}
+  }
+}
 
 function gn_copy(id) {
     var copyText = document.getElementById(id);
