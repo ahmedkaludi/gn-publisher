@@ -7,23 +7,24 @@ if(gnpub_pro_checkbox1)
   });
 }
 
-
 function check_for_copy_checkbox_rev()
 {
   if(gnpub_pro_checkbox1)
   {
   if(gnpub_pro_checkbox1.checked) {
     document.getElementById('gnpub_val_tr_revenue').style.display="table-row";
-    document.getElementById('gnpub_val_tr_revenue_save').style.display="table-row";
     document.getElementById('gnpub_val_tr_revenue_snippname').style.display="table-row";
 }
 else{
   document.getElementById('gnpub_val_tr_revenue').style.display="none";
-  document.getElementById('gnpub_val_tr_revenue_save').style.display="none";
   document.getElementById('gnpub_val_tr_revenue_snippname').style.display="none";
 }
   }
 }
+
+jQuery('.gnpub-show-upgrd-toprem-btn-fch').click(function(){
+    jQuery(this).closest('td').find('a.gn-publisher-pro-btn, span').toggle();
+});
 
 function gn_copy(id) {
     var copyText = document.getElementById(id);

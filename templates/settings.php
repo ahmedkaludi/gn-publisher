@@ -1,39 +1,39 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+  exit;
 }
 
 ?>
 <div class="wrap">
-	<div class="gn-container">
+  <div class="gn-container">
   
-		<h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php _e( '<b>GN</b> Publisher', 'gn-publisher' ); ?>"/></a></h1>
-	</div>
+    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php _e( '<b>GN</b> Publisher', 'gn-publisher' ); ?>"/></a></h1>
+  </div>
 <?php // don't think we need this anymore, let's test without, but leave in code for now in case
-	//it needs to be reenabled - ca (11/29/2020)
+  //it needs to be reenabled - ca (11/29/2020)
 /*
-	<form action="" method="post">
+  <form action="" method="post">
 
-		<table class="form-table">
+    <table class="form-table">
 
-			<tr>
-				<th><?php _e( 'Include the featured image for a post in the feed', 'gn-publisher' ); ?></th>
-				<td>
-					<input type="checkbox" name="gnpub_include_featured_image" id="gnpub_include_featured_image" <?php checked( $include_featured_image, true ); ?> value="1" />
-					<label for="gnpub_include_featured_image"><?php _e( 'Include featured image', 'gn-publisher' ); ?></label>
-					<p class="description"><?php _e( 'Deactivate this option if images in the Publisher Center appear twice in your articles.', 'gn-publisher' ); ?></p>
-				</td>
-			</tr>
+      <tr>
+        <th><?php _e( 'Include the featured image for a post in the feed', 'gn-publisher' ); ?></th>
+        <td>
+          <input type="checkbox" name="gnpub_include_featured_image" id="gnpub_include_featured_image" <?php checked( $include_featured_image, true ); ?> value="1" />
+          <label for="gnpub_include_featured_image"><?php _e( 'Include featured image', 'gn-publisher' ); ?></label>
+          <p class="description"><?php _e( 'Deactivate this option if images in the Publisher Center appear twice in your articles.', 'gn-publisher' ); ?></p>
+        </td>
+      </tr>
 
-		</table>
+    </table>
 
-		<p class="submit">
-			<?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-			<input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
-		</p>
+    <p class="submit">
+      <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
+      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
+    </p>
 
-	</form>
+  </form>
 */ 
 ?>
 <?php 
@@ -41,7 +41,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   $license_info = get_option("gnpub_pro_upgrade_license"); 
   $license_key_status = $license_key = '';
     if(isset($license_info['pro']['license_key'])){
-      $license_key	= $license_info['pro']['license_key'];
+      $license_key  = $license_info['pro']['license_key'];
       $replace = ''; for ($i=0; $i < strlen($license_key)-4; $i++) { $replace .= '*'; }
       $license_key = substr_replace($license_key, $replace, 0, strlen($license_key)-4);
       $license_key_status = $license_info['pro']['license_key_status'];
@@ -52,7 +52,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   } 
 } 
 ?>
-	<div class="gn-tab">
+  <div class="gn-tab">
   <button class="gn-tablinks" onclick="openTab(event, 'gn-intro')" id="defaultOpen"><?php echo esc_html__('Dashboard', 'gn-publisher') ?></button>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-google-feed')" id="gn-feed"><?php echo esc_html__('Google News Feed Setup', 'gn-publisher') ?></button>
   <button class="gn-tablinks" onclick="openTab(event, 'gn-features')"><?php echo esc_html__('Features', 'gn-publisher') ?></button>
@@ -76,53 +76,53 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 <div id="gn-intro" class="gn-tabcontent">
    
   <p><?php
-			printf(
-				__( '<p> This plugin was created by Chris Andrews, a Platinum Level Product Expert on the Google News Publisher Help forum, the original creator of <a href="%1$s" target="_blank">GN Publisher</a>.</p>', 'gn-publisher' ),
-				'https://gnpublisher.com/'
-			);
-	?></p>
+      printf(
+        __( '<p> This plugin was created by Chris Andrews, a Platinum Level Product Expert on the Google News Publisher Help forum, the original creator of <a href="%1$s" target="_blank">GN Publisher</a>.</p>', 'gn-publisher' ),
+        'https://gnpublisher.com/'
+      );
+  ?></p>
 
-	<p><?php
-			printf(
-				__( 'GN Publisher is a WordPress plugin designed to output RSS feeds that comply with the <a href="%1$s" target="_blank">Google News RSS Feed Technical Requirements</a> for inclusion in the <a href="%2$s" target="_blank">Google News Publisher Center</a>.', 'gn-publisher' ),
-				'https://support.google.com/news/publisher-center/answer/9545420?hl=en',
-				'https://publishercenter.google.com/'
-			);
-	?></p>
+  <p><?php
+      printf(
+        __( 'GN Publisher is a WordPress plugin designed to output RSS feeds that comply with the <a href="%1$s" target="_blank">Google News RSS Feed Technical Requirements</a> for inclusion in the <a href="%2$s" target="_blank">Google News Publisher Center</a>.', 'gn-publisher' ),
+        'https://support.google.com/news/publisher-center/answer/9545420?hl=en',
+        'https://publishercenter.google.com/'
+      );
+  ?></p>
 
-	<p><?php _e( 'The plugin addresses common issues publishers experience when using the Google News Publisher Center, including:', 'gn-publisher' ); ?></p>
+  <p><?php _e( 'The plugin addresses common issues publishers experience when using the Google News Publisher Center, including:', 'gn-publisher' ); ?></p>
  
-		<ul style="list-style-type:circle;padding-left: 40px;">
-			<li><?php _e( 'Incomplete articles', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Duplicate images', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Missing images or media', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Missing content (usually social media/Instagram embeds)', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Title errors (missing or repeated title)', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Cached RSS feeds causing slow updating', 'gn-publisher' ); ?></li>
-			<li><?php _e( 'Delayed crawling by Google', 'gn-publisher' ); ?></li>
-		</ul>
+    <ul style="list-style-type:circle;padding-left: 40px;">
+      <li><?php _e( 'Incomplete articles', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Duplicate images', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Missing images or media', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Missing content (usually social media/Instagram embeds)', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Title errors (missing or repeated title)', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Cached RSS feeds causing slow updating', 'gn-publisher' ); ?></li>
+      <li><?php _e( 'Delayed crawling by Google', 'gn-publisher' ); ?></li>
+    </ul>
 </div>
 
 <div id="gn-google-feed" class="gn-tabcontent">
    
    <p><?php _e( 'Once installed and activated, you can find your GN Publisher RSS feeds at:', 'gn-publisher' ); ?></p>
 
-		<ul>
- 		<?php 
+    <ul>
+    <?php 
 
-	/////// display feed urls, @since 1.0.2 -ca ///////////////////
-			$permalinks_enabled = ! empty( get_option( 'permalink_structure' ) );
+  /////// display feed urls, @since 1.0.2 -ca ///////////////////
+      $permalinks_enabled = ! empty( get_option( 'permalink_structure' ) );
       $feed_url=esc_url( $permalinks_enabled ? trailingslashit( home_url() ) . 'feed/gn' : add_query_arg( 'feed', 'gn', home_url() ) );
-			echo '<li><input type="text" class="gn-input" value="'.$feed_url.'" id="gn-feed-0" size="60" readonly>
+      echo '<li><input type="text" class="gn-input" value="'.$feed_url.'" id="gn-feed-0" size="60" readonly>
       <div class="gn-tooltip">
       <button class="gn-btn" onclick="gn_copy('."'gn-feed-0'".')" onmouseout="gn_out('."'gn-feed-0'".')">
         <span class="gn-tooltiptext" id="gn-feed-0-tooltip">Copy URL</span>
         Copy
         </button>
       </div></li>';
-			$categories = get_categories(); 
-			foreach( $categories as $category ) {
-				$gn_category_link = get_category_link( $category->term_id );
+      $categories = get_categories(); 
+      foreach( $categories as $category ) {
+        $gn_category_link = get_category_link( $category->term_id );
 
         //Fix for Feed Url link if category is hidden by adding (.) in category base in wordpress permalinks section
         $gn_category_link = str_replace('/./','/',$gn_category_link); 
@@ -144,7 +144,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
           $gn_category_link = str_replace($permalink_prepend,'/',$gn_category_link);
         }
 
-				$gn_category_link = $permalinks_enabled ? trailingslashit( $gn_category_link ) . 'feed/gn' : add_query_arg( 'feed', 'gn', $gn_category_link );
+        $gn_category_link = $permalinks_enabled ? trailingslashit( $gn_category_link ) . 'feed/gn' : add_query_arg( 'feed', 'gn', $gn_category_link );
         echo '<li><input type="text" class="gn-input" value="'.esc_url( $gn_category_link ).'" id="gn-feed-'.$category->term_id.'" size="60" readonly>
       <div class="gn-tooltip">
       <button class="gn-btn" onclick="gn_copy('."'gn-feed-".$category->term_id."'".')" onmouseout="gn_out('."'gn-feed-".$category->term_id."'".')">
@@ -152,17 +152,17 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         Copy
         </button>
       </div></li>';
-			
-			} 
- 		?>
-		</ul>
+      
+      } 
+    ?>
+    </ul>
 <p><?php _e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
 
 <p><?php _e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
 
-	<p><?php _e( 'Be sure to click that blue "Save" button in the upper right hand corner of the Publisher Center to save your changes (it\'s surprisingly easy to miss). After saving, wait ten minutes for Google to fetch your feed and render your articles. Then reload the entire page using your browser\'s reload/refresh button before checking to see if your articles appear in the Publisher Center.', 'gn-publisher' ); ?></p>
+  <p><?php _e( 'Be sure to click that blue "Save" button in the upper right hand corner of the Publisher Center to save your changes (it\'s surprisingly easy to miss). After saving, wait ten minutes for Google to fetch your feed and render your articles. Then reload the entire page using your browser\'s reload/refresh button before checking to see if your articles appear in the Publisher Center.', 'gn-publisher' ); ?></p>
 
-	<p><?php _e( 'After the initial setup, GN Publisher will ping Google with an alert each time your feed is updated.', 'gn-publisher' ); ?></p>
+  <p><?php _e( 'After the initial setup, GN Publisher will ping Google with an alert each time your feed is updated.', 'gn-publisher' ); ?></p>
 
   <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
 <div class="info gnpub-content-stolen-badge">
@@ -312,8 +312,8 @@ if ( defined('GNPUB_PRO_VERSION') ) {
                 <li>
                   <label class="gn-support-label"><?php echo esc_html__('Email', 'gn-publisher') ?><span class="gn-star-mark">*</span></label>
                    <div class="support-input">
-                   		
-                   		<input type="text" id="gn_query_email" name="gn_query_email" size="47" placeholder="Enter your Email" required="">
+                      
+                      <input type="text" id="gn_query_email" name="gn_query_email" size="47" placeholder="Enter your Email" required="">
                    </div>
                 </li>
                 
@@ -349,7 +349,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
  
   
 
-	
+  
 </div>
 
 <div id="gn-services" class="gn-tabcontent">
@@ -400,7 +400,9 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
 
 ?>
 <div id="gn-features" class="gn-tabcontent">
-  <p>
+  
+<?php if(!defined('GNPUB_PRO_VERSION')){ ?>
+        <p>
     <form action="" method="post">
     <p>
     <table class="form-table">
@@ -409,8 +411,8 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
         <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
-          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?></label>
-          <span><a target="_blank" style="text-decoration:none;" href="https://support.google.com/news/publisher-center/answer/11449914?hl=en&ref_topic=11493750&sjid=11669392988591413059-AP">learn more</a></span>
+          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?> <span><a target="_blank" style="text-decoration:none;" href="https://support.google.com/news/publisher-center/answer/11449914?hl=en&ref_topic=11493750&sjid=11669392988591413059-AP">learn more</a></span></label>
+          
         </td>
       </tr>
       <tr id="gnpub_val_tr_revenue_snippname" style="display:none">
@@ -426,29 +428,18 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
         </td>
       </tr>      
       <tr>
-      </tr>  
-    </table>
-    </p>
-    <p id="gnpub_val_tr_revenue_save" class="submit" style="display:none">
-    <input type="hidden" name="gnpub_form_tab" value="feature">
-      <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
-    </p>
-
-    </form>
-</p>
-<?php if(!defined('GNPUB_PRO_VERSION')){ ?>
-      <p>
-    <table class="form-table">
-      <tr>
+      </tr>
+       <tr>
         <th><?php _e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
         <td>
-        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+        <a class="gn-publisher-pro-btn"  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
         <th><?php _e( 'Exclude Categories From Main Feed', 'gn-publisher' ); ?></th>
         <td>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
@@ -456,11 +447,20 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
       <tr>
         <th><?php _e( 'Google News Sitemap', 'gn-publisher' ); ?></th>
         <td>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
-      </tr>
-      </table>
-      </p> 
+      </tr>  
+    </table>
+    </p>
+    <p>
+    <input type="hidden" name="gnpub_form_tab" value="feature">
+      <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
+      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
+    </p>
+
+    </form>
+</p>
   <?php } else { 
      do_action('gnpub_pro_setup_form');
     
@@ -479,36 +479,40 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
       <tr>
         <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
         <td>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         <br><br>
-          <?php _e( 'Use this  option when you need feeds for <a href="https://flipboard.com/" target="_blank"> Flipboard.com</a>', 'gn-publisher' ); ?>
+          <span class="gn-upgrd-to-span"><?php _e( 'Use this  option when you need feeds for <a href="https://flipboard.com/" target="_blank"> Flipboard.com</a>', 'gn-publisher' ); ?></span>
         </td>
       </tr>
       <tr>
         <th><?php _e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
         <td>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         <br><br>
-        <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/publishpress-authors/" target="_blank">  <?php echo esc_html__('Co-Authors, Multiple Authors and Guest Authors in an Author Box with PublishPress Authors', 'gn-publisher') ?></a>
+       <span class="gn-upgrd-to-span"> <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
+        <a href="https://wordpress.org/plugins/publishpress-authors/" target="_blank">  <?php echo esc_html__('Co-Authors, Multiple Authors and Guest Authors in an Author Box with PublishPress Authors', 'gn-publisher') ?></a></span>
         </td>
       </tr>
       <tr>
         <th><?php _e( 'Molongui Authorship', 'gn-publisher' ); ?></th>
         <td>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         <br><br>
-        <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/molongui-authorship/" target="_blank">  <?php echo esc_html__('Author Box for Authors, Co-Authors, Multiple Authors and Guest Authors – Molongui', 'gn-publisher') ?></a>
+        <span class="gn-upgrd-to-span"><?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
+        <a href="https://wordpress.org/plugins/molongui-authorship/" target="_blank">  <?php echo esc_html__('Author Box for Authors, Co-Authors, Multiple Authors and Guest Authors – Molongui', 'gn-publisher') ?></a></span>
         </td>
       </tr>
       <tr>
         <th><?php _e( 'Translate Press', 'gn-publisher' ); ?></th>
         <td>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         <br><br>
-        <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a>
+        <span class="gn-upgrd-to-span"><?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
+        <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a></span>
         </td>
       </tr>
     
@@ -519,7 +523,7 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
         <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
         <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher-pro' ); ?>" />
       </p>
-  </form>	
+  </form> 
   <?php } else { 
      do_action('gnpub_pro_compat_form');
     

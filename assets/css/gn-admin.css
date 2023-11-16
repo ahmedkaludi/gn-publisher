@@ -384,6 +384,9 @@ div#gn-upgrade .button-gnp-ugrade {
     background: #e93557;
     border-color: #e93557;
 }
+.gn-upgrd-to-span, .gn-publisher-pro-btn{
+  display: none;
+}
 .gn-publisher-pro-btn {
     font-size: 13px !important;
     padding: 6px 12px;
