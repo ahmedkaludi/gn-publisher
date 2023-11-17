@@ -424,7 +424,7 @@ $gnpub_google_rev_snippet_name = $gnpub_options['gnpub_google_rev_snippet_name']
       <tr id="gnpub_val_tr_revenue" style="display:none">
         <th><?php _e( 'Enter snippet code from Google', 'gn-publisher' ); ?></th>
         <td>
-          <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo $gnpub_google_rev_snippet; ?></textarea>
+          <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo esc_textarea($gnpub_google_rev_snippet); ?></textarea>
         </td>
       </tr>      
       <tr>

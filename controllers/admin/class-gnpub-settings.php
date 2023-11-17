@@ -77,7 +77,7 @@ class GNPUB_Settings {
 				if(isset($_POST['gnpub_enable_google_revenue_manager'])){
 					$gnpub_options['gnpub_enable_google_revenue_manager']= true;
 					if(isset($_POST['gnpub_google_rev_snippet'])){
-						$gnpub_options['gnpub_google_rev_snippet']= sanitize_text_field($_POST['gnpub_google_rev_snippet']);
+						$gnpub_options['gnpub_google_rev_snippet']= wp_unslash($_POST['gnpub_google_rev_snippet']);
 						$gnpub_options['gnpub_google_rev_snippet_name']=sanitize_text_field($_POST['gnpub_google_rev_snippet_name']);
 					}else{
 						$gnpub_options['gnpub_enable_google_revenue_manager']=false;
