@@ -229,3 +229,106 @@ if ( $found ) {
 return $filtered;
 }
 
+//Function to expand html tags form allowed html tags in wordpress    
+function gnpub_expanded_allowed_tags() {
+        
+    $my_allowed = wp_kses_allowed_html( 'post' );
+    // form fields - input
+    $my_allowed['input']  = array(
+            'class'        => array(),
+            'id'           => array(),
+            'name'         => array(),
+            'data-type'    => array(),
+            'value'        => array(),
+            'type'         => array(),
+            'style'        => array(),
+            'placeholder'  => array(),
+            'maxlength'    => array(),
+            'checked'      => array(),
+            'readonly'     => array(),
+            'disabled'     => array(),
+            'width'        => array(),  
+            'data-id'      => array(),
+            'checked'      => array(),
+            'step'         => array(),
+            'min'          => array(),
+            'max'          => array()
+    );
+    $my_allowed['hidden']  = array(                    
+            'id'           => array(),
+            'name'         => array(),
+            'value'        => array(),
+            'type'         => array(), 
+            'data-id'         => array(), 
+    );
+    //number
+    $my_allowed['number'] = array(
+            'class'        => array(),
+            'id'           => array(),
+            'name'         => array(),
+            'value'        => array(),
+            'type'         => array(),
+            'style'        => array(),                    
+            'width'        => array(),
+            'min'          => array(),
+            'max'          => array(),                    
+    );
+    $my_allowed['script'] = array(
+            'class'        => array(),
+            'type'         => array(),
+            'id'           => array(),
+    );
+    //textarea
+     $my_allowed['textarea'] = array(
+            'class' => array(),
+            'id'    => array(),
+            'name'  => array(),
+            'value' => array(),
+            'type'  => array(),
+            'style'  => array(),
+            'rows'  => array(),                                                            
+    );              
+    // select
+    $my_allowed['select'] = array(
+            'class'    => array(),
+            'multiple' => array(),
+            'id'       => array(),
+            'name'     => array(),
+            'value'    => array(),
+            'type'     => array(), 
+            'data-type'=> array(),                    
+    );
+    // checkbox
+    $my_allowed['checkbox'] = array(
+            'class'  => array(),
+            'id'     => array(),
+            'name'   => array(),
+            'value'  => array(),
+            'type'   => array(),  
+            'disabled'=> array(),  
+    );
+    //  options
+    $my_allowed['option'] = array(
+            'selected' => array(),
+            'value'    => array(),
+            'disabled' => array(),
+            'id'       => array(),
+    );                       
+    // style
+    $my_allowed['style'] = array(
+            'types' => array(),
+    );
+    $my_allowed['a'] = array(
+            'href'           => array(),
+            'target'         => array(),
+            'add-on'         => array(),
+            'license-status' => array(),
+            'class'          => array(),
+            'data-id'        => array()
+    );
+    $my_allowed['p'] = array(                        
+            'add-on' => array(),                        
+            'class'  => array(),
+    );
+    return $my_allowed;
+}
