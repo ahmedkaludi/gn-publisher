@@ -277,6 +277,8 @@ function gnpub_expanded_allowed_tags() {
             'class'        => array(),
             'type'         => array(),
             'id'           => array(),
+            'src'          => array(),
+            'async'        => array(),
     );
     //textarea
      $my_allowed['textarea'] = array(
