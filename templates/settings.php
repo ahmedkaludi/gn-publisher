@@ -411,7 +411,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
-          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?> <span><a target="_blank" style="text-decoration:none;" href="https://support.google.com/news/publisher-center/answer/11449914?hl=en&ref_topic=11493750&sjid=11669392988591413059-AP">learn more</a></span></label>
+          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/">learn more</a></span></label>
           
         </td>
       </tr>
