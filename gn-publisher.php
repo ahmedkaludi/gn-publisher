@@ -317,4 +317,3 @@ function gnpub_revenue_snippet(){
 	}
 }
 add_action( 'wp_head', 'gnpub_revenue_snippet' );
-
