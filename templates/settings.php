@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wrap">
   <div class="gn-container">
   
-    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php _e( '<b>GN</b> Publisher', 'gn-publisher' ); ?>"/></a></h1>
+    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php _e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
   </div>
 <?php // don't think we need this anymore, let's test without, but leave in code for now in case
   //it needs to be reenabled - ca (11/29/2020)
@@ -47,7 +47,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
       $license_key_status = $license_info['pro']['license_key_status'];
     } 
   if($license_key_status != 'active'){
-    echo '<div class="gnpu-license-notice">Thank You For installing <a href="https://gnpublisher.com/" target="_blank">GN PUBLISHER PRO</a>, please activate the license key to receive regular updates.</div>
+    echo '<div class="gnpu-license-notice">'.__( 'Thank You For installing ', 'gn-publisher' ).'<a href="https://gnpublisher.com/" target="_blank">'.__( 'GN PUBLISHER PRO', 'gn-publisher' ).'</a>, '.__( 'please activate the license key to receive regular updates.', 'gn-publisher' ).'</div>
     ';
   } 
 } 
@@ -145,10 +145,10 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         }
 
         $gn_category_link = $permalinks_enabled ? trailingslashit( $gn_category_link ) . 'feed/gn' : add_query_arg( 'feed', 'gn', $gn_category_link );
-        echo '<li><input type="text" class="gn-input" value="'.esc_url( $gn_category_link ).'" id="gn-feed-'.$category->term_id.'" size="60" readonly>
+        echo '<li><input type="text" class="gn-input" value="'.esc_url( $gn_category_link ).'" id="gn-feed-'.esc_attr($category->term_id).'" size="60" readonly>
       <div class="gn-tooltip">
-      <button class="gn-btn" onclick="gn_copy('."'gn-feed-".$category->term_id."'".')" onmouseout="gn_out('."'gn-feed-".$category->term_id."'".')">
-        <span class="gn-tooltiptext" id="gn-feed-'.$category->term_id.'-tooltip">Copy URL</span>
+      <button class="gn-btn" onclick="gn_copy('."'gn-feed-".esc_attr($category->term_id)."'".')" onmouseout="gn_out('."'gn-feed-".esc_attr($category->term_id)."'".')">
+        <span class="gn-tooltiptext" id="gn-feed-'.esc_attr($category->term_id).'-tooltip">'.__( 'Copy URL', 'gn-publisher' ).'</span>
         Copy
         </button>
       </div></li>';
@@ -166,7 +166,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 
   <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
 <div class="info gnpub-content-stolen-badge">
-  <div class="gnpub-badge-left"><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/gn-logo-mini.png' ?> title="<?php _e( '<b>GN</b> Publisher', 'gn-publisher' ); ?>"/></a></div>
+  <div class="gnpub-badge-left"><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/gn-logo-mini.png' ?> title="<?php _e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></div>
   <div class="gnpub-badge-right"><p><?php echo esc_html__('For feed content protection, upgrade to Premium.', 'gn-publisher') ?></p></div>
   <div class="gnpub-badge-right-btn"><a class="gn-publisher-pro-btn " target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a></div>
 </div>
@@ -362,7 +362,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
     <div class="gn-service-card-right">
       <h3 class="gn-service-heading"><?php echo esc_html__('Google News Setup & Audit', 'gn-publisher') ?></h3>
     <p><?php echo esc_html__('You can get thousands of clicks to your site from Google News. We can set up Google news for your website and perform regular audits.', 'gn-publisher') ?></p>
-    <a target="_blank" href="https://gnpublisher.com/services/google-news-setup-audit-service/#pricing" class="gn-btn-primary button button-primary">View Pricing</a><a href="https://gnpublisher.com/services/google-news-setup-audit-service/" target="_blank" class="gn-btn gn-btn-learnmore button">Learn More</a>
+    <a target="_blank" href="https://gnpublisher.com/services/google-news-setup-audit-service/#pricing" class="gn-btn-primary button button-primary"> <?php _e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/google-news-setup-audit-service/" target="_blank" class="gn-btn gn-btn-learnmore button"><?php _e('Learn More', 'gn-publisher');?></a>
     </div>
   </div>
   <div class="gn-service-card second">
@@ -381,10 +381,10 @@ if ( defined('GNPUB_PRO_VERSION') ) {
     <img src="<?php echo GNPUB_URL . '/assets/images/google.png'?>" width="128px" height="128px">
   </div>
   <div class="gn-service-card-right">
-    <h3 class="gn-service-heading"><?php echo esc_html__('Search Console', 'gn-publisher') ?>
-    Maintenance</h3>
+    <h3 class="gn-service-heading"><?php echo esc_html__('Search Console Maintenance', 'gn-publisher') ?>
+    </h3>
     <p>  <?php echo esc_html__('We will manage your all Google Search Console problems because even after a webpage gets indexed, issues can happen.', 'gn-publisher') ?></p>
-<a target="_blank" href="https://gnpublisher.com/services/search-console-maintenance-service/#pricing" class="gn-btn-primary button button-primary">View Pricing</a><a href="https://gnpublisher.com/services/search-console-maintenance-service/" target="_blank" class="gn-btn gn-btn-learnmore button">Learn More</a>
+<a target="_blank" href="https://gnpublisher.com/services/search-console-maintenance-service/#pricing" class="gn-btn-primary button button-primary"><?php _e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/search-console-maintenance-service/" target="_blank" class="gn-btn gn-btn-learnmore button">Learn More</a>
   </div>
   </div>
  
@@ -400,8 +400,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
 
 ?>
 <div id="gn-features" class="gn-tabcontent">
-  
-<?php if(!defined('GNPUB_PRO_VERSION')){ ?>
+
         <p>
     <form action="" method="post">
     <p>
@@ -411,14 +410,14 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
-          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Enable this integration', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php _e( 'learn more', 'gn-publisher' ); ?></a></span></label>
+          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Increase audience engagement and convert subscribers or contributors.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php _e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
           
         </td>
       </tr>
       <tr id="gnpub_val_tr_revenue_snippname" style="display:none">
         <th><?php _e( 'Snippet Name', 'gn-publisher' ); ?></th>
         <td>
-          <input type="gnpub_google_rev_snippet_name" name="gnpub_google_rev_snippet_name" id="gnpub_google_rev_snippet_name" value="<?php echo $gnpub_google_rev_snippet_name; ?>" style="width: 40%;" placeholder="Name of snippet">
+          <input type="text" name="gnpub_google_rev_snippet_name" id="gnpub_google_rev_snippet_name" value="<?php echo esc_attr($gnpub_google_rev_snippet_name); ?>" style="width: 40%;" placeholder="Name of snippet">
         </td>
       </tr>
       <tr id="gnpub_val_tr_revenue" style="display:none">
@@ -427,8 +426,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
           <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo esc_textarea($gnpub_google_rev_snippet); ?></textarea>
         </td>
       </tr>      
-      <tr>
-      </tr>
+      <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
        <tr>
         <th><?php _e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
         <td>
@@ -450,7 +448,12 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
-      </tr>  
+      </tr> 
+      
+      <?php } else { 
+     do_action('gnpub_pro_setup_form');
+    
+    } ?>
     </table>
     </p>
     <p>
@@ -461,10 +464,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
 
     </form>
 </p>
-  <?php } else { 
-     do_action('gnpub_pro_setup_form');
-    
-    } ?>
+ 
   </div>
   <div id="gn-compatibility" class="gn-tabcontent">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>

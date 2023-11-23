@@ -153,13 +153,13 @@ function gn_send_query_message(){
        return;  
     }   
     $message        = gn_sanitize_textarea_field($_POST['message']); 
-    $email          = gn_sanitize_textarea_field($_POST['email']);   
+    $email          = sanitize_email($_POST['email']);   
                             
     if(function_exists('wp_get_current_user')){
 
         $user           = wp_get_current_user();
 
-        $message = '<p>'.$message.'</p><br><br>'.'Query from GN Publisher plugin support tab';
+        $message = '<p>'.esc_html($message).'</p><br><br>'.'Query from GN Publisher plugin support tab';
         
         $user_data  = $user->data;        
         $user_email = $user_data->user_email;     

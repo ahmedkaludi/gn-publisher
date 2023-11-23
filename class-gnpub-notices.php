@@ -39,11 +39,16 @@ class GNPUB_Notices {
 	}
 
 	public function display_notices() {
-		foreach ( $this->get_notices() as $notice ): ?>
+		$notices = $this->get_notices();
+		if(!empty($notices)){
+		foreach ( $notices as $notice ){ 
+			if(isset($notice[0])){?>
 			<div class="notice notice-<?php echo $notice[0]; ?>">
 				<p><?php echo $notice[1]; ?></p>
 			</div>
-		<?php endforeach;
+		<?php }
+		   }
+		}
 	}
 
 }
