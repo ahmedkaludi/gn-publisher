@@ -2,9 +2,9 @@
 Contributors: gnpublisher
 Tags: google news, google, news, publisher center, rss, feed, feeds
 Requires at least: 3.5
-Tested up to: 6.3
+Tested up to: 6.4
 Requires PHP: 5.4
-Stable tag: 1.5.10
+Stable tag: 1.5.11
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -24,6 +24,9 @@ The plugin addresses common RSS compatiblity issues publishers experience when u
 -  Delayed crawling by Google
 
 After installing, click on the *'Dashboard'* under GN Publisher on your plugins page for additional information about applying and troubleshooting issues related to the Google News Publisher Center.
+
+**New in 1.5.11**
+Google Reader Revenue Manager support.Reader Revenue Manager provides publisher solutions to deepen audience engagement and convert subscribers or contributors.
 
 **New in 1.0.9**
 
@@ -85,6 +88,13 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.11 - (23 November 2023) =
+
+* Added : Reader Revenue Manager support #73
+* Feature : Add 'rss2_item' Action Hook to Feed Template for Media Content #67
+* Fixed : The network deactivate button is not working on the wp-multisite #75
+
 
 = 1.5.10 - (12 September 2023) =
 

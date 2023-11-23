@@ -42,9 +42,9 @@ class GNPUB_Notices {
 		$notices = $this->get_notices();
 		if(!empty($notices)){
 		foreach ( $notices as $notice ){ 
-			if(isset($notice[0])){?>
-			<div class="notice notice-<?php echo $notice[0]; ?>">
-				<p><?php echo $notice[1]; ?></p>
+			if(isset($notice[0]) && isset($notice[1])){?>
+			<div class="notice notice-<?php echo esc_attr($notice[0]); ?>">
+				<p><?php echo esc_html($notice[1]); ?></p>
 			</div>
 		<?php }
 		   }
