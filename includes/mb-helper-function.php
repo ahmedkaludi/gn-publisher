@@ -14,9 +14,15 @@ if( !defined( 'ABSPATH' ) )
  * @return bool
  */
 function gnpub_is_plugins_page() {
-    global $pagenow;
-
-    return ( 'plugins.php' === $pagenow );
+    if(function_exists('get_current_screen')){
+        $screen = get_current_screen();
+            if(is_object($screen)){
+                if($screen->id == 'plugins' || $screen->id == 'plugins-network'){
+                    return true;
+                }
+            }
+    }
+    return false;
 }
 
 function gnpub_get_current_url(){
@@ -135,9 +141,7 @@ function gnpub_enqueue_makebetter_email_js(){
     );
 }
 
-if( is_admin() && gnpub_is_plugins_page()) {
-    add_filter('admin_footer', 'gnpub_add_deactivation_feedback_modal');
-}
+add_filter('admin_footer', 'gnpub_add_deactivation_feedback_modal');
 
 
 function gn_send_query_message(){   
@@ -149,13 +153,13 @@ function gn_send_query_message(){
        return;  
     }   
     $message        = gn_sanitize_textarea_field($_POST['message']); 
-    $email          = gn_sanitize_textarea_field($_POST['email']);   
+    $email          = sanitize_email($_POST['email']);   
                             
     if(function_exists('wp_get_current_user')){
 
         $user           = wp_get_current_user();
 
-        $message = '<p>'.$message.'</p><br><br>'.'Query from GN Publisher plugin support tab';
+        $message = '<p>'.esc_html($message).'</p><br><br>'.'Query from GN Publisher plugin support tab';
         
         $user_data  = $user->data;        
         $user_email = $user_data->user_email;     
@@ -225,3 +229,108 @@ if ( $found ) {
 return $filtered;
 }
 
+//Function to expand html tags form allowed html tags in wordpress    
+function gnpub_expanded_allowed_tags() {
+        
+    $my_allowed = wp_kses_allowed_html( 'post' );
+    // form fields - input
+    $my_allowed['input']  = array(
+            'class'        => array(),
+            'id'           => array(),
+            'name'         => array(),
+            'data-type'    => array(),
+            'value'        => array(),
+            'type'         => array(),
+            'style'        => array(),
+            'placeholder'  => array(),
+            'maxlength'    => array(),
+            'checked'      => array(),
+            'readonly'     => array(),
+            'disabled'     => array(),
+            'width'        => array(),  
+            'data-id'      => array(),
+            'checked'      => array(),
+            'step'         => array(),
+            'min'          => array(),
+            'max'          => array()
+    );
+    $my_allowed['hidden']  = array(                    
+            'id'           => array(),
+            'name'         => array(),
+            'value'        => array(),
+            'type'         => array(), 
+            'data-id'         => array(), 
+    );
+    //number
+    $my_allowed['number'] = array(
+            'class'        => array(),
+            'id'           => array(),
+            'name'         => array(),
+            'value'        => array(),
+            'type'         => array(),
+            'style'        => array(),                    
+            'width'        => array(),
+            'min'          => array(),
+            'max'          => array(),                    
+    );
+    $my_allowed['script'] = array(
+            'class'        => array(),
+            'type'         => array(),
+            'id'           => array(),
+            'src'          => array(),
+            'async'        => array(),
+    );
+    //textarea
+     $my_allowed['textarea'] = array(
+            'class' => array(),
+            'id'    => array(),
+            'name'  => array(),
+            'value' => array(),
+            'type'  => array(),
+            'style'  => array(),
+            'rows'  => array(),                                                            
+    );              
+    // select
+    $my_allowed['select'] = array(
+            'class'    => array(),
+            'multiple' => array(),
+            'id'       => array(),
+            'name'     => array(),
+            'value'    => array(),
+            'type'     => array(), 
+            'data-type'=> array(),                    
+    );
+    // checkbox
+    $my_allowed['checkbox'] = array(
+            'class'  => array(),
+            'id'     => array(),
+            'name'   => array(),
+            'value'  => array(),
+            'type'   => array(),  
+            'disabled'=> array(),  
+    );
+    //  options
+    $my_allowed['option'] = array(
+            'selected' => array(),
+            'value'    => array(),
+            'disabled' => array(),
+            'id'       => array(),
+    );                       
+    // style
+    $my_allowed['style'] = array(
+            'types' => array(),
+    );
+    $my_allowed['a'] = array(
+            'href'           => array(),
+            'target'         => array(),
+            'add-on'         => array(),
+            'license-status' => array(),
+            'class'          => array(),
+            'data-id'        => array()
+    );
+    $my_allowed['p'] = array(                        
+            'add-on' => array(),                        
+            'class'  => array(),
+    );
+    return $my_allowed;
+}

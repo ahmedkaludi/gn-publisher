@@ -193,7 +193,8 @@ class GNPUB_Feed {
 		}
 		preg_match_all( '/<img[^>]* src=[\"|\']([^\"]*)[\"|\'][^>]*>/i', $content, $images );
 
-		foreach ( $images[0] as $index => $image_tag ) {
+		if(is_array($images) && isset($images[0])){
+			foreach ( $images[0] as $index => $image_tag ) {
 			$image_src = $images[1][$index];
 			$base_image = $this->get_base_image_src( $image_src );
 
@@ -203,12 +204,15 @@ class GNPUB_Feed {
 
 			$occurances[$base_image][] = array( $image_tag, $image_src );
 		}
+	}
 
+	if(is_array($occurances)){
 		foreach ( $occurances as $image_base => $images ) {
 			if ( count( $images ) < 2 ) {
 				// There is only one copy of this image in the post content so ignore it.
 				continue;
 			}
+		}
 
 			// Now see if one of the images is the primary image added by GN Publisher
 			// otherwise record the shortest image URL (which is most likely to be the source).
@@ -216,12 +220,13 @@ class GNPUB_Feed {
 			$keep = null;
 			$shortestUrlLength = 0;
 			foreach ( $images as $image ) {
-				if ( strpos( $image[0], 'type:primaryImage' ) !== false ) {
+
+				if ( isset($image[0])  && strpos( $image[0], 'type:primaryImage' ) !== false ) {
 					$keep = $image[0];
 					break;
 				}
 
-				if ( ! $shortestUrlLength || strlen( $image[1] ) < $shortestUrlLength ) {
+				if ( isset($image[1])  &&! $shortestUrlLength || strlen( $image[1] ) < $shortestUrlLength ) {
 					$shortestUrlLength = strlen( $image[1] );
 					$keep = $image[0];
 				}
@@ -230,7 +235,7 @@ class GNPUB_Feed {
 			// Iterate again, this time removing all images except $keep.
 			$keepKept = false;
 			foreach ( $images as $image ) {
-				if ( ! $keepKept && $image[0] === $keep ) {
+				if ( isset($image[0]) && ! $keepKept && $image[0] === $keep ) {
 					$keepKept = true; // This is needed if there is another image in the content identical to $keep.
 					continue;
 				}
@@ -245,12 +250,13 @@ class GNPUB_Feed {
 		// Remove <figure> elements which do not wrap an <img? element.
 		$figures = array();
 		preg_match_all( '/<figure[^>]*>.*?<\/figure>/i', $content, $figures );
-		
+		if(is_array( $figures) && isset($figures[0])){
 		foreach ( $figures[0] as $figure ) {
 			if ( strpos( $figure, '<img' ) === false ) {
 				$content = str_replace( $figure, '', $content );
 			}
 		}
+	}
 
 		return $content;
 	}

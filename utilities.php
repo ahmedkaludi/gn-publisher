@@ -116,9 +116,11 @@ function gnpub_purge_feed() {
 function gnpub_publish_feeds( $feed_urls ) {
 	$post_string = 'hub.mode=publish';
 
-	foreach ( $feed_urls as $feed_url ) {
-		$post_string .= '&hub.url=' . esc_url( $feed_url );
-	}
+	if(!empty($feed_urls)){
+		foreach ( $feed_urls as $feed_url ) {
+			$post_string .= '&hub.url=' . esc_url( $feed_url );
+		}
+    }
 
 	$wp_version = get_bloginfo( 'version' );
 	$user_agent = apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) );

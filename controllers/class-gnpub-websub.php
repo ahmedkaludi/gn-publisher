@@ -87,7 +87,8 @@ class GNPUB_Websub {
 				)
 			);
 
-			foreach ( $feed_list as $feed_url => $query_args ) {
+			if(is_array($feed_list) && !empty($feed_list)){
+				foreach ( $feed_list as $feed_url => $query_args ) {
 				$query_args['fields'] = 'ids';
 				$query_args['posts_per_page'] = $max_posts;
 				$query_args['date_query'] = $date_query;
@@ -99,6 +100,7 @@ class GNPUB_Websub {
 					$modified_feeds[] = $feed_url;
 				}
 			}
+		}
 
 			if ( count( $modified_feeds ) < 1 ) {
 				return;

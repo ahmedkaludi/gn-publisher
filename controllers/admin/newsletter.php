@@ -28,8 +28,8 @@ class gnpub_ads_newsletter {
                 }
                                 
 	        $name    = sanitize_text_field($_POST['name']);
-                $email   = sanitize_text_field($_POST['email']);
-                $website = sanitize_text_field($_POST['website']);
+                $email   = sanitize_email($_POST['email']);
+                $website = sanitize_url($_POST['website']);
                 
                 if($email){
                         
@@ -47,7 +47,7 @@ class gnpub_ads_newsletter {
 		    echo $response;
 
                 }else{
-                        echo 'Email id required';//gnpub_t_string('Email id required');                        
+                        echo __('Email id required','gn-publisher');//gnpub_t_string('Email id required');                        
                 }                        
 
                 wp_die();

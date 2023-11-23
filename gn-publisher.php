@@ -65,8 +65,8 @@ function gnpub_feed_bootstrap() {
 		require_once GNPUB_PATH . 'class-gnpub-installer.php';
 		require_once GNPUB_PATH . 'class-gnpub-notices.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-menu.php';
-		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-settings.php';
 		require_once GNPUB_PATH . 'includes/mb-helper-function.php';
+		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-settings.php';		
 		require_once GNPUB_PATH . 'controllers/admin/newsletter.php';
 
 
@@ -304,3 +304,16 @@ function gnpub_flipboard( $content ) {
 	}
 	return $content;
 }
+
+function gnpub_revenue_snippet(){
+	$default_options=array('gnpub_enable_google_revenue_manager'=>false, 'gnpub_enable_google_revenue_manager' => '');
+	$gnpub_options = get_option( 'gnpub_new_options', $default_options );
+	$gnpub_enable_google_revenue_manager = $gnpub_options['gnpub_enable_google_revenue_manager'];
+	$gnpub_google_rev_snippet = $gnpub_options['gnpub_google_rev_snippet'];
+	if($gnpub_enable_google_revenue_manager){
+		if(!empty($gnpub_google_rev_snippet)){
+			echo $gnpub_google_rev_snippet;
+		}
+	}
+}
+add_action( 'wp_head', 'gnpub_revenue_snippet' );

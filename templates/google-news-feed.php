@@ -115,7 +115,9 @@ if( function_exists( 'gnpub_pp_translate' ) )
 <?php 		else : ?>
 			<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
 <?php 		endif; ?>
-<?php 		rss_enclosure(); ?>
+<?php 		rss_enclosure(); 
+		do_action( 'rss2_item',  get_the_ID());
+?>
 		</item>
 <?php 	endwhile; ?>
 	</channel>
