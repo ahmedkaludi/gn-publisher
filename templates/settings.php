@@ -410,7 +410,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
-          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Increase audience engagement and convert subscribers or contributors.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php _e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
+          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Increase revenue and improve reader engagement.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php _e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
           
         </td>
       </tr>
@@ -481,8 +481,6 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        <br><br>
-          <span class="gn-upgrd-to-span"><?php _e( 'Use this  option when you need feeds for <a href="https://flipboard.com/" target="_blank"> Flipboard.com</a>', 'gn-publisher' ); ?></span>
         </td>
       </tr>
       <tr>
@@ -490,9 +488,6 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        <br><br>
-       <span class="gn-upgrd-to-span"> <?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/publishpress-authors/" target="_blank">  <?php echo esc_html__('Co-Authors, Multiple Authors and Guest Authors in an Author Box with PublishPress Authors', 'gn-publisher') ?></a></span>
         </td>
       </tr>
       <tr>
@@ -500,9 +495,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        <br><br>
-        <span class="gn-upgrd-to-span"><?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/molongui-authorship/" target="_blank">  <?php echo esc_html__('Author Box for Authors, Co-Authors, Multiple Authors and Guest Authors – Molongui', 'gn-publisher') ?></a></span>
+    
         </td>
       </tr>
       <tr>
@@ -510,9 +503,6 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        <br><br>
-        <span class="gn-upgrd-to-span"><?php echo esc_html__(' This option will only work if you have installed', 'gn-publisher') ?>
-        <a href="https://wordpress.org/plugins/translatepress-multilingual/" target="_blank">  <?php echo esc_html__('Translate Multilingual sites – TranslatePress', 'gn-publisher') ?></a></span>
         </td>
       </tr>
     

@@ -387,7 +387,7 @@ div#gn-upgrade .button-gnp-ugrade {
 .gnpub-span-lrn-more{
   padding-left: 5px;
 }
-#gn-features .gn-publisher-pro-btn,#gn-compatibility .gn-publisher-pro-btn{
+#gn-features .gn-publisher-pro-btn,#gn-compatibility .gn-publisher-pro-btn,#gn-compatibility .gn-upgrd-to-span{
   display: none;
 }
 .gn-publisher-pro-btn {
