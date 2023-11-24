@@ -394,7 +394,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
 <?php 
 $default_options=array('gnpub_enable_google_revenue_manager'=>false, 'gnpub_enable_google_revenue_manager' => '', "gnpub_google_rev_snippet_name" => "");
 $gnpub_options = get_option( 'gnpub_new_options', $default_options );
-$gnpub_enable_google_revenue_manager = $gnpub_options['gnpub_enable_google_revenue_manager'];
+$gnpub_enable_google_revenue_manager = isset($gnpub_options['gnpub_enable_google_revenue_manager'])?$gnpub_options['gnpub_enable_google_revenue_manager']:false;
 $gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet']) ?  $gnpub_options['gnpub_google_rev_snippet'] : '';
 $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_name']) ? $gnpub_options['gnpub_google_rev_snippet_name']: '';
 

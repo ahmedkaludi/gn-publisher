@@ -7,7 +7,7 @@
  * Plugin Name: GN Publisher
  * Plugin URI: https://gnpublisher.com/
  * Description: GN Publisher: The easy way to make Google News Publisher compatible RSS feeds.
- * Version: 1.5.10
+ * Version: 1.5.11.1
  * Author: Chris Andrews
  * Author URI: https://gnpublisher.com/
  * Text Domain: gn-publisher
@@ -40,7 +40,7 @@ function gnpub_feed_bootstrap() {
 		return;
 	}
  
-	define( 'GNPUB_VERSION', '1.5.10' );
+	define( 'GNPUB_VERSION', '1.5.11.1' );
 	define( 'GNPUB_PATH', plugin_dir_path( __FILE__ ) );
     define( 'GNPUB_URL', plugins_url( '', __FILE__) );
 	define( 'GNPUB_PLUGIN_FILE', __FILE__ );
@@ -308,8 +308,8 @@ function gnpub_flipboard( $content ) {
 function gnpub_revenue_snippet(){
 	$default_options=array('gnpub_enable_google_revenue_manager'=>false, 'gnpub_enable_google_revenue_manager' => '');
 	$gnpub_options = get_option( 'gnpub_new_options', $default_options );
-	$gnpub_enable_google_revenue_manager = $gnpub_options['gnpub_enable_google_revenue_manager'];
-	$gnpub_google_rev_snippet = $gnpub_options['gnpub_google_rev_snippet'];
+	$gnpub_enable_google_revenue_manager = isset($gnpub_options['gnpub_enable_google_revenue_manager'])?$gnpub_options['gnpub_enable_google_revenue_manager']:false;
+	$gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet'])?$gnpub_options['gnpub_google_rev_snippet']:'';
 	if($gnpub_enable_google_revenue_manager){
 		if(!empty($gnpub_google_rev_snippet)){
 			echo $gnpub_google_rev_snippet;
