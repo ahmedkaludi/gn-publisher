@@ -201,10 +201,10 @@ function gnpub_wp_title_rss()
 	$wp_title_rss = ob_get_contents();
 	ob_end_clean();
 
-	if( false !== strpos(gnpub_htmlToPlainText($wp_title_rss), '–') && function_exists( 'gnpub_pp_translate' ) ) {
-    	$wp_title_rss_explode = explode("–", gnpub_htmlToPlainText($wp_title_rss));
+	if( false !== strpos(gnpub_htmlToPlainText($wp_title_rss), '-') && function_exists( 'gnpub_pp_translate' ) ) {
+    	$wp_title_rss_explode = explode("-", gnpub_htmlToPlainText($wp_title_rss));
 		
-    	$wp_title_rss = gnpub_pp_translate( trim( $wp_title_rss_explode[0] ) ) . ' – ' . gnpub_pp_translate( trim( $wp_title_rss_explode[1] ) );
+    	$wp_title_rss = gnpub_pp_translate( trim( $wp_title_rss_explode[0] ) ) . ' - ' . gnpub_pp_translate( trim( $wp_title_rss_explode[1] ) );
 	}
 	echo $wp_title_rss;
 }
