@@ -317,38 +317,3 @@ function gnpub_revenue_snippet(){
 	}
 }
 add_action( 'wp_head', 'gnpub_revenue_snippet' );
-
-/**
- * Prevent duplicate video explosure tag to feed
- * @since 1.5.12
- * */
-function gnpub_rss_enclosure()
-{
-	if ( post_password_required() ) {
-		return;
-	}
-	$enclosure_cnt = 1;
-	foreach ( (array) get_post_custom() as $key => $val ) {
-		if ( 'enclosure' === $key ) {
-			foreach ( (array) $val as $enc ) {
-				if($enclosure_cnt == 1){
-					$enclosure = explode( "\n", $enc );
-
-					// Only get the first element, e.g. 'audio/mpeg' from 'audio/mpeg mpga mp2 mp3'.
-					$t    = preg_split( '/[ \t]/', trim( $enclosure[2] ) );
-					$type = $t[0];
-
-					/**
-					 * Filters the RSS enclosure HTML link tag for the current post.
-					 *
-					 * @since 2.2.0
-					 *
-					 * @param string $html_link_tag The HTML link tag with a URI and other attributes.
-					 */
-					echo apply_filters( 'gnpub_rss_enclosure', '<enclosure url="' . esc_url( trim( $enclosure[0] ) ) . '" length="' . absint( trim( $enclosure[1] ) ) . '" type="' . esc_attr( $type ) . '" />' . "\n" );
-				}
-				$enclosure_cnt++;
-			}
-		}
-	}
-}

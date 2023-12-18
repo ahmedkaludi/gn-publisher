@@ -240,11 +240,9 @@ class GNPUB_Feed {
 					continue;
 				}
 
-				if(isset($image[0]) && is_string($image[0])){
-					$pos = strpos( $content, $image[0] );
-					if ( $pos !== false ) {
-						$content = substr_replace( $content, '', $pos, strlen( $image[0] ) );
-					}
+				$pos = strpos( $content, $image[0] );
+				if ( $pos !== false ) {
+					$content = substr_replace( $content, '', $pos, strlen( $image[0] ) );
 				}
 			}
 		}
