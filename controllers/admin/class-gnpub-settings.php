@@ -68,6 +68,7 @@ class GNPUB_Settings {
 									'gnpub_google_rev_snippet' => '',
 									'gnpub_google_rev_snippet_name' => '',
 									'gnpub_enable_google_revenue_manager' => false,
+									'gnpub_enable_feed_support' => array('post' => 1),
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
 			$option_update=false;
@@ -157,6 +158,14 @@ class GNPUB_Settings {
 				if ( isset( $_POST['gnpub_pp_flipboard_com'] )) {
 					$gnpub_options['gnpub_pp_flipboard_com']= true;	
 				}
+				$option_update=true;
+			}
+
+			if(isset($_POST['gnpub_feed_support']['enable_feed_support']) && !empty($_POST['gnpub_feed_support']['enable_feed_support'])){
+				$gnpub_options['gnpub_enable_feed_support'] = array_map('intval', $_POST['gnpub_feed_support']['enable_feed_support']);
+				$option_update=true;
+			}else{
+				$gnpub_options['gnpub_enable_feed_support'] = array('post' => 1);
 				$option_update=true;
 			}
 

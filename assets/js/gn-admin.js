@@ -147,3 +147,14 @@ function gn_copy(id) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
 }
+
+// Hide upgrade to premium button after 3 seconds
+// @since 1.5.12
+function gnpubDisplayProBtn() {
+  let proBtn = document.getElementsByClassName('gn-publisher-pro-btn-f-setup')[0];
+  proBtn.style.display = "inline";
+
+  setTimeout(() => {
+    proBtn.style.display = "none";  
+  }, 3000);
+}
