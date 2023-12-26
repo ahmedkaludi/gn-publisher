@@ -82,7 +82,7 @@ function gn_copy(id) {
 
     //for active the pro tab on first time
     $('.gnpub-upgrade.welcome').trigger('click');
-    $('.gn-tablinks.gnpub-upgrade').addClass('active');
+    // $('.gn-tablinks.gnpub-upgrade').addClass('active');
 
 
     var btn_click=false;
@@ -152,9 +152,11 @@ function gn_copy(id) {
 // @since 1.5.12
 function gnpubDisplayProBtn() {
   let proBtn = document.getElementsByClassName('gn-publisher-pro-btn-f-setup')[0];
-  proBtn.style.display = "inline";
+  if(proBtn){
+    proBtn.style.display = "inline";
 
-  setTimeout(() => {
-    proBtn.style.display = "none";  
-  }, 3000);
+    setTimeout(() => {
+      proBtn.style.display = "none";  
+    }, 3000);
+  }
 }
