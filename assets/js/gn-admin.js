@@ -81,8 +81,17 @@ function gn_copy(id) {
     });
 
     //for active the pro tab on first time
-    $('.gnpub-upgrade.welcome').trigger('click');
-    // $('.gn-tablinks.gnpub-upgrade').addClass('active');
+    if($('.gnpub-upgrade').length > 0){
+      let findWelcomeClass =  $('.gnpub-upgrade').attr('class');
+      if(findWelcomeClass.indexOf('welcome') !== -1){
+        $('.gn-tabcontent').hide('active');
+        $('.gn-tablinks').removeClass('active');
+        $('.gn-tablinks.gnpub-upgrade').addClass('active')
+        $('.gnpub-upgrade').addClass('active');
+        $('.gnpub-upgrade').removeClass('welcome');
+        $('#gn-upgrade').show();
+      }
+    }
 
 
     var btn_click=false;
