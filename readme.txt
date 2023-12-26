@@ -91,7 +91,7 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 = 1.5.12 - (26 December 2023) =
 
-* Feature : Added option to include pages in google news Feed #76
+* Feature : Added option to include pages in google news Feed (pro) #76
 * Fixed : Issue with the sitemap date formatting #82
 * Tweak : Fixed PHP warnings #83
 * Tweak : Enclosure Tag is getting duplicated in feed #85
