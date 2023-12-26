@@ -4,7 +4,7 @@ Tags: google news, google, news, publisher center, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.4
 Requires PHP: 5.4
-Stable tag: 1.5.11.1
+Stable tag: 1.5.12
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,14 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.12 - (26 December 2023) =
+
+* Feature : Added option to include pages in google news Feed #76
+* Fixed : Issue with the sitemap date formatting #82
+* Tweak : Fixed PHP warnings #83
+* Tweak : Enclosure Tag is getting duplicated in feed #85
+* Fixed : Error message with Version 1.5.11.1 #86
 
 = 1.5.11.1 - (24 November 2023) =
 
