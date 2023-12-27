@@ -68,58 +68,62 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<atom:link rel="hub" href="https://pubsubhubbub.appspot.com/" />
 		<generator>GN Publisher v<?=GNPUB_VERSION;?> https://wordpress.org/plugins/gn-publisher/</generator>
 <?php
-	while ( have_posts() ) :
-		the_post();
+	$feed_support_flag = apply_filters('gnpub_enable_feed_support_filter', 0); // create selected post type feeds
+	if($feed_support_flag == 0){
+		while ( have_posts() ) :
+			the_post();
 
-		$mod_counter = intval( get_post_meta( get_the_ID(), 'gnpub_modified_count', true ) );
+			$mod_counter = intval( get_post_meta( get_the_ID(), 'gnpub_modified_count', true ) );
 
-		$last_modified = get_post_modified_time( 'U', true );
-		if ( $last_modified > $last_deactivation && $last_modified < $last_activation ) {
-			$mod_counter++;
-		}
+			$last_modified = get_post_modified_time( 'U', true );
+			if ( $last_modified > $last_deactivation && $last_modified < $last_activation ) {
+				$mod_counter++;
+			}
 
-		if ( $mod_counter ) {
-			$pub_date_object = new DateTime;
-			$pub_date_object->setTimestamp( get_post_time( 'U', true ) );
-			$pub_date_object->modify( '+' . $mod_counter . ' seconds' );
+			if ( $mod_counter ) {
+				$pub_date_object = new DateTime;
+				$pub_date_object->setTimestamp( get_post_time( 'U', true ) );
+				$pub_date_object->modify( '+' . $mod_counter . ' seconds' );
 
-			$pub_date = date( 'D, d M Y H:i:s +0000', $pub_date_object->getTimestamp() );
-		} else {
-			 $pub_date = mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false );
+				$pub_date = date( 'D, d M Y H:i:s +0000', $pub_date_object->getTimestamp() );
+			} else {
+				 $pub_date = mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false );
 
-		}
+			}
 
-		?>
-
-		<item>
-			<title><?php gnpub_the_title_rss(); ?></title>
-			<link><?php gnpub_feed_post_link(get_the_permalink()); ?></link>
-			<pubDate><?php echo $pub_date; ?></pubDate>
-			<?php $gnpub_authors = '<dc:creator><![CDATA['.get_the_author().']]></dc:creator>'; ?>
-			<?php $gnpub_authors = apply_filters('gnpub_pp_authors_compat',$gnpub_authors );
-				  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
-				  echo $gnpub_authors;
 			?>
-			<guid isPermaLink="false"><?php the_guid(); ?></guid>
-<?php 
-$content = get_the_content_feed( GNPUB_Feed::FEED_ID );
-$content = gnpub_remove_potentially_dangerous_tags($content);
 
-if( function_exists( 'gnpub_pp_translate' ) )
-	$content = gnpub_pp_translate( $content );
- if ( $content && strlen( $content ) > 0 ) : 
-?>
-			<description><![CDATA[<?php echo wp_trim_words($content,15,'...');?>]]></description>
+			<item>
+				<title><?php gnpub_the_title_rss(); ?></title>
+				<link><?php gnpub_feed_post_link(get_the_permalink()); ?></link>
+				<pubDate><?php echo $pub_date; ?></pubDate>
+				<?php $gnpub_authors = '<dc:creator><![CDATA['.get_the_author().']]></dc:creator>'; ?>
+				<?php $gnpub_authors = apply_filters('gnpub_pp_authors_compat',$gnpub_authors );
+					  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
+					  echo $gnpub_authors;
+				?>
+				<guid isPermaLink="false"><?php the_guid(); ?></guid>
+	<?php 
+	$content = get_the_content_feed( GNPUB_Feed::FEED_ID );
+	$content = gnpub_remove_potentially_dangerous_tags($content);
 
-			<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
-<?php 		else : ?>
-			<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
-<?php 		endif; ?>
-<?php 		rss_enclosure(); 
-		do_action( 'rss2_item',  get_the_ID());
-?>
-		</item>
-<?php 	endwhile; ?>
+	if( function_exists( 'gnpub_pp_translate' ) )
+		$content = gnpub_pp_translate( $content );
+	 if ( $content && strlen( $content ) > 0 ) : 
+	?>
+				<description><![CDATA[<?php echo wp_trim_words($content,15,'...');?>]]></description>
+
+				<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
+	<?php 		else : ?>
+				<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
+	<?php 		endif; ?>
+	<?php 		gnpub_rss_enclosure(); 
+			do_action( 'rss2_item',  get_the_ID());
+	?>
+			</item>
+	<?php 	endwhile; 
+	}
+	?>
 	</channel>
 </rss>
 <!-- last GN Pub feeds fetch (not specifically this feed): <?php echo (get_option( 'gnpub_google_last_fetch', null )) ? date_i18n( 'Y-m-d H:i:s', get_option( 'gnpub_google_last_fetch' ) ) : 'has not fetched'; ?> -->

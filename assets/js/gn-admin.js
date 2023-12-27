@@ -81,8 +81,17 @@ function gn_copy(id) {
     });
 
     //for active the pro tab on first time
-    $('.gnpub-upgrade.welcome').trigger('click');
-    $('.gn-tablinks.gnpub-upgrade').addClass('active');
+    if($('.gnpub-upgrade').length > 0){
+      let findWelcomeClass =  $('.gnpub-upgrade').attr('class');
+      if(findWelcomeClass.indexOf('welcome') !== -1){
+        $('.gn-tabcontent').hide('active');
+        $('.gn-tablinks').removeClass('active');
+        $('.gn-tablinks.gnpub-upgrade').addClass('active')
+        $('.gnpub-upgrade').addClass('active');
+        $('.gnpub-upgrade').removeClass('welcome');
+        $('#gn-upgrade').show();
+      }
+    }
 
 
     var btn_click=false;
@@ -146,4 +155,17 @@ function gn_copy(id) {
   function gnIsEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+}
+
+// Hide upgrade to premium button after 3 seconds
+// @since 1.5.12
+function gnpubDisplayProBtn() {
+  let proBtn = document.getElementsByClassName('gn-publisher-pro-btn-f-setup')[0];
+  if(proBtn){
+    proBtn.style.display = "inline";
+
+    setTimeout(() => {
+      proBtn.style.display = "none";  
+    }, 3000);
+  }
 }

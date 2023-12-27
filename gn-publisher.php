@@ -7,7 +7,7 @@
  * Plugin Name: GN Publisher
  * Plugin URI: https://gnpublisher.com/
  * Description: GN Publisher: The easy way to make Google News Publisher compatible RSS feeds.
- * Version: 1.5.11.1
+ * Version: 1.5.12
  * Author: Chris Andrews
  * Author URI: https://gnpublisher.com/
  * Text Domain: gn-publisher
@@ -40,7 +40,7 @@ function gnpub_feed_bootstrap() {
 		return;
 	}
  
-	define( 'GNPUB_VERSION', '1.5.11.1' );
+	define( 'GNPUB_VERSION', '1.5.12' );
 	define( 'GNPUB_PATH', plugin_dir_path( __FILE__ ) );
     define( 'GNPUB_URL', plugins_url( '', __FILE__) );
 	define( 'GNPUB_PLUGIN_FILE', __FILE__ );
@@ -201,10 +201,10 @@ function gnpub_wp_title_rss()
 	$wp_title_rss = ob_get_contents();
 	ob_end_clean();
 
-	if( false !== strpos(gnpub_htmlToPlainText($wp_title_rss), '–') && function_exists( 'gnpub_pp_translate' ) ) {
-    	$wp_title_rss_explode = explode("–", gnpub_htmlToPlainText($wp_title_rss));
+	if( false !== strpos(gnpub_htmlToPlainText($wp_title_rss), '-') && function_exists( 'gnpub_pp_translate' ) ) {
+    	$wp_title_rss_explode = explode("-", gnpub_htmlToPlainText($wp_title_rss));
 		
-    	$wp_title_rss = gnpub_pp_translate( trim( $wp_title_rss_explode[0] ) ) . ' – ' . gnpub_pp_translate( trim( $wp_title_rss_explode[1] ) );
+    	$wp_title_rss = gnpub_pp_translate( trim( $wp_title_rss_explode[0] ) ) . ' - ' . gnpub_pp_translate( trim( $wp_title_rss_explode[1] ) );
 	}
 	echo $wp_title_rss;
 }
@@ -317,3 +317,38 @@ function gnpub_revenue_snippet(){
 	}
 }
 add_action( 'wp_head', 'gnpub_revenue_snippet' );
+
+/**
+ * Prevent duplicate video explosure tag to feed
+ * @since 1.5.12
+ * */
+function gnpub_rss_enclosure()
+{
+	if ( post_password_required() ) {
+		return;
+	}
+	$enclosure_cnt = 1;
+	foreach ( (array) get_post_custom() as $key => $val ) {
+		if ( 'enclosure' === $key ) {
+			foreach ( (array) $val as $enc ) {
+				if($enclosure_cnt == 1){
+					$enclosure = explode( "\n", $enc );
+
+					// Only get the first element, e.g. 'audio/mpeg' from 'audio/mpeg mpga mp2 mp3'.
+					$t    = preg_split( '/[ \t]/', trim( $enclosure[2] ) );
+					$type = $t[0];
+
+					/**
+					 * Filters the RSS enclosure HTML link tag for the current post.
+					 *
+					 * @since 2.2.0
+					 *
+					 * @param string $html_link_tag The HTML link tag with a URI and other attributes.
+					 */
+					echo apply_filters( 'gnpub_rss_enclosure', '<enclosure url="' . esc_url( trim( $enclosure[0] ) ) . '" length="' . absint( trim( $enclosure[1] ) ) . '" type="' . esc_attr( $type ) . '" />' . "\n" );
+				}
+				$enclosure_cnt++;
+			}
+		}
+	}
+}

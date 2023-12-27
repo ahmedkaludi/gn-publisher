@@ -226,9 +226,11 @@ class GNPUB_Feed {
 					break;
 				}
 
-				if ( isset($image[1])  &&! $shortestUrlLength || strlen( $image[1] ) < $shortestUrlLength ) {
-					$shortestUrlLength = strlen( $image[1] );
-					$keep = $image[0];
+				if ( isset($image[1]) ) {
+					if (! $shortestUrlLength || strlen( $image[1] ) < $shortestUrlLength ) {
+						$shortestUrlLength = strlen( $image[1] );
+						$keep = isset($image[0])?$image[0]:null;
+					}
 				}
 			}
 
@@ -240,9 +242,11 @@ class GNPUB_Feed {
 					continue;
 				}
 
-				$pos = strpos( $content, $image[0] );
-				if ( $pos !== false ) {
-					$content = substr_replace( $content, '', $pos, strlen( $image[0] ) );
+				if(isset($image[0]) && is_string($image[0])){
+					$pos = strpos( $content, $image[0] );
+					if ( $pos !== false ) {
+						$content = substr_replace( $content, '', $pos, strlen( $image[0] ) );
+					}
 				}
 			}
 		}

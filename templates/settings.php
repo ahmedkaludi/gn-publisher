@@ -118,8 +118,16 @@ if ( defined('GNPUB_PRO_VERSION') ) {
       <button class="gn-btn" onclick="gn_copy('."'gn-feed-0'".')" onmouseout="gn_out('."'gn-feed-0'".')">
         <span class="gn-tooltiptext" id="gn-feed-0-tooltip">Copy URL</span>
         Copy
-        </button>
-      </div></li>';
+        </button>';
+      echo '</div>';
+      if(!defined('GNPUB_PRO_VERSION')){ ?>
+          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayProBtn()"> <?php echo _e('Customize Home Feed', 'gn-publisher') ?> </a>
+          <a class="gn-publisher-pro-btn gn-publisher-pro-btn-f-setup gnpub-d-none"  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
+        <?php }else{ ?>
+          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayCptModal()"><?php _e('Customize Home Feed', 'gn-publisher'); ?> </a>
+      <?php
+      } 
+      echo '</li>';
       $categories = get_categories(); 
       foreach( $categories as $category ) {
         $gn_category_link = get_category_link( $category->term_id );
@@ -170,7 +178,9 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   <div class="gnpub-badge-right"><p><?php echo esc_html__('For feed content protection, upgrade to Premium.', 'gn-publisher') ?></p></div>
   <div class="gnpub-badge-right-btn"><a class="gn-publisher-pro-btn " target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a></div>
 </div>
-<?php } ?>
+<?php } 
+do_action('gnpub_pro_cpt_form'); 
+?>
 </div>
 
 
