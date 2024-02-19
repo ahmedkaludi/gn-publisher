@@ -101,7 +101,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 					  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
 					  echo $gnpub_authors;
 				?>
-				<guid isPermaLink="false"><?php echo apply_filters('gnpub_the_guid',get_the_guid(),$post_id); ?></guid>
+				<guid isPermaLink="false"><?php the_guid() ?></guid>
 	<?php 
 	$content = get_the_content_feed( GNPUB_Feed::FEED_ID );
 	$content = gnpub_remove_potentially_dangerous_tags($content);
