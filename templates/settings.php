@@ -204,9 +204,8 @@ do_action('gnpub_pro_cpt_form');
           <?php $last_fetch=( is_null( $last_google_fetch ) ) ? __( 'None recorded.', 'gn-publisher' ) : $last_google_fetch;
          $last_websub_ping = ( is_null( $last_websub_ping ) ) ? __( 'None recorded.', 'gn-publisher' ) : $last_websub_ping; 
           ?>
-         <p><?php esc_html_e( '➔ <b>Most Recent Feedfetcher Fetch: '.$last_fetch.' (if testing, refresh this page for most recent fetch time)</b><br/>&#8226; If the "Most Recent Feedfetcher fetch" is "None recorded" or the date is more than 24 hours old, it\'s likely that your host or firewall is blocking Google\'s feed crawler, Feedfetcher. Because Feedfetcher is not a well-known bot and doesn\'t follow some of the standard crawler procedures, it is often mistakenly blocked by hosting companies and firewalls. Ask your hosting company or server administrator to whitelist the user-agent "Feedfetcher-Google". Note: If you are using AWS Cloudfront, Amazon does not pass the user-agent through to GN Publisher, so the "Most Recent Feedfetcher Fetch" timestamp will not work for you.', 'gn-publisher' ); ?></p>
-<p><?php esc_html_e( '➔ <b>Most Recent Update Ping Sent: '.$last_websub_ping.' (if testing, refresh this page for most recent ping time)</b><br/>&#8226; When you publish or update a post, GN Publisher pings Google to let them know there is an update to one of your feeds. The "Most Recent Update Ping" indicates when the most recent ping was sent. Google normally fetches the feed soon thereafter (often within a minute).
-', 'gn-publisher' ); ?></p>
+         <p><?php echo esc_html__('➔', 'gn-publisher').'<b>'.esc_html__('Most Recent Feedfetcher Fetch: '.$last_fetch.'(if testing, refresh this page for most recent fetch time)', 'gn-publisher').'</b><br/>'.esc_html__('If the "Most Recent Feedfetcher fetch" is "None recorded" or the date is more than 24 hours old, it\'s likely that your host or firewall is blocking Google\'s feed crawler, Feedfetcher. Because Feedfetcher is not a well-known bot and doesn\'t follow some of the standard crawler procedures, it is often mistakenly blocked by hosting companies and firewalls. Ask your hosting company or server administrator to whitelist the user-agent "Feedfetcher-Google". Note: If you are using AWS Cloudfront, Amazon does not pass the user-agent through to GN Publisher, so the "Most Recent Feedfetcher Fetch" timestamp will not work for you.', 'gn-publisher'); ?></p>
+         <p><?php echo esc_html__('➔', 'gn-publisher').'<b>'.esc_html__('Most Recent Update Ping Sent: '.$last_websub_ping.' (if testing, refresh this page for most recent ping time)', 'gn-publisher').'</b><br/>'.esc_html__('When you publish or update a post, GN Publisher pings Google to let them know there is an update to one of your feeds. The "Most Recent Update Ping" indicates when the most recent ping was sent. Google normally fetches the feed soon thereafter (often within a minute).', 'gn-publisher'); ?></p>
         </li>
       </ul>
     </div>
@@ -220,9 +219,9 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links4">
         <li>
-          <p><?php esc_html_e( '➔ The validator may validate but warn about iframe and script tags - those are okay for our purposes.<br/>
-➔ If the validator does not validate, or validates but warns of "invalid html" (for example, a "missing p tag"), those issues can cause the crawler to not accept the feed. These errors are sometimes caused by poorly coded themes or plugins and require further investigation to correct. The p tag issue is a common one that is often caused by a figure tag or blockquote tag (or other block level element) being inside a paragraph, which is not valid html.<br/>
-➔ If some Publisher Center sections are being fetched okay and others are reporting "no articles" - it\'s likely an html error that is included in an article on the specific feed that isn\'t loading properly in the Publisher Center.', 'gn-publisher' ); ?></p>
+          <p><?php echo esc_html__( '➔ The validator may validate but warn about iframe and script tags - those are okay for our purposes.','gn-publisher').'<br/>';
+   echo esc_html__( '➔ If the validator does not validate, or validates but warns of "invalid html" (for example, a "missing p tag"), those issues can cause the crawler to not accept the feed. These errors are sometimes caused by poorly coded themes or plugins and require further investigation to correct. The p tag issue is a common one that is often caused by a figure tag or blockquote tag (or other block level element) being inside a paragraph, which is not valid html.','gn-publisher').'<br/>';
+   echo esc_html__( '➔ If some Publisher Center sections are being fetched okay and others are reporting "no articles" - it\'s likely an html error that is included in an article on the specific feed that isn\'t loading properly in the Publisher Center.', 'gn-publisher' ); ?></p>
            
         </li>
       </ul>
@@ -237,9 +236,9 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links5">
         <li>
-          <p><?php esc_html_e( 'The Publisher Center requires that large images be used as the featured image - at least 800px on the shortest side. GN Publisher will try to use your original image, which is generally the largest. If you upload a featured image that is smaller than 800px on its shortest side, it might not appear with the article in the Publisher Center.<br/>Note - the Publisher Center preview pane can only display .jpg and .png image files. If you are using a CDN like CloudFlare or KeyCDN, even if you have the images set up correctly, the CDN may serve them as WebP files. That will cause the images to not be displayed, or be displayed inconsistently, in the preview pane. If you are experiencing this, go the the "Review and Publish" tab in the Publisher Center, subscribe to your publication if you haven\'t already, and then click on link for your publication and make sure the images are displayed correctly there. If they are displayed on your publication in Google News, you can ignore them not being in the preview pane.
-
-', 'gn-publisher' ); ?></p>
+          <p><?php echo esc_html__( 'The Publisher Center requires that large images be used as the featured image - at least 800px on the shortest side. GN Publisher will try to use your original image, which is generally the largest. If you upload a featured image that is smaller than 800px on its shortest side, it might not appear with the article in the Publisher Center.','gn-publisher').'<br/>';
+          echo  esc_html__( 'Note - the Publisher Center preview pane can only display .jpg and .png image files. If you are using a CDN like CloudFlare or KeyCDN, even if you have the images set up correctly, the CDN may serve them as WebP files. That will cause the images to not be displayed, or be displayed inconsistently, in the preview pane. If you are experiencing this, go the the "Review and Publish" tab in the Publisher Center, subscribe to your publication if you haven\'t already, and then click on link for your publication and make sure the images are displayed correctly there. If they are displayed on your publication in Google News, you can ignore them not being in the preview pane.','gn-publisher').'<br/>';
+        ?></p>
            
         </li>
       </ul>
@@ -269,13 +268,11 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links7">
         <li>
-          <p><?php esc_html_e( '➔ Be aware that Google has certain Content Policies for sites included on Google News properties. More information about applying is available on the Google News Publisher Help Center.<br/>
+          <p><?php echo esc_html__( '➔ Be aware that Google has certain Content Policies for sites included on Google News properties. More information about applying is available on the Google News Publisher Help Center.','gn-publisher').'<br/>';
 
-➔ You\'ll need to meet additional requirements in the Publisher Center, such as verifying your domain, selecting an appropriate publication name, and setting up your logos correctly.<br/>
+echo esc_html__( '➔ You\'ll need to meet additional requirements in the Publisher Center, such as verifying your domain, selecting an appropriate publication name, and setting up your logos correctly.','gn-publisher').'<br/>';
 
-➔ Because of the huge number of ways that publishers, plugins, and themes can manipulate WordPress posts, I can\'t guarantee that this plugin will result in the technical requirements being met.
-
-', 'gn-publisher' ); ?></p>
+echo esc_html__( '➔ Because of the huge number of ways that publishers, plugins, and themes can manipulate WordPress posts, I can\'t guarantee that this plugin will result in the technical requirements being met.', 'gn-publisher' ); ?></p>
            
         </li>
       </ul>
