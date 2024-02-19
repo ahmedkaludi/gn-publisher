@@ -35,11 +35,6 @@ class GNPUB_Posts {
 
 		$last_fetched = intval( get_option( 'gnpub_google_last_fetch', 0 ) );
 
-		// If the timestamp of when this post was previously modified is more recent than google last fetched the feed,
-		// then we must have already incremented the counter since last fetched.
-		 //if ( strtotime( $post->post_modified, current_time( 'timestamp' ) ) > $last_fetched ) {
-		//	return;
-		//}
 
 		$counter = intval( get_post_meta( $post_id, 'gnpub_modified_count', true ) );
 		$counter++;

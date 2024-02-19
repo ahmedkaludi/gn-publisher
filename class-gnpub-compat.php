@@ -13,17 +13,6 @@ class GNPUB_Compat {
 	}
 
 	/**
-	 * Yoast SEO's strip category base feature has a known issue where it
-	 * will only work for default WordPress feed types. This function solves
-	 * this issue.
-	 * 
-	 * @since 1.0.8
-	 * 
-	 * @see GNPUB_Compat::yoast_seo_gn_feed_fix
-	 * @see https://github.com/Yoast/wordpress-seo/issues/6750
-	 */
-
-	/**
 	 * Strip category base feature has a known issue where it
 	 * will only work for default WordPress feed types. This function solves
 	 * this issue.

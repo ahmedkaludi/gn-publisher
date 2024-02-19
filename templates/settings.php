@@ -10,32 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
   
     <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php esc_html_e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
   </div>
-<?php // don't think we need this anymore, let's test without, but leave in code for now in case
-  //it needs to be reenabled - ca (11/29/2020)
-/*
-  <form action="" method="post">
-
-    <table class="form-table">
-
-      <tr>
-        <th><?php esc_html_e( 'Include the featured image for a post in the feed', 'gn-publisher' ); ?></th>
-        <td>
-          <input type="checkbox" name="gnpub_include_featured_image" id="gnpub_include_featured_image" <?php checked( $include_featured_image, true ); ?> value="1" />
-          <label for="gnpub_include_featured_image"><?php esc_html_e( 'Include featured image', 'gn-publisher' ); ?></label>
-          <p class="description"><?php esc_html_e( 'Deactivate this option if images in the Publisher Center appear twice in your articles.', 'gn-publisher' ); ?></p>
-        </td>
-      </tr>
-
-    </table>
-
-    <p class="submit">
-      <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
-    </p>
-
-  </form>
-*/ 
-?>
 <?php 
 if ( defined('GNPUB_PRO_VERSION') ) { 
   $license_info = get_option("gnpub_pro_upgrade_license"); 
