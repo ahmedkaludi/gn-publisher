@@ -47,7 +47,7 @@ class gnpub_ads_newsletter {
 		    echo $response;
 
                 }else{
-                        echo __('Email id required','gn-publisher');//gnpub_t_string('Email id required');                        
+                        echo esc_html__('Email id required','gn-publisher');//gnpub_t_string('Email id required');                        
                 }                        
 
                 wp_die();
