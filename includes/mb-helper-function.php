@@ -118,7 +118,7 @@ function gnpub_send_feedback() {
 
     $success = wp_mail( 'team@magazine3.in', $subject, $text, $headers );
 
-    die();
+    wp_die();
 }
 add_action( 'wp_ajax_gnpub_send_feedback', 'gnpub_send_feedback' );
  
@@ -180,11 +180,11 @@ function gn_send_query_message(){
 
         if($sent){
 
-             echo json_encode(array('status'=>'t'));  
+             wp_send_json(array('status'=>'t'));  
 
         }else{
 
-            echo json_encode(array('status'=>'f'));            
+             wp_send_json(array('status'=>'f'));            
 
         }
         

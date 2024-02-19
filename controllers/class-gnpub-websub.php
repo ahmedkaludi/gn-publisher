@@ -99,8 +99,10 @@ class GNPUB_Websub {
 				if ( count( array_intersect( $this->posts_updated, $query->get_posts() ) ) > 0 ) {
 					$modified_feeds[] = $feed_url;
 				}
+				wp_reset_postdata();
 			}
 		}
+			
 
 			if ( count( $modified_feeds ) < 1 ) {
 				return;

@@ -30,9 +30,8 @@ class GNPUB_Settings {
 	 */
 	public function save_settings() {
 		if ( isset( $_POST['save_gnpub_settings'] ) && current_user_can( 'manage_options' ) ) {
-			$nonce = isset( $_POST['_wpnonce'] ) ? sanitize_key( $_POST['_wpnonce'] ) : null;
-			
-			if ( ! wp_verify_nonce( $nonce, 'save_gnpub_settings' ) ) {
+					
+			if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'save_gnpub_settings' ) ) {
 				$this->notices->add_notice( __( 'GN Publisher settings were not saved because the form has expired. Try again.', 'gn-publisher' ), 'error' );
 				return;
 			}

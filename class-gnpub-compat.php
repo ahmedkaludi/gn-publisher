@@ -23,23 +23,6 @@ class GNPUB_Compat {
 	 * @see https://github.com/Yoast/wordpress-seo/issues/6750
 	 */
 
-	//public static function yoast_seo_strip_category_base() {
-	//	// If Yoast SEO isn't found, return early.
-	//	if ( ! defined( 'WPSEO_VERSION' ) ) {
-	//		return;
-	//	}
-	//
-	//	// Next, check if the strip category base feature is enabled.
-	//	if ( is_callable( array( 'WPSEO_Options', 'get' ) ) && WPSEO_Options::get( 'stripcategorybase' ) !== true ) {
-	//		return;
-	//	}
-	//
-	//	// Documented in wp-includes/class-wp-rewrite.php -> WP_Rewrite::rewrite_rules()
-	//	add_filter( 'category_rewrite_rules', array( 'GNPUB_Compat', 'yoast_seo_gn_feed_fix' ), 20 );
-
-	//}
-
-
 	/**
 	 * Strip category base feature has a known issue where it
 	 * will only work for default WordPress feed types. This function solves

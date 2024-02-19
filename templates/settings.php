@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wrap">
   <div class="gn-container">
   
-    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php _e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
+    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/logo.png' ?> title="<?php esc_html_e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
   </div>
 <?php // don't think we need this anymore, let's test without, but leave in code for now in case
   //it needs to be reenabled - ca (11/29/2020)
@@ -18,11 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     <table class="form-table">
 
       <tr>
-        <th><?php _e( 'Include the featured image for a post in the feed', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Include the featured image for a post in the feed', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_include_featured_image" id="gnpub_include_featured_image" <?php checked( $include_featured_image, true ); ?> value="1" />
-          <label for="gnpub_include_featured_image"><?php _e( 'Include featured image', 'gn-publisher' ); ?></label>
-          <p class="description"><?php _e( 'Deactivate this option if images in the Publisher Center appear twice in your articles.', 'gn-publisher' ); ?></p>
+          <label for="gnpub_include_featured_image"><?php esc_html_e( 'Include featured image', 'gn-publisher' ); ?></label>
+          <p class="description"><?php esc_html_e( 'Deactivate this option if images in the Publisher Center appear twice in your articles.', 'gn-publisher' ); ?></p>
         </td>
       </tr>
 
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <p class="submit">
       <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
+      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
     </p>
 
   </form>
@@ -90,22 +90,22 @@ if ( defined('GNPUB_PRO_VERSION') ) {
       );
   ?></p>
 
-  <p><?php _e( 'The plugin addresses common issues publishers experience when using the Google News Publisher Center, including:', 'gn-publisher' ); ?></p>
+  <p><?php esc_html_e( 'The plugin addresses common issues publishers experience when using the Google News Publisher Center, including:', 'gn-publisher' ); ?></p>
  
     <ul style="list-style-type:circle;padding-left: 40px;">
-      <li><?php _e( 'Incomplete articles', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Duplicate images', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Missing images or media', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Missing content (usually social media/Instagram embeds)', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Title errors (missing or repeated title)', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Cached RSS feeds causing slow updating', 'gn-publisher' ); ?></li>
-      <li><?php _e( 'Delayed crawling by Google', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Incomplete articles', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Duplicate images', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Missing images or media', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Missing content (usually social media/Instagram embeds)', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Title errors (missing or repeated title)', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Cached RSS feeds causing slow updating', 'gn-publisher' ); ?></li>
+      <li><?php esc_html_e( 'Delayed crawling by Google', 'gn-publisher' ); ?></li>
     </ul>
 </div>
 
 <div id="gn-google-feed" class="gn-tabcontent">
    
-   <p><?php _e( 'Once installed and activated, you can find your GN Publisher RSS feeds at:', 'gn-publisher' ); ?></p>
+   <p><?php esc_html_e( 'Once installed and activated, you can find your GN Publisher RSS feeds at:', 'gn-publisher' ); ?></p>
 
     <ul>
     <?php 
@@ -121,10 +121,10 @@ if ( defined('GNPUB_PRO_VERSION') ) {
         </button>';
       echo '</div>';
       if(!defined('GNPUB_PRO_VERSION')){ ?>
-          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayProBtn()"> <?php echo _e('Customize Home Feed', 'gn-publisher') ?> </a>
+          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayProBtn()"> <?php echo esc_html_e('Customize Home Feed', 'gn-publisher') ?> </a>
           <a class="gn-publisher-pro-btn gn-publisher-pro-btn-f-setup gnpub-d-none"  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         <?php }else{ ?>
-          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayCptModal()"><?php _e('Customize Home Feed', 'gn-publisher'); ?> </a>
+          <a id="gnpub_cpost_type_config" class="gnpub-chf-btn" onclick="gnpubDisplayCptModal()"><?php esc_html_e('Customize Home Feed', 'gn-publisher'); ?> </a>
       <?php
       } 
       echo '</li>';
@@ -164,17 +164,17 @@ if ( defined('GNPUB_PRO_VERSION') ) {
       } 
     ?>
     </ul>
-<p><?php _e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
+<p><?php esc_html_e( 'You are not required to use all of the feeds listed above. Just use the ones you want to include in your Publisher Center. Each feed will contain the thirty most recently updated articles in its category.', 'gn-publisher' ); ?></p>
 
-<p><?php _e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
+<p><?php esc_html_e( 'If you have AMP on your site, the Publisher Center will render the AMP version. If you do not have AMP available, the Publisher Center will usually generate your articles from the feed.', 'gn-publisher' ); ?></p>
 
-  <p><?php _e( 'Be sure to click that blue "Save" button in the upper right hand corner of the Publisher Center to save your changes (it\'s surprisingly easy to miss). After saving, wait ten minutes for Google to fetch your feed and render your articles. Then reload the entire page using your browser\'s reload/refresh button before checking to see if your articles appear in the Publisher Center.', 'gn-publisher' ); ?></p>
+  <p><?php esc_html_e( 'Be sure to click that blue "Save" button in the upper right hand corner of the Publisher Center to save your changes (it\'s surprisingly easy to miss). After saving, wait ten minutes for Google to fetch your feed and render your articles. Then reload the entire page using your browser\'s reload/refresh button before checking to see if your articles appear in the Publisher Center.', 'gn-publisher' ); ?></p>
 
-  <p><?php _e( 'After the initial setup, GN Publisher will ping Google with an alert each time your feed is updated.', 'gn-publisher' ); ?></p>
+  <p><?php esc_html_e( 'After the initial setup, GN Publisher will ping Google with an alert each time your feed is updated.', 'gn-publisher' ); ?></p>
 
   <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
 <div class="info gnpub-content-stolen-badge">
-  <div class="gnpub-badge-left"><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/gn-logo-mini.png' ?> title="<?php _e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></div>
+  <div class="gnpub-badge-left"><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo GNPUB_URL . '/assets/images/gn-logo-mini.png' ?> title="<?php esc_html_e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></div>
   <div class="gnpub-badge-right"><p><?php echo esc_html__('For feed content protection, upgrade to Premium.', 'gn-publisher') ?></p></div>
   <div class="gnpub-badge-right-btn"><a class="gn-publisher-pro-btn " target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a></div>
 </div>
@@ -197,8 +197,8 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links1">
         <li>
-          <p><?php _e( 'If you are getting the dreaded "There are no articles in this section" message in the Publisher Center:', 'gn-publisher' ); ?></p>
-           <p><?php _e( 'Refresh the section in the Publisher Center. Wait 10 to 15 minutes, then reload the entire page using your browser\'s "reload" button and recheck to see if articles appear.', 'gn-publisher' ); ?></p>
+          <p><?php esc_html_e( 'If you are getting the dreaded "There are no articles in this section" message in the Publisher Center:', 'gn-publisher' ); ?></p>
+           <p><?php esc_html_e( 'Refresh the section in the Publisher Center. Wait 10 to 15 minutes, then reload the entire page using your browser\'s "reload" button and recheck to see if articles appear.', 'gn-publisher' ); ?></p>
         </li>
       </ul>
     </div>
@@ -212,8 +212,8 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links2">
         <li>
-          <p><?php _e( 'If you\'ve refreshed the page in the Publisher Center and continue to get the same results, visit the URL you entered for the section and make sure there are articles included in the feed.', 'gn-publisher' ); ?></p>
-           <p><?php _e( 'If you get a 404 or "missing" page when visiting the feed url, please review the notes in the "feed urls" section above and If there are no articles in the feed, please make sure there are articles published in that section (category) within the last 30 days.', 'gn-publisher' ); ?></p>
+          <p><?php esc_html_e( 'If you\'ve refreshed the page in the Publisher Center and continue to get the same results, visit the URL you entered for the section and make sure there are articles included in the feed.', 'gn-publisher' ); ?></p>
+           <p><?php esc_html_e( 'If you get a 404 or "missing" page when visiting the feed url, please review the notes in the "feed urls" section above and If there are no articles in the feed, please make sure there are articles published in that section (category) within the last 30 days.', 'gn-publisher' ); ?></p>
         </li>
       </ul>
     </div>
@@ -230,8 +230,8 @@ do_action('gnpub_pro_cpt_form');
           <?php $last_fetch=( is_null( $last_google_fetch ) ) ? __( 'None recorded.', 'gn-publisher' ) : $last_google_fetch;
          $last_websub_ping = ( is_null( $last_websub_ping ) ) ? __( 'None recorded.', 'gn-publisher' ) : $last_websub_ping; 
           ?>
-         <p><?php _e( '➔ <b>Most Recent Feedfetcher Fetch: '.$last_fetch.' (if testing, refresh this page for most recent fetch time)</b><br/>&#8226; If the "Most Recent Feedfetcher fetch" is "None recorded" or the date is more than 24 hours old, it\'s likely that your host or firewall is blocking Google\'s feed crawler, Feedfetcher. Because Feedfetcher is not a well-known bot and doesn\'t follow some of the standard crawler procedures, it is often mistakenly blocked by hosting companies and firewalls. Ask your hosting company or server administrator to whitelist the user-agent "Feedfetcher-Google". Note: If you are using AWS Cloudfront, Amazon does not pass the user-agent through to GN Publisher, so the "Most Recent Feedfetcher Fetch" timestamp will not work for you.', 'gn-publisher' ); ?></p>
-<p><?php _e( '➔ <b>Most Recent Update Ping Sent: '.$last_websub_ping.' (if testing, refresh this page for most recent ping time)</b><br/>&#8226; When you publish or update a post, GN Publisher pings Google to let them know there is an update to one of your feeds. The "Most Recent Update Ping" indicates when the most recent ping was sent. Google normally fetches the feed soon thereafter (often within a minute).
+         <p><?php esc_html_e( '➔ <b>Most Recent Feedfetcher Fetch: '.$last_fetch.' (if testing, refresh this page for most recent fetch time)</b><br/>&#8226; If the "Most Recent Feedfetcher fetch" is "None recorded" or the date is more than 24 hours old, it\'s likely that your host or firewall is blocking Google\'s feed crawler, Feedfetcher. Because Feedfetcher is not a well-known bot and doesn\'t follow some of the standard crawler procedures, it is often mistakenly blocked by hosting companies and firewalls. Ask your hosting company or server administrator to whitelist the user-agent "Feedfetcher-Google". Note: If you are using AWS Cloudfront, Amazon does not pass the user-agent through to GN Publisher, so the "Most Recent Feedfetcher Fetch" timestamp will not work for you.', 'gn-publisher' ); ?></p>
+<p><?php esc_html_e( '➔ <b>Most Recent Update Ping Sent: '.$last_websub_ping.' (if testing, refresh this page for most recent ping time)</b><br/>&#8226; When you publish or update a post, GN Publisher pings Google to let them know there is an update to one of your feeds. The "Most Recent Update Ping" indicates when the most recent ping was sent. Google normally fetches the feed soon thereafter (often within a minute).
 ', 'gn-publisher' ); ?></p>
         </li>
       </ul>
@@ -246,7 +246,7 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links4">
         <li>
-          <p><?php _e( '➔ The validator may validate but warn about iframe and script tags - those are okay for our purposes.<br/>
+          <p><?php esc_html_e( '➔ The validator may validate but warn about iframe and script tags - those are okay for our purposes.<br/>
 ➔ If the validator does not validate, or validates but warns of "invalid html" (for example, a "missing p tag"), those issues can cause the crawler to not accept the feed. These errors are sometimes caused by poorly coded themes or plugins and require further investigation to correct. The p tag issue is a common one that is often caused by a figure tag or blockquote tag (or other block level element) being inside a paragraph, which is not valid html.<br/>
 ➔ If some Publisher Center sections are being fetched okay and others are reporting "no articles" - it\'s likely an html error that is included in an article on the specific feed that isn\'t loading properly in the Publisher Center.', 'gn-publisher' ); ?></p>
            
@@ -263,7 +263,7 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links5">
         <li>
-          <p><?php _e( 'The Publisher Center requires that large images be used as the featured image - at least 800px on the shortest side. GN Publisher will try to use your original image, which is generally the largest. If you upload a featured image that is smaller than 800px on its shortest side, it might not appear with the article in the Publisher Center.<br/>Note - the Publisher Center preview pane can only display .jpg and .png image files. If you are using a CDN like CloudFlare or KeyCDN, even if you have the images set up correctly, the CDN may serve them as WebP files. That will cause the images to not be displayed, or be displayed inconsistently, in the preview pane. If you are experiencing this, go the the "Review and Publish" tab in the Publisher Center, subscribe to your publication if you haven\'t already, and then click on link for your publication and make sure the images are displayed correctly there. If they are displayed on your publication in Google News, you can ignore them not being in the preview pane.
+          <p><?php esc_html_e( 'The Publisher Center requires that large images be used as the featured image - at least 800px on the shortest side. GN Publisher will try to use your original image, which is generally the largest. If you upload a featured image that is smaller than 800px on its shortest side, it might not appear with the article in the Publisher Center.<br/>Note - the Publisher Center preview pane can only display .jpg and .png image files. If you are using a CDN like CloudFlare or KeyCDN, even if you have the images set up correctly, the CDN may serve them as WebP files. That will cause the images to not be displayed, or be displayed inconsistently, in the preview pane. If you are experiencing this, go the the "Review and Publish" tab in the Publisher Center, subscribe to your publication if you haven\'t already, and then click on link for your publication and make sure the images are displayed correctly there. If they are displayed on your publication in Google News, you can ignore them not being in the preview pane.
 
 ', 'gn-publisher' ); ?></p>
            
@@ -280,7 +280,7 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links6">
         <li>
-          <p><?php _e( 'Social media embeds that are included in your articles should also appear as part of the article in your Publisher Center. GN Publisher is designed to properly adjust the embeds for use in the Publisher Center. If your embeds don\'t appear as they should, please contact me through the GN Publisher support forum on WordPress.org', 'gn-publisher' ); ?></p>
+          <p><?php esc_html_e( 'Social media embeds that are included in your articles should also appear as part of the article in your Publisher Center. GN Publisher is designed to properly adjust the embeds for use in the Publisher Center. If your embeds don\'t appear as they should, please contact me through the GN Publisher support forum on WordPress.org', 'gn-publisher' ); ?></p>
            
         </li>
       </ul>
@@ -295,7 +295,7 @@ do_action('gnpub_pro_cpt_form');
       </label>
       <ul id="links7">
         <li>
-          <p><?php _e( '➔ Be aware that Google has certain Content Policies for sites included on Google News properties. More information about applying is available on the Google News Publisher Help Center.<br/>
+          <p><?php esc_html_e( '➔ Be aware that Google has certain Content Policies for sites included on Google News properties. More information about applying is available on the Google News Publisher Help Center.<br/>
 
 ➔ You\'ll need to meet additional requirements in the Publisher Center, such as verifying your domain, selecting an appropriate publication name, and setting up your logos correctly.<br/>
 
@@ -372,7 +372,7 @@ do_action('gnpub_pro_cpt_form');
     <div class="gn-service-card-right">
       <h3 class="gn-service-heading"><?php echo esc_html__('Google News Setup & Audit', 'gn-publisher') ?></h3>
     <p><?php echo esc_html__('You can get thousands of clicks to your site from Google News. We can set up Google news for your website and perform regular audits.', 'gn-publisher') ?></p>
-    <a target="_blank" href="https://gnpublisher.com/services/google-news-setup-audit-service/#pricing" class="gn-btn-primary button button-primary"> <?php _e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/google-news-setup-audit-service/" target="_blank" class="gn-btn gn-btn-learnmore button"><?php _e('Learn More', 'gn-publisher');?></a>
+    <a target="_blank" href="https://gnpublisher.com/services/google-news-setup-audit-service/#pricing" class="gn-btn-primary button button-primary"> <?php esc_html_e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/google-news-setup-audit-service/" target="_blank" class="gn-btn gn-btn-learnmore button"><?php esc_html_e('Learn More', 'gn-publisher');?></a>
     </div>
   </div>
   <div class="gn-service-card second">
@@ -394,7 +394,7 @@ do_action('gnpub_pro_cpt_form');
     <h3 class="gn-service-heading"><?php echo esc_html__('Search Console Maintenance', 'gn-publisher') ?>
     </h3>
     <p>  <?php echo esc_html__('We will manage your all Google Search Console problems because even after a webpage gets indexed, issues can happen.', 'gn-publisher') ?></p>
-<a target="_blank" href="https://gnpublisher.com/services/search-console-maintenance-service/#pricing" class="gn-btn-primary button button-primary"><?php _e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/search-console-maintenance-service/" target="_blank" class="gn-btn gn-btn-learnmore button">Learn More</a>
+<a target="_blank" href="https://gnpublisher.com/services/search-console-maintenance-service/#pricing" class="gn-btn-primary button button-primary"><?php esc_html_e('View Pricing', 'gn-publisher');?></a><a href="https://gnpublisher.com/services/search-console-maintenance-service/" target="_blank" class="gn-btn gn-btn-learnmore button">Learn More</a>
   </div>
   </div>
  
@@ -417,35 +417,35 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
     <table class="form-table">
 
       <tr>
-        <th><?php _e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
-          <label for="gnpub_enable_google_revenue_manager"><?php _e( 'Increase revenue and improve reader engagement.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php _e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
+          <label for="gnpub_enable_google_revenue_manager"><?php esc_html_e( 'Increase revenue and improve reader engagement.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php esc_html_e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
           
         </td>
       </tr>
       <tr id="gnpub_val_tr_revenue_snippname" style="display:none">
-        <th><?php _e( 'Snippet Name', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Snippet Name', 'gn-publisher' ); ?></th>
         <td>
           <input type="text" name="gnpub_google_rev_snippet_name" id="gnpub_google_rev_snippet_name" value="<?php echo esc_attr($gnpub_google_rev_snippet_name); ?>" style="width: 40%;" placeholder="Name of snippet">
         </td>
       </tr>
       <tr id="gnpub_val_tr_revenue" style="display:none">
-        <th><?php _e( 'Enter snippet code from Google', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Enter snippet code from Google', 'gn-publisher' ); ?></th>
         <td>
           <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo esc_textarea($gnpub_google_rev_snippet); ?></textarea>
         </td>
       </tr>      
       <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
        <tr>
-        <th><?php _e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
         <td>
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn"  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php _e( 'Exclude Categories From Main Feed', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Exclude Categories From Main Feed', 'gn-publisher' ); ?></th>
         <td>
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
@@ -453,7 +453,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
       </tr>
 
       <tr>
-        <th><?php _e( 'Google News Sitemap', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Google News Sitemap', 'gn-publisher' ); ?></th>
         <td>
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
@@ -469,7 +469,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
     <p>
     <input type="hidden" name="gnpub_form_tab" value="feature">
       <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher' ); ?>" />
+      <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
     </p>
 
     </form>
@@ -487,21 +487,21 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
       <p>
     <table class="form-table">
       <tr>
-        <th><?php _e( 'Flipboard.com', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Flipboard.com', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php _e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php _e( 'Molongui Authorship', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Molongui Authorship', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
@@ -509,7 +509,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         </td>
       </tr>
       <tr>
-        <th><?php _e( 'Translate Press', 'gn-publisher' ); ?></th>
+        <th><?php esc_html_e( 'Translate Press', 'gn-publisher' ); ?></th>
         <td>
           <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
@@ -521,7 +521,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
       <p class="submit">
       <input type="hidden" name="gnpub_form_tab" value="compat">
         <?php wp_nonce_field( 'save_gnpub_settings', '_wpnonce' ); ?>
-        <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php _e( 'Save Changes', 'gn-publisher-pro' ); ?>" />
+        <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
       </p>
   </form> 
   <?php } else { 
@@ -533,18 +533,18 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
   </div>
   <div id="gn-upgrade" class="gn-tabcontent" style="text-align: center;">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
-  <p style="font-weight: bold;font-size: 30px;color: #000;"><?= _e( 'Thank You for using GN Publisher.', 'gn-publisher' ) ?></p>
-        <p style="font-size: 18px;padding: 0 10%;line-height: 1.7;color: #000;"><?= _e( 'We strive to create the best GN Publisher solution in WordPress. Our dedicated development team does continuous development and innovation to make sure we are able to meet your demand.', 'gn-publisher' ) ?></p>
-        <p style="font-size: 16px;font-weight: 600;color: #000;"><?= _e( 'Please support us by Upgrading to Premium version.', 'gn-publisher' ) ?></p>
+  <p style="font-weight: bold;font-size: 30px;color: #000;"><?= esc_html_e( 'Thank You for using GN Publisher.', 'gn-publisher' ) ?></p>
+        <p style="font-size: 18px;padding: 0 10%;line-height: 1.7;color: #000;"><?= esc_html_e( 'We strive to create the best GN Publisher solution in WordPress. Our dedicated development team does continuous development and innovation to make sure we are able to meet your demand.', 'gn-publisher' ) ?></p>
+        <p style="font-size: 16px;font-weight: 600;color: #000;"><?= esc_html_e( 'Please support us by Upgrading to Premium version.', 'gn-publisher' ) ?></p>
         <a target="_blank" href="https://gnpublisher.com/pricing/#pricing/">
             <button class="button-gnp-ugrade" style="display: inline-block;font-size: 20px;">
-                <span><?= _e( 'YES! I want to Support by UPGRADING.', 'gn-publisher' ) ?></span></button>
+                <span><?= esc_html_e( 'YES! I want to Support by UPGRADING.', 'gn-publisher' ) ?></span></button>
         </a>
         <a href="<?php echo add_query_arg('page', 'gn-publisher-settings', admin_url('options-general.php')); ?>"
            style="text-decoration: none;">
             <button class="button-gnp-ugrade1"
                     style="display: block;text-align: center;border: 0;margin: 0 auto;background: none;">
-                <span style="cursor: pointer;"><?= _e( 'No Thanks, I will stick with FREE version for now.', 'gn-publisher' ) ?></span>
+                <span style="cursor: pointer;"><?= esc_html_e( 'No Thanks, I will stick with FREE version for now.', 'gn-publisher' ) ?></span>
             </button>
         </a>
   <?php } ?>
