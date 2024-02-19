@@ -72,9 +72,8 @@ do_action( 'rss_tag_pre', 'rss2' );
 	if($feed_support_flag == 0){
 		while ( have_posts() ) :
 			the_post();
-
-			$mod_counter = intval( get_post_meta( get_the_ID(), 'gnpub_modified_count', true ) );
-
+			$post_id = get_the_ID();
+			$mod_counter = intval( get_post_meta( $post_id, 'gnpub_modified_count', true ) );
 			$last_modified = get_post_modified_time( 'U', true );
 			if ( $last_modified > $last_deactivation && $last_modified < $last_activation ) {
 				$mod_counter++;
@@ -102,7 +101,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 					  $gnpub_authors = apply_filters('gnpub_molongui_authors_compat',$gnpub_authors );
 					  echo $gnpub_authors;
 				?>
-				<guid isPermaLink="false"><?php the_guid(); ?></guid>
+				<guid isPermaLink="false"><?php echo apply_filters('gnpub_the_guid',get_the_guid(),$post_id); ?></guid>
 	<?php 
 	$content = get_the_content_feed( GNPUB_Feed::FEED_ID );
 	$content = gnpub_remove_potentially_dangerous_tags($content);
@@ -118,7 +117,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 				<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
 	<?php 		endif; ?>
 	<?php 		gnpub_rss_enclosure(); 
-			do_action( 'rss2_item',  get_the_ID());
+			do_action( 'rss2_item',  $post_id);
 	?>
 			</item>
 	<?php 	endwhile; 
