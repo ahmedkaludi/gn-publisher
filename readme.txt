@@ -1,10 +1,10 @@
 === GN Publisher: Google News Compatible RSS Feeds ===
 Contributors: gnpublisher
-Tags: google news, google, news, publisher center, rss, feed, feeds
+Tags: google news, news, rss, feed, feeds
 Requires at least: 3.5
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 5.4
-Stable tag: 1.5.13
+Stable tag: 1.5.14
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,10 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.14 - (23 April 2024) =
+
+* Test with WordPress v6.5 and update readme #92
 
 = 1.5.13 - (19 February 2024) =
 
