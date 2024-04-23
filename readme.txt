@@ -1,6 +1,6 @@
 === GN Publisher: Google News Compatible RSS Feeds ===
 Contributors: gnpublisher
-Tags: google news, google, news, publisher center, rss, feed, feeds
+Tags: google news, news, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.4
 Requires PHP: 5.4
