@@ -260,6 +260,13 @@ function gnpub_remove_potentially_dangerous_tags( $content ) {
 	$removeTags = array(
 		'iframe' => 'iframe',
 		'script' => 'script',
+		'style'=>'style',
+		'ins'=>'ins',
+		'frameset'=>'frameset',
+		'applet'=>'applet',
+		'object'=>'object',
+		'embed'=>'embed',
+		'form'=>'form',
 	);
 
 	foreach ( $removeTags as $tag )	{
