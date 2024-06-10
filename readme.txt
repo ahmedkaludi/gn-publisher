@@ -126,3 +126,5 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 * Tweak : Displayed proper message on license activation/deactivation timeout #64
 * Fixed : Multi language compatibility in multisite #68
 * Feature : Added compatibility for Molongui author profile plugin #70
+
+Full changelog available at [changelog.txt](https://plugins.svn.wordpress.org/gn-publisher/trunk/changelog.txt)
