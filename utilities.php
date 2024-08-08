@@ -165,7 +165,15 @@ function gnpub_current_feed_link() {
  * @return string
  */
 function gnpub_feed_channel_link() {
-	$url = esc_url( apply_filters( 'self_link', get_self_link() ) );
+	if(  ! function_exists ( 'get_self_link' ) ) {
+		require_once( ABSPATH . 'wp-includes/feed.php' );
+	}
+
+	$url = '';
+	if( function_exists( 'get_self_link' ) ) {
+		$url = esc_url( apply_filters( 'self_link', get_self_link() ) );
+	}
+	
 	$host_url = @parse_url($url);
 
 	if(isset($host_url['query']))
