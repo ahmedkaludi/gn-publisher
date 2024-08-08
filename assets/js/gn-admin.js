@@ -52,10 +52,19 @@ function gn_copy(id) {
     }
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+    
+    /**
+     * Set tab param to current url
+     * @since 1.5.16
+     * */
+    var url = new URL(window.location.href);
+    url.searchParams.set('tab', tabName);
+    window.history.replaceState(null, null, url.toString());
+
   }
   
   // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
+  //document.getElementById("defaultOpen").click();
   jQuery('.gn-publisher-pro-btn').click(function(){
     jQuery('.gn-tablinks.gn-license-btn').addClass('active');
   });
