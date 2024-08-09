@@ -46,7 +46,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
     ?>
   </button>
   <?php } else { ?>
-    <button class="gn-tablinks gnpub-upgrade <?php echo esc_attr( $tab == 'gn-upgrade' ? $tab.' active' : ''); ?>" onclick="openTab(event, 'gn-upgrade')" data-link-id="gn-upgrade"><?php echo esc_html__('Upgrade to PRO', 'gn-publisher') ?></button>
+    <button class="gn-tablinks gnpub-upgrade <?php echo esc_attr( $tab == 'gn-upgrade' || $tab == 'welcome' ? $tab.' active' : ''); ?>" onclick="openTab(event, 'gn-upgrade')" data-link-id="gn-upgrade"><?php echo esc_html__('Upgrade to PRO', 'gn-publisher') ?></button>
     <!-- <button class="gn-tablinks gnpub-upgrade"><a target="_blank" href="https://gnpublisher.com/pricing/#pricing">Upgrade to PRO</a></button> -->
     <?php } ?>
     <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-help' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-help')" data-link-id="gn-help"><?php echo esc_html__('Help &amp; Support', 'gn-publisher') ?></button>
@@ -507,7 +507,7 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
     
 
   </div>
-  <div id="gn-upgrade" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-upgrade' ? 'gnpub-show' : 'gnpub-d-none'); ?>" style="text-align: center;">
+  <div id="gn-upgrade" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-upgrade' || $tab == 'welcome' ? 'gnpub-show' : 'gnpub-d-none'); ?>" style="text-align: center;">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
   <p style="font-weight: bold;font-size: 30px;color: #000;"><?= esc_html_e( 'Thank You for using GN Publisher.', 'gn-publisher' ) ?></p>
         <p style="font-size: 18px;padding: 0 10%;line-height: 1.7;color: #000;"><?= esc_html_e( 'We strive to create the best GN Publisher solution in WordPress. Our dedicated development team does continuous development and innovation to make sure we are able to meet your demand.', 'gn-publisher' ) ?></p>
