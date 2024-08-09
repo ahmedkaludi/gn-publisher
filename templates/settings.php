@@ -46,7 +46,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
     ?>
   </button>
   <?php } else { ?>
-    <button class="gn-tablinks gnpub-upgrade <?php echo isset($_GET['tab']) ? esc_attr($_GET['tab']) : ''; ?>" onclick="openTab(event, 'gn-upgrade')" data-link-id="gn-upgrade"><?php echo esc_html__('Upgrade to PRO', 'gn-publisher') ?></button>
+    <button class="gn-tablinks gnpub-upgrade <?php echo esc_attr( $tab == 'gn-upgrade' ? $tab.' active' : ''); ?>" onclick="openTab(event, 'gn-upgrade')" data-link-id="gn-upgrade"><?php echo esc_html__('Upgrade to PRO', 'gn-publisher') ?></button>
     <!-- <button class="gn-tablinks gnpub-upgrade"><a target="_blank" href="https://gnpublisher.com/pricing/#pricing">Upgrade to PRO</a></button> -->
     <?php } ?>
     <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-help' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-help')" data-link-id="gn-help"><?php echo esc_html__('Help &amp; Support', 'gn-publisher') ?></button>
