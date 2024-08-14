@@ -106,6 +106,8 @@ class GNPUB_Feed {
 				if ( gnpub_is_feedfetcher() ) {
 
 					update_option( 'gnpub_google_last_fetch', current_time( 'timestamp' ) );
+					$feed_url = untrailingslashit( gnpub_current_feed_link() );	
+					gnpub_add_feed( $feed_url, $query );
 					
 				}
 				
