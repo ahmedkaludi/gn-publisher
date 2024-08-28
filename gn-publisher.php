@@ -102,7 +102,7 @@ function gnpub_admin_style($hook_suffix ) {
 			'nonce' => wp_create_nonce( 'gn-admin-nonce' ),
 		)
 		);
-		wp_enqueue_script('gn-admin-promo-script', GNPUB_URL . '/assets/js/promotional-popup.js', array(), GNPUB_VERSION);
+		wp_enqueue_script('gn-admin-promo-script', GNPUB_URL . '/assets/js/promotional-popup.js', array(), GNPUB_VERSION, 'true' );
 	}
 }
 
@@ -121,8 +121,9 @@ function gnpub_admin_newsletter_script($hook_suffix ) {
         }
 
 		$post_id = get_the_ID();
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
         if(isset($_GET['tag_ID'])){
-                $post_id = intval($_GET['tag_ID']);
+                $post_id = intval($_GET['tag_ID']);  //phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
         }
 
 		
@@ -157,6 +158,7 @@ function gnpub_activate() {
 function gnpub_redirect() {
     if (get_option('gnpub_activation_redirect', false)) {
         delete_option('gnpub_activation_redirect');
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
         if(!isset($_GET['activate-multi']))
         {
             wp_redirect("options-general.php?page=gn-publisher-settings&tab=welcome");
@@ -182,7 +184,7 @@ function gnpub_htmlToPlainText($str)
 		$resultStr = html_entity_decode( $resultStr, ENT_HTML5, 'UTF-8' );
 		$resultStr = html_entity_decode( $resultStr );
 		$resultStr = htmlspecialchars_decode( $resultStr );
-		$resultStr = strip_tags( $resultStr );
+		$resultStr = wp_strip_all_tags( $resultStr );
 	}
     return $resultStr;
 }
@@ -206,7 +208,7 @@ function gnpub_wp_title_rss()
 		
     	$wp_title_rss = gnpub_pp_translate( trim( $wp_title_rss_explode[0] ) ) . ' - ' . gnpub_pp_translate( trim( $wp_title_rss_explode[1] ) );
 	}
-	echo $wp_title_rss;
+	echo esc_html( $wp_title_rss );
 }
 
 /**
@@ -224,9 +226,9 @@ function gnpub_bloginfo_rss( $attr )
 	$bloginfo_rss = ob_get_contents();
 	ob_end_clean();
 	if( function_exists( 'gnpub_pp_translate' ) )
-		echo gnpub_pp_translate($bloginfo_rss);
+		echo esc_html(gnpub_pp_translate($bloginfo_rss));
 	else
-		echo $bloginfo_rss;
+		echo esc_html($bloginfo_rss);
 }
 
 /**
@@ -243,9 +245,9 @@ function gnpub_the_title_rss()
 	$the_title_rss = ob_get_contents();
 	ob_end_clean();
 	if( function_exists( 'gnpub_pp_translate' ) )
-		echo gnpub_pp_translate($the_title_rss);
+		echo esc_html(gnpub_pp_translate($the_title_rss));
 	else
-		echo $the_title_rss;
+		echo esc_html($the_title_rss);
 }
 
 /**
@@ -319,7 +321,7 @@ function gnpub_revenue_snippet(){
 	$gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet'])?$gnpub_options['gnpub_google_rev_snippet']:'';
 	if($gnpub_enable_google_revenue_manager){
 		if(!empty($gnpub_google_rev_snippet)){
-			echo $gnpub_google_rev_snippet;
+			echo wp_kses_post($gnpub_google_rev_snippet);
 		}
 	}
 }
@@ -352,6 +354,7 @@ function gnpub_rss_enclosure()
 					 *
 					 * @param string $html_link_tag The HTML link tag with a URI and other attributes.
 					 */
+					//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Reason: The filter return escaped data.
 					echo apply_filters( 'gnpub_rss_enclosure', '<enclosure url="' . esc_url( trim( $enclosure[0] ) ) . '" length="' . absint( trim( $enclosure[1] ) ) . '" type="' . esc_attr( $type ) . '" />' . "\n" );
 				}
 				$enclosure_cnt++;

@@ -189,7 +189,7 @@ function gnpub_feed_channel_link() {
 		$host_url['path'] 		=	implode( '/', $tmp_arr );	
 	}
 
-	echo set_url_scheme( $host_url['scheme'].'://'.$host_url['host'].$host_url['path'] );
+	echo esc_url( set_url_scheme( $host_url['scheme'].'://'.$host_url['host'].$host_url['path'] ) );
 
 }
 
@@ -232,6 +232,6 @@ function gnpub_feed_post_link($post_url=null) {
 	}
 
 
-	echo set_url_scheme($tmp_url['scheme'].'://'.$tmp_url['host'].$tmp_url['path'].((isset($tmp_url['query']) && !empty($tmp_url['query']))?'?'.$tmp_url['query']:''));
+	echo esc_url( set_url_scheme($tmp_url['scheme'].'://'.$tmp_url['host'].$tmp_url['path'].((isset($tmp_url['query']) && !empty($tmp_url['query']))?'?'.$tmp_url['query']:'') ) );
 
 }

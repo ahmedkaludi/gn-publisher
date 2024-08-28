@@ -132,7 +132,7 @@ function gnpub_enqueue_makebetter_email_js(){
         return;
     }
 
-    wp_enqueue_script( 'gnpub-make-better-js', GNPUB_URL . '/assets/js/make-better-admin.js', array( 'jquery' ), GNPUB_VERSION);
+    wp_enqueue_script( 'gnpub-make-better-js', GNPUB_URL . '/assets/js/make-better-admin.js', array( 'jquery' ), GNPUB_VERSION, true );
 
     wp_enqueue_style( 'gnpub-make-better-css', GNPUB_URL . '/assets/css/make-better-admin.css', false , GNPUB_VERSION);
     wp_localize_script('gnpub-make-better-js', 'gn_pub_script_vars', array(

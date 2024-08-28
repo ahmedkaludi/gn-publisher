@@ -8,7 +8,7 @@ Stable tag: 1.5.16
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-
+GN Publisher makes RSS feeds that comply with the Google News RSS Feed Technical Requirements for including your site in the Google News.
 == Description ==
 
 GN Publisher makes RSS feeds that comply with the [Google News RSS Feed Technical Requirements](https://support.google.com/news/publisher-center/answer/9545420) for including your site in the [Google News Publisher Center](https://publishercenter.google.com/).

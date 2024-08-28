@@ -22,12 +22,12 @@ shuffle($reasons);
 	    <ul>
                 <?php 
                 foreach ($reasons as $reason){
-                    echo $reason;
+                    echo esc_html($reason);
                 }
                 ?>
 	    </ul>
 	    <?php if ($email) : ?>
-    	    <input type="hidden" name="gnpub_disable_from" value="<?php echo $email; ?>"/>
+    	    <input type="hidden" name="gnpub_disable_from" value="<?php echo esc_html($email); ?>"/>
 	    <?php endif; ?>
 	    <input id="gnpub-feedback-submit" class="button button-primary" type="submit" name="gnpub_disable_submit" value="<?php echo esc_html__('Submit & Deactivate', 'gn-publisher'); ?>"/>
 	    <a class="button"><?php echo esc_html__('Only Deactivate', 'gn-publisher'); ?></a>

@@ -44,7 +44,7 @@ class gnpub_ads_newsletter {
                     
 		    $response = wp_remote_post( $api_url, array( 'timeout' => 15, 'sslverify' => false, 'body' => $api_params ) );
                     $response = wp_remote_retrieve_body( $response );                    
-		    echo $response;
+		    echo esc_html($response);
 
                 }else{
                         echo esc_html__('Email id required','gn-publisher');//gnpub_t_string('Email id required');                        
@@ -67,6 +67,7 @@ class gnpub_ads_newsletter {
                         
                 global $current_user;                
 		$tour     = array ();
+                //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: Nonce verification is not required here.
                 $tab      = isset($_GET['tab']) ? esc_attr($_GET['tab']) : '';                   
                 
                 if (!array_key_exists($tab, $tour)) {                
