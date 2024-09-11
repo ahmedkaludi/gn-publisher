@@ -145,13 +145,15 @@ add_action( 'admin_enqueue_scripts', 'gnpub_enqueue_makebetter_email_js' );
 function gnpub_enqueue_makebetter_email_js() {
  
     if ( is_admin() && gnpub_is_plugins_page() ) {
-    
-        wp_enqueue_script( 'gnpub-make-better-js', GNPUB_URL . '/assets/js/make-better-admin.js', array( 'jquery' ), GNPUB_VERSION, true );
-        wp_enqueue_style( 'gnpub-make-better-css', GNPUB_URL . '/assets/css/make-better-admin.css', false, GNPUB_VERSION );
+
+        $min = defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+        wp_enqueue_script( 'gnpub-make-better-js', GNPUB_URL . "/assets/js/make-better-admin{$min}.js", array( 'jquery' ), GNPUB_VERSION, true );
+        wp_enqueue_style( 'gnpub-make-better-css', GNPUB_URL . "/assets/css/make-better-admin{$min}.css", false, GNPUB_VERSION );
         wp_localize_script( 'gnpub-make-better-js', 'gn_pub_script_vars', array(
             'nonce' => wp_create_nonce( 'gn-pub-nonce' ),
         )
         );
+        
     }
     
 }

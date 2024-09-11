@@ -73,12 +73,12 @@ class GNPUB_Newsletter {
                 wp_enqueue_style ('wp-pointer');
                 wp_enqueue_script ('wp-pointer');						
 
-	}
+	    }
                         
         if ( $object_name == 'gnpub_localize_data' ) {
                         
                 global $current_user;
-		$tour     = array ();
+		        $tour     = array ();
                 //phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Reason: Nonce verification is not required here.
                 $tab      = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
                 

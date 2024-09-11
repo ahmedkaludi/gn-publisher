@@ -88,31 +88,37 @@ function gnpub_load_textdomain() {
 	load_plugin_textdomain( 'gn-publisher', false, basename( dirname( GNPUB_PLUGIN_FILE ) ) . '/languages/' );
 }
 
-function gnpub_admin_style($hook_suffix ) {
-	if($hook_suffix=="settings_page_gn-publisher-settings")
-	{
-		wp_enqueue_style('gn-admin-styles', GNPUB_URL .'/assets/css/gn-admin.css', array(),GNPUB_VERSION);
+function gnpub_admin_style( $hook_suffix ) {
+
+	if ( $hook_suffix == "settings_page_gn-publisher-settings" ) {
+	
+		$min = defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_style('gn-admin-styles', GNPUB_URL ."/assets/css/gn-admin{$min}.css", array(),GNPUB_VERSION);
 		wp_enqueue_script('thickbox');
         wp_enqueue_style('thickbox');
-        wp_enqueue_style('gn-admin-promo-style', GNPUB_URL .'/assets/css/promotional-popup.css', array(),GNPUB_VERSION);
-		
-		wp_enqueue_script('gn-admin-script', GNPUB_URL . '/assets/js/gn-admin.js', array('jquery'), GNPUB_VERSION, 'true' );
-		
+        wp_enqueue_style('gn-admin-promo-style', GNPUB_URL ."/assets/css/promotional-popup{$min}.css", array(),GNPUB_VERSION);		
+		wp_enqueue_script('gn-admin-script', GNPUB_URL . "/assets/js/gn-admin{$min}.js", array('jquery'), GNPUB_VERSION, 'true' );		
 		wp_localize_script('gn-admin-script', 'gn_script_vars', array(
 			'nonce' => wp_create_nonce( 'gn-admin-nonce' ),
 		)
 		);
-		wp_enqueue_script('gn-admin-promo-script', GNPUB_URL . '/assets/js/promotional-popup.js', array(), GNPUB_VERSION, 'true' );
+
+		wp_enqueue_script('gn-admin-promo-script', GNPUB_URL . "/assets/js/promotional-popup{$min}.js", array(), GNPUB_VERSION, 'true' );
+
 	}
 }
 
 
 add_action('admin_enqueue_scripts', 'gnpub_admin_style');
 
-function gnpub_admin_newsletter_script($hook_suffix ) {
-	if($hook_suffix=="settings_page_gn-publisher-settings")
-	{
-		wp_enqueue_script('gn-admin-newsletter-script', GNPUB_URL . '/assets/js/gn-admin-newsletter.js', array('jquery'), GNPUB_VERSION, 'true' );
+function gnpub_admin_newsletter_script( $hook_suffix ) {
+
+	if ( $hook_suffix == "settings_page_gn-publisher-settings" ) {
+
+		$min = defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		wp_enqueue_script( 'gn-admin-newsletter-script', GNPUB_URL . "/assets/js/gn-admin-newsletter{$min}.js", array('jquery'), GNPUB_VERSION, 'true' );
 		
 		$current_screen = get_current_screen(); 
        
@@ -124,9 +130,7 @@ function gnpub_admin_newsletter_script($hook_suffix ) {
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
         if(isset($_GET['tag_ID'])){
                 $post_id = intval($_GET['tag_ID']);  //phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
-        }
-
-		
+        }		
 
 		$data = array(     
 			'current_url'                  => gnpub_get_current_url(), 
