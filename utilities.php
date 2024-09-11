@@ -17,6 +17,7 @@ function gnpub_is_feedfetcher() {
 	}
 
 	$user_agent_signature = "FeedFetcher-Google";
+	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized	 -- not saving the data here
 	$user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 	return ( stripos( $user_agent, $user_agent_signature ) !== false );
@@ -152,8 +153,14 @@ function gnpub_publish_feeds( $feed_urls ) {
  * @return string
  */
 function gnpub_current_feed_link() {
+
 	$host = @parse_url( home_url() );
-	return set_url_scheme( 'http://' . $host['host'] . stripslashes_deep( $_SERVER['REQUEST_URI'] ) );
+
+	if ( isset( $host['host'] ) || isset( $_SERVER['REQUEST_URI'] ) ) {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		return set_url_scheme( 'http://' . $host['host'] . stripslashes_deep( $_SERVER['REQUEST_URI'] ) );
+	}
+	
 }
 
 /**
