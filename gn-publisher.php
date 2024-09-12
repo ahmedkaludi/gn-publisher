@@ -155,19 +155,23 @@ register_activation_hook(__FILE__, 'gnpub_activate');
 
 add_action('admin_init', 'gnpub_redirect');
 
-function gnpub_activate() {
-    add_option('gnpub_activation_redirect', true);
+function gnpub_activate( $network_wide )
+{
+	if ( !( is_multisite() && $network_wide ) ) {
+		add_option('gnpub_activation_redirect', true);
+	}
 }
 
-function gnpub_redirect() {
-    if (get_option('gnpub_activation_redirect', false)) {
-        delete_option('gnpub_activation_redirect');
+function gnpub_redirect()
+{
+	if ( get_option('gnpub_activation_redirect', false) ) {
+		delete_option('gnpub_activation_redirect' );
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
-        if(!isset($_GET['activate-multi']))
-        {
-            wp_redirect("options-general.php?page=gn-publisher-settings&tab=welcome");
-        }
-    }
+		if ( !isset( $_GET['activate-multi'] ) ) {
+			wp_redirect("options-general.php?page=gn-publisher-settings&tab=welcome");
+			exit;
+		}
+	}
 }
 
 /**
