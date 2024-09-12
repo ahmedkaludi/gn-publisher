@@ -89,7 +89,7 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 == Changelog ==
 
-= 1.5.17 - (12 August 2024) =
+= 1.5.17 - (12 September 2024) =
 
 * Fixed : Ping Functionality Not Working. #102
 * Fixed : On multisite, When plugin activated, It goes to not found page #103
