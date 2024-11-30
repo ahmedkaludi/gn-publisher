@@ -63,6 +63,7 @@ class GNPUB_Settings {
 									'gnpub_google_rev_snippet' => '',
 									'gnpub_google_rev_snippet_name' => '',
 									'gnpub_enable_google_revenue_manager' => false,
+									'gnpub_show_info_featured_img'=>false,
 									'gnpub_enable_feed_support' => array('post' => 1),
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
@@ -87,6 +88,15 @@ class GNPUB_Settings {
 					$option_update=true;
 				}else{
 					$gnpub_options['gnpub_enable_google_revenue_manager']= false;
+				}
+
+				if ( isset( $_POST['gnpub_show_info_featured_img'] ) ) {
+					$gnpub_options['gnpub_show_info_featured_img'] = true;
+					$option_update=true;
+				}
+				else{
+					$gnpub_options['gnpub_show_info_featured_img'] = false;
+					$option_update=true;
 				}
 				if ( isset( $_POST['gnpub_enable_copy_protection'] ) ) {
 					$gnpub_options['gnpub_enable_copy_protection']= true;

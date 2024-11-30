@@ -399,6 +399,7 @@ $gnpub_options = get_option( 'gnpub_new_options', $default_options );
 $gnpub_enable_google_revenue_manager = isset($gnpub_options['gnpub_enable_google_revenue_manager'])?$gnpub_options['gnpub_enable_google_revenue_manager']:false;
 $gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet']) ?  $gnpub_options['gnpub_google_rev_snippet'] : '';
 $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_name']) ? $gnpub_options['gnpub_google_rev_snippet_name']: '';
+$gnpub_show_info_featured_img = isset($gnpub_options['gnpub_show_info_featured_img']) ? $gnpub_options['gnpub_show_info_featured_img']: '';
 
 ?>
 <div id="gn-features" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-features' ? 'gnpub-show' : 'gnpub-d-none'); ?>">
@@ -427,7 +428,14 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
         <td>
           <textarea cols="50" rows="6" placeholder="Paste the code snippet you generated in your Publisher Center here" name="gnpub_google_rev_snippet" value=""><?php echo esc_textarea($gnpub_google_rev_snippet); ?></textarea>
         </td>
-      </tr>      
+      </tr>
+      <tr>
+        <th><?php esc_html_e( 'Show info for Featured Image', 'gn-publisher' ); ?></th>
+        <td>
+        <input type="checkbox" name="gnpub_show_info_featured_img" class="gnpub_show_info_featured_img" <?php checked( $gnpub_show_info_featured_img, true ); ?> value="1" />
+        <label for="gnpub_show_info_featured_img"><?php esc_html_e( 'This will show additional data for featured image like caption , alt text , description etc (if available)', 'gn-publisher.' ); ?></label>
+        </td>
+      </tr>       
       <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
        <tr>
         <th><?php esc_html_e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
@@ -455,7 +463,8 @@ $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_
       <?php } else { 
      do_action('gnpub_pro_setup_form');
     
-    } ?>
+    } 
+    ?>
     </table>
     </p>
     <p>
