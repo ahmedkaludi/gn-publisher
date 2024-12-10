@@ -27,10 +27,20 @@ function gnpub_prepare_newsartile_schema_markup(  ){
 
     }
 
-    $image 							= 	'';
+    $thumbnail_url 					= 	'';
+    $image 							=	array();
     $image_details 	 				= 	wp_get_attachment_image_src( get_post_thumbnail_id() );
-    if ( is_array( $image_details ) && isset( $image_details[0] ) ) {
-    	$image 						=	esc_url( $image_details[0] );	
+    if ( is_array( $image_details ) ) {
+
+    	if ( isset( $image_details[0] ) ) {
+
+    		$thumbnail_url 			=	esc_url( $image_details[0] );
+
+    		$image['@type']			=	'ImageObject';	
+    		$image['url']			=	esc_url( $image_details[0] );
+    		$image['width']			=	isset( $image_details[1] ) ? $image_details[1]:'';
+    		$image['height']		=	isset( $image_details[2] ) ? $image_details[2]:'';
+    	}
     }
 
 
@@ -54,6 +64,9 @@ function gnpub_prepare_newsartile_schema_markup(  ){
 	$input['@type']					=	'NewsArticle';
 	$input['@id']					=	get_permalink().'#newsarticle';
 	$input['url']					=	get_permalink();
+	if ( ! empty( $image ) ) {
+		$input['image']				=	$image;
+	}
 	$input['headline']				=	get_the_title();
 	$input['mainEntityOfPage']		=	get_permalink();
 	$input['datePublished']			=	get_the_date("c");
@@ -63,7 +76,7 @@ function gnpub_prepare_newsartile_schema_markup(  ){
 	$input['articleBody']           = 	$content;
 	$input['keywords']           	= 	gnpub_get_the_tags();
 	$input['name']           		= 	get_the_title();
-	$input['thumbnailUrl']          = 	$image;
+	$input['thumbnailUrl']          = 	$thumbnail_url;
 	$input['wordCount']          	= 	$word_count;
 	$input['timeRequired']          = 	$time_required;
 	$input['mainEntity']          	= 	array(
@@ -72,7 +85,7 @@ function gnpub_prepare_newsartile_schema_markup(  ){
                                     	);
 	$input['author']				=	gnpub_get_author_details();
 	$input['editor']				=	gnpub_get_author_details();
-
+	
 	return $input;
 
 }
@@ -138,7 +151,7 @@ function gnpub_get_the_excerpt(){
 function gnpub_get_the_tags() {
 
 	global $post;
-	
+
 	$tags_str 	=	'';
     if ( is_object ( $post ) ) {
         
