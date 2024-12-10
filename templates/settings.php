@@ -400,6 +400,7 @@ $gnpub_enable_google_revenue_manager = isset($gnpub_options['gnpub_enable_google
 $gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet']) ?  $gnpub_options['gnpub_google_rev_snippet'] : '';
 $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_name']) ? $gnpub_options['gnpub_google_rev_snippet_name']: '';
 $gnpub_show_info_featured_img = isset($gnpub_options['gnpub_show_info_featured_img']) ? $gnpub_options['gnpub_show_info_featured_img']: '';
+$gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] ) ? $gnpub_options['gnpub_enable_news_article_schema']: false;
 
 ?>
 <div id="gn-features" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-features' ? 'gnpub-show' : 'gnpub-d-none'); ?>">
@@ -409,6 +410,14 @@ $gnpub_show_info_featured_img = isset($gnpub_options['gnpub_show_info_featured_i
     <p>
     <table class="form-table">
 
+      <tr>
+        <th><label for="gnpub_enable_news_article_schema"><?php esc_html_e( 'News Article Schema', 'gn-publisher' ); ?></label></th>
+        <td>
+          <input type="checkbox" name="gnpub_enable_news_article_schema" id="gnpub_enable_news_article_schema" <?php checked( $gnpub_news_schema, true ); ?> value="1" />
+          <label for="gnpub_enable_news_article_schema"><?php esc_html_e( 'Add NewsArticle schema by default', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/"><?php esc_html_e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
+          
+        </td>
+      </tr>
       <tr>
         <th><?php esc_html_e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
         <td>

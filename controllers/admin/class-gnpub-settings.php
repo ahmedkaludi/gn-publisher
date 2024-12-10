@@ -65,6 +65,7 @@ class GNPUB_Settings {
 									'gnpub_enable_google_revenue_manager' => false,
 									'gnpub_show_info_featured_img'=>false,
 									'gnpub_enable_feed_support' => array('post' => 1),
+									'gnpub_enable_news_article_schema' => false,
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
 			$option_update=false;
@@ -153,6 +154,13 @@ class GNPUB_Settings {
 					$gnpub_options['gnpub_exclude_categories'] = [];
 					$option_update = true;
 
+				}
+
+				if ( isset( $_POST['gnpub_enable_news_article_schema'] ) ) {
+					$gnpub_options['gnpub_enable_news_article_schema'] = true;
+					$option_update=true;
+				}else{
+					$gnpub_options['gnpub_enable_news_article_schema']= false;
 				}
 
 			}
