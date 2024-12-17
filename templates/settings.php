@@ -42,6 +42,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-google-feed' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-google-feed')" id="gn-feed" data-link-id="gn-google-feed"><?php echo esc_html__('Google News Feed Setup', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-features' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-features')" data-link-id="gn-features"><?php echo esc_html__('Features', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-compatibility' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-compatibility')" data-link-id="gn-compatibility"><?php echo esc_html__('Compatibility', 'gn-publisher') ?></button>
+  <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-status-tab' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-status-tab')" data-link-id="gn-status-tab"><?php echo esc_html__('Status', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-index-tab' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-index-tab')" data-link-id="gn-index-tab"><?php echo esc_html__('Indexing', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-troubleshooting' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-troubleshooting')" data-link-id="gn-troubleshooting"><?php echo esc_html__('Troubleshooting', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-services' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-services')" data-link-id="gn-services"><?php echo esc_html__('Services', 'gn-publisher') ?></button>
@@ -542,6 +543,10 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
     
 
   </div>
+  
+  <div id="gn-status-tab" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-status-tab' ? 'gnpub-show' : 'gnpub-d-none'); ?>">
+    <?php GNPUB_Status::gnpub_render_status_tab_html(); ?>
+  </div> <!-- gn-status-tab div end -->
 
   <div id="gn-index-tab" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-index-tab' ? 'gnpub-show' : 'gnpub-d-none'); ?>">
     <?php  GNPUB_Instant_Index::gnpub_render_index_tab_html(); ?>

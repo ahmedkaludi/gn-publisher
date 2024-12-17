@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * This controllers handles status tab related operations.
+ * This controllers handles status tab related operations
  * 
  * @since 1.5.19
  */

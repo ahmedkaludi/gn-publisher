@@ -70,6 +70,7 @@ function gnpub_feed_bootstrap() {
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-settings.php';		
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-newsletter.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-indexing.php';
+		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-status.php';
 
 
 		register_activation_hook( __FILE__, array( 'GNPUB_Installer', 'install' ) );
