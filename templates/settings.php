@@ -42,6 +42,7 @@ if ( defined('GNPUB_PRO_VERSION') ) {
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-google-feed' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-google-feed')" id="gn-feed" data-link-id="gn-google-feed"><?php echo esc_html__('Google News Feed Setup', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-features' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-features')" data-link-id="gn-features"><?php echo esc_html__('Features', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-compatibility' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-compatibility')" data-link-id="gn-compatibility"><?php echo esc_html__('Compatibility', 'gn-publisher') ?></button>
+  <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-index-tab' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-index-tab')" data-link-id="gn-index-tab"><?php echo esc_html__('Indexing', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-troubleshooting' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-troubleshooting')" data-link-id="gn-troubleshooting"><?php echo esc_html__('Troubleshooting', 'gn-publisher') ?></button>
   <button class="gn-tablinks <?php echo esc_attr( $tab == 'gn-services' ? 'active' : ''); ?>" onclick="openTab(event, 'gn-services')" data-link-id="gn-services"><?php echo esc_html__('Services', 'gn-publisher') ?></button>
   <?php if(defined('GNPUB_PRO_VERSION')){ ?>
@@ -411,15 +412,15 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
     <table class="form-table">
 
       <tr>
-        <th><label for="gnpub_enable_news_article_schema"><?php esc_html_e( 'News Article Schema', 'gn-publisher' ); ?></label></th>
+        <th><label for="gnpub_enable_news_article_schema" class="gnpub-hover-pointer"><?php esc_html_e( 'News Article Schema', 'gn-publisher' ); ?></label></th>
         <td>
           <input type="checkbox" name="gnpub_enable_news_article_schema" id="gnpub_enable_news_article_schema" <?php checked( $gnpub_news_schema, true ); ?> value="1" />
-          <label for="gnpub_enable_news_article_schema"><?php esc_html_e( 'Add NewsArticle schema by default', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/"><?php esc_html_e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
+          <label for="gnpub_enable_news_article_schema"><?php esc_html_e( 'Add NewsArticle schema on every post', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/"><?php esc_html_e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
           
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'Google Revenue Manager', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub_enable_google_revenue_manager" class="gnpub-hover-pointer"><?php esc_html_e( 'Google Revenue Manager', 'gn-publisher' ); ?></label></th>
         <td>
           <input type="checkbox" name="gnpub_enable_google_revenue_manager" id="gnpub_enable_google_revenue_manager" <?php checked( $gnpub_enable_google_revenue_manager, true ); ?> value="1" />
           <label for="gnpub_enable_google_revenue_manager"><?php esc_html_e( 'Increase revenue and improve reader engagement.', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/knowledge-base/how-to-enable-google-revenue-manager/"><?php esc_html_e( 'Learn More', 'gn-publisher' ); ?></a></span></label>
@@ -439,32 +440,32 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'Show info for Featured Image', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub_show_info_featured_img" class="gnpub-hover-pointer"><?php esc_html_e( 'Show info for Featured Image', 'gn-publisher' ); ?></label></th>
         <td>
-        <input type="checkbox" name="gnpub_show_info_featured_img" class="gnpub_show_info_featured_img" <?php checked( $gnpub_show_info_featured_img, true ); ?> value="1" />
+        <input type="checkbox" name="gnpub_show_info_featured_img" id="gnpub_show_info_featured_img" class="gnpub_show_info_featured_img" <?php checked( $gnpub_show_info_featured_img, true ); ?> value="1" />
         <label for="gnpub_show_info_featured_img"><?php esc_html_e( 'This will show additional data for featured image like caption , alt text , description etc (if available)', 'gn-publisher.' ); ?></label>
         </td>
       </tr>       
       <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
        <tr>
-        <th><?php esc_html_e( 'Feed Content Protection', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-feed-content-protection" class="gnpub-hover-pointer"><?php esc_html_e( 'Feed Content Protection', 'gn-publisher' ); ?></label></th>
         <td>
-        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-feed-content-protection" />
         <a class="gn-publisher-pro-btn"  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'Exclude Categories From Main Feed', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-exclude-cat-from-feed" class="gnpub-hover-pointer"><?php esc_html_e( 'Exclude Categories From Main Feed', 'gn-publisher' ); ?></label></th>
         <td>
-        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-exclude-cat-from-feed"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
 
       <tr>
-        <th><?php esc_html_e( 'Google News Sitemap', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-google-news-sitemap" class="gnpub-hover-pointer"><?php esc_html_e( 'Google News Sitemap', 'gn-publisher' ); ?></label></th>
         <td>
-        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-google-news-sitemap"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr> 
@@ -497,31 +498,31 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
       <p>
     <table class="form-table">
       <tr>
-        <th><?php esc_html_e( 'Flipboard.com', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-flipboard-comp" class="gnpub-hover-pointer"><?php esc_html_e( 'Flipboard.com', 'gn-publisher' ); ?></label></th>
         <td>
-          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-flipboard-comp"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'PublishPress Authors', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-publish-press-comp" class="gnpub-hover-pointer"><?php esc_html_e( 'PublishPress Authors', 'gn-publisher' ); ?></label></th>
         <td>
-          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-publish-press-comp"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'Molongui Authorship', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-molongui-author-comp" class="gnpub-hover-pointer"><?php esc_html_e( 'Molongui Authorship', 'gn-publisher' ); ?></label></th>
         <td>
-          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-molongui-author-comp"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
     
         </td>
       </tr>
       <tr>
-        <th><?php esc_html_e( 'Translate Press', 'gn-publisher' ); ?></th>
+        <th><label for="gnpub-translate-press-comp" class="gnpub-hover-pointer"><?php esc_html_e( 'Translate Press', 'gn-publisher' ); ?></label></th>
         <td>
-          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch"/>
+          <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-translate-press-comp"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
@@ -541,6 +542,11 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
     
 
   </div>
+
+  <div id="gn-index-tab" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-index-tab' ? 'gnpub-show' : 'gnpub-d-none'); ?>">
+    <?php  GNPUB_Instant_Index::gnpub_render_index_tab_html(); ?>
+  </div> <!-- gn-index-tab div end -->
+
   <div id="gn-upgrade" class="gn-tabcontent <?php echo esc_attr( $tab == 'gn-upgrade' || $tab == 'welcome' ? 'gnpub-show' : 'gnpub-d-none'); ?>" style="text-align: center;">
 <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
   <p style="font-weight: bold;font-size: 30px;color: #000;"><?php esc_html_e( 'Thank You for using GN Publisher.', 'gn-publisher' ) ?></p>

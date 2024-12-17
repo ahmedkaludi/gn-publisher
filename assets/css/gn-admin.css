@@ -453,3 +453,59 @@ div#gn-upgrade .button-gnp-ugrade {
 .gnpub-show{
     display: block;
 }
+.gnpub-hover-pointer:hover{
+  cursor: pointer;
+}
+.gnpub-index-tab-heading{
+  font-weight: 600;
+  display: inline-flex;
+  align-items: baseline;
+}
+.gnpub-index-tab-label{
+  float: left; 
+  clear: both;
+}
+.gnpub-index-tab-settings-list{
+  display: inline-block; 
+  width: 100%;
+}
+.gnpub-index-tab-field{
+  float: right; 
+  width: 75%; 
+  padding-bottom: 10px;
+}
+.gnpub-index-tab-manual-label{
+  padding: 8px 0px; 
+  display: block;
+  font-weight: 600;
+}
+.gnpub-indexing-response-box{
+  background: #fff;
+  padding: 18px 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+.gnpub-indexing-response-status{
+  color: #bb2b2b;
+}
+.gnpub-indexing-response-box .gnpub-indexing-response-status{
+  font-size: 24px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+#gnpub-indexing-giapi-response-body{
+  display:none;
+}
+#gnpub-indexing-giapi-response-body.ready{
+  display:block;
+}
+.gnpub-success-status{
+  color: #46b450;
+}
+.gnpub-fail-status{
+  color: #dc3232;
+}
+.gnpub-status-label{
+  font-weight: 600;
+  font-size: 14px;
+}
