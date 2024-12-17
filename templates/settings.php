@@ -446,7 +446,8 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
         <input type="checkbox" name="gnpub_show_info_featured_img" id="gnpub_show_info_featured_img" class="gnpub_show_info_featured_img" <?php checked( $gnpub_show_info_featured_img, true ); ?> value="1" />
         <label for="gnpub_show_info_featured_img"><?php esc_html_e( 'This will show additional data for featured image like caption , alt text , description etc (if available)', 'gn-publisher.' ); ?></label>
         </td>
-      </tr>       
+      </tr> 
+      <?php do_action('gnpub_sitemap_form');  ?>      
       <?php if(!defined('GNPUB_PRO_VERSION')){ ?>
        <tr>
         <th><label for="gnpub-feed-content-protection" class="gnpub-hover-pointer"><?php esc_html_e( 'Feed Content Protection', 'gn-publisher' ); ?></label></th>
@@ -461,16 +462,8 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-exclude-cat-from-feed"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
-      </tr>
+      </tr>     
 
-      <tr>
-        <th><label for="gnpub-google-news-sitemap" class="gnpub-hover-pointer"><?php esc_html_e( 'Google News Sitemap', 'gn-publisher' ); ?></label></th>
-        <td>
-        <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-google-news-sitemap"/>
-        <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
-        </td>
-      </tr> 
-      
       <?php } else { 
      do_action('gnpub_pro_setup_form');
     

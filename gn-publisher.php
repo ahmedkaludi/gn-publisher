@@ -54,6 +54,8 @@ function gnpub_feed_bootstrap() {
 	require_once GNPUB_PATH . 'class-gnpub-compat.php';
 	require_once GNPUB_PATH . 'class-gnpub-rss-url.php';
 	require_once GNPUB_PATH . 'output/schema-output.php';
+	require_once GNPUB_PATH . 'includes/common-helper.php';
+	require_once GNPUB_PATH . 'controllers/admin/class-gnpub-sitemap.php';
 
 
 	new GNPUB_Feed();
