@@ -16,10 +16,10 @@ class GNPUB_Status {
 	 * */
 	public static function gnpub_render_status_tab_html() {
 
-		$robots_url 		=	get_home_url().'/robots.txt';
-		$robots_response 	=	self::get_remote_response( $robots_url );
-		$robot_status 		=	$robots_response['status'];
-		$status_class 		=	'dashicons dashicons-no-alt gnpub-fail-status';
+		$robots_url 			=	get_home_url().'/robots.txt';
+		$robots_response 		=	self::get_remote_response( $robots_url );
+		$robot_status 			=	$robots_response['status'];
+		$status_class 			=	'dashicons dashicons-no-alt gnpub-fail-status';
 
 		if ( $robot_status == 'success' ) {
 			$status_class 		=	'dashicons dashicons-yes gnpub-success-status';	
@@ -32,7 +32,13 @@ class GNPUB_Status {
 		if ( $schema_status == 'success' ) {
 			$schema_class 		=	'dashicons dashicons-yes gnpub-success-status';	
 		}
-		// echo "<pre>robots_response===== "; print_r($robots_response); die;
+
+		$byline_class 			=	'dashicons dashicons-no-alt gnpub-fail-status';
+
+		if ( $schema_status == 'success' && $news_article_response['byline'] == 'yes' ) {
+			$byline_class 		=	'dashicons dashicons-yes gnpub-success-status';	
+		}
+		
 	?>
 		<div class="gnpub-status-tab-wrapper">
 			<div class="gnpub-index-tab-settings-list">
@@ -55,6 +61,15 @@ class GNPUB_Status {
 							</th>
 							<td>
 								<span class="<?php echo esc_attr( $schema_class ); ?>"></span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>
+								<label class="gnpub-status-label"><?php echo esc_html__( 'Byline', 'gn-publisher' ); ?></label>
+							</th>
+							<td>
+								<span class="<?php echo esc_attr( $byline_class ); ?>"></span>
 							</td>
 						</tr>
 
@@ -104,12 +119,14 @@ class GNPUB_Status {
 		$response 				=	array();
 		$response['status'] 	=	'failure'; 		
 		$response['body'] 		=	''; 		
+		$response['byline'] 	=	'no'; 		
 
 		$gnpub_options			= 	get_option( 'gnpub_new_options' );
 
 		if ( ! empty( $gnpub_options['gnpub_enable_news_article_schema'] ) ) {
 
 			$response['status'] =	'success';
+			$response['byline'] =	'yes';
 
 		}
 
@@ -158,8 +175,14 @@ class GNPUB_Status {
 								if ( is_array( $decode_schema ) ) {
 
 									foreach ( $decode_schema as $key => $value ) {
+
 										if ( is_array( $value ) && ! empty( $value['@type'] ) ) {
 											if ( $value['@type'] == 'NewsArticle' ) {
+
+												if ( isset( $value['datePublished'] ) && isset( $value['dateModified'] ) ) {
+													$response['byline'] =	'yes';
+												}
+
 												$response['status'] 	=	'success';
 												break;
 											}

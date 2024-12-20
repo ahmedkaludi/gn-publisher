@@ -75,7 +75,7 @@ class GNPUB_Sitemap {
 		?>	
 
 		<tr>
-	        <th><?php echo esc_html__( 'Google News Sitemap', 'gn-publisher' ); ?></th>
+	        <th><label for="gnpub_enable_gnsitemap" class="gnpub-hover-pointer"><?php echo esc_html__( 'Google News Sitemap', 'gn-publisher' ); ?></label></th>
 	        <td>
 			<input <?php if(!$gnpub_enable_gnsitemap){ echo 'type="checkbox"';}else{echo 'type="hidden"';}?> name="gnpub_enable_gnsitemap" id="gnpub_enable_gnsitemap" <?php checked( $gnpub_enable_gnsitemap, true ); ?> value="1" />
 			<label for="gnpub_enable_gnsitemap" id="gnpub_gnsitemap_label" data-checked="<?php _e( '<b>Enabled</b>', 'gn-publisher' ); ?>" data-unchecked="<?php echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?>"><?php if($gnpub_enable_gnsitemap){  _e( '<b>Enabled</b>', 'gn-publisher' );}else{ echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' );} ?></label> 
