@@ -73,6 +73,7 @@ function gnpub_feed_bootstrap() {
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-newsletter.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-indexing.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-status.php';
+		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-setup-wizard.php';
 
 
 		register_activation_hook( __FILE__, array( 'GNPUB_Installer', 'install' ) );
@@ -95,7 +96,7 @@ function gnpub_load_textdomain() {
 
 function gnpub_admin_style( $hook_suffix ) {
 
-	if ( $hook_suffix == "settings_page_gn-publisher-settings" ) {
+	if ( $hook_suffix == "settings_page_gn-publisher-settings" || $hook_suffix == 'admin_page_gnpub-setup-wizard' ) {
 	
 		$min = defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 

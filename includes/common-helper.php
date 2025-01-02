@@ -24,3 +24,17 @@ function gnpub_get_active_language_slugs() {
 	return array('en');
 
 }
+
+/**
+ * Assign default checklist data
+ * @since 1.5.19
+ * */
+function gnpub_default_checklist_options_data(){
+	
+	$default 	=	array(
+						'gnpub_enable_news_article_schema' 		=>	false,
+						'gnpub_show_info_featured_img' 			=>	false,
+						'gnpub_enable_gnsitemap' 				=>	false,
+					);
+	return $default;
+}

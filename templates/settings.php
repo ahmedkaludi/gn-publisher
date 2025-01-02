@@ -14,8 +14,39 @@ if( !empty( $_GET['tab'] ) ) {
 ?>
 <div class="wrap">
   <div class="gn-container">
-  
-    <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo esc_url( GNPUB_URL . '/assets/images/logo.png' ); ?> title="<?php esc_html_e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
+    
+    <div id="gnpub-tab-header-logo">
+      <h1><a href="https://gnpublisher.com/" target="_blank"><img  class="gn-logo" src=<?php echo esc_url( GNPUB_URL . '/assets/images/logo.png' ); ?> title="<?php esc_html_e( 'GN Publisher', 'gn-publisher' ); ?>"/></a></h1>
+    </div>
+    <?php  
+      $wizard_checklist  =  get_option( 'gnpub_setup_wizard_checklist', gnpub_default_checklist_options_data() );
+      $total_options     =  0;
+      $chklist_completed =  0;
+      $total_perc        =  0;
+      
+      if ( ! empty( $wizard_checklist ) ) {
+        $total_options   =  count( $wizard_checklist );
+        foreach ( $wizard_checklist as $wz_key => $chk_list ) {
+          if ( ! empty( $chk_list ) ) {
+            $chklist_completed++;
+          }  
+        }
+      }
+      if ( $total_options > 0 && $chklist_completed > 0 ) {
+        $total_perc      =  ceil( ( $chklist_completed / $total_options ) * 100 );
+      }
+    ?>
+    <div id="gnpub-tab-header-wizard">
+      <span><?php echo esc_html__( 'Your setup is', 'gn-publisher'). ' '. esc_attr( $total_perc ).esc_html( '% completed', 'gn-publisher'); ?></span>
+      <?php 
+      $btn_txt  = 'Finish Setup';
+      if ( $total_perc == 100 ) {
+        $btn_txt  = 'Completed'; 
+      }
+      $wizard_url   = admin_url('admin.php?page=gnpub-setup-wizard');
+      ?>
+      <a href="<?php echo esc_url( $wizard_url ); ?>"><button class="gnpub-finish-setup-btn"><?php echo esc_html( $btn_txt ) ?></button></a>
+    </div>
   </div>
 <?php 
 if ( defined('GNPUB_PRO_VERSION') ) { 

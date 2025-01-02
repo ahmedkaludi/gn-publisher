@@ -27,111 +27,16 @@ class GNPUB_Instant_Index {
 	 * @since 1.5.19
 	 * */
 	public static function gnpub_render_index_tab_html() {
-
-		$gnpub_options 		=	get_option( 'gnpub_new_options' );
-
-		$post_types 		= 	get_post_types( array( 'public' => true ), 'objects' ); 
-
-		$indexing_action 	= 	isset( $gnpub_options['gnpub_instant_index_action'] ) ? $gnpub_options['gnpub_instant_index_action'] : false; 
-		
 		?>
 		
 	    <form enctype="multipart/form-data" method="post" action="">
 
-	    	<div class="gnpub-index-tab-settings-list">
-	    		<ul>
-	    			<li>
-	                    <div class="gnpub-index-tab-label" style="width: 300px;">
-	                        <p class="gnpub-index-tab-heading"><?php echo esc_html__( 'Google JSON Key:', 'gn-publisher' ); ?></p><br>
-	                        <small><?php echo esc_html__( 'Upload the Service Account JSON key file you obtained from Google API Console or paste its contents in the field.', 'gn-publisher' ); ?> <a target="_blank" href="https://gnpublisher.com/docs/"><?php echo esc_html__( 'Learn more', 'gn-publisher' ); ?></a></small>
-	                    </div> 
-	                    <div class="gnpub-index-tab-field">
-	                    	<?php 
-	                    	$gapi_settings 	=	get_option( 'gnpub_google_index_api_settings' );
-	                    	?>
-	                    	<textarea name="gnpub_index_json_key" class="regular-text code" style="min-width: 600px;" rows="6"><?php echo esc_textarea( $gapi_settings ); ?></textarea>
-	                    	<br>
-	                    	<label>
-							<?php echo esc_html__( 'Or upload JSON file: ', 'gn-publisher' ); ?>
-							<input type="file" name="gnpub_index_json_file" />
-						</label>
-	                    </div>                                             
-	                </li>
-	            </ul>
-	    	</div>
+	    	<?php 
+	    	self::file_upload_form(); 
+	    	self::automatic_indexing_form(); 
+	    	self::instant_indexing_form(); 
+	    	?>
 
-	    	<div class="gnpub-index-tab-settings-list">
-			    <div>
-					<h2><?php echo esc_html__('Enable On ( Automatic )', 'gn-publisher' ); ?></h2>
-				</div>
-			    <p> 
-			    	<?php echo esc_html__('To instant indexing from these post types automatically in the background when a post is published, edited, or deleted', 'gn-publisher' ); ?>
-			    	<a target="_blank" href="https://gnpublisher.com/docs/"><?php echo esc_html__( 'Learn more', 'gn-publisher' ); ?></a>
-			    </p>
-	    		<ul>
-	    			<li>
-	    				<div class="gnpub-index-tab-label">
-	                        <label class="gnpub-index-tab-heading"><?php echo esc_html__( 'Post Types', 'gn-publisher' ); ?></label>
-	                    </div>
-	                    <div class="gnpub-index-tab-field">
-			                <?php
-			                    if( ! empty( $post_types ) ) {
-
-			                        unset( $post_types['attachment'], $post_types['saswp'], $post_types['saswp_reviews'], $post_types['saswp-collections'], $post_types['saswp_template'], $post_types['saswp_reviews_server'] );
-			                        
-			                        foreach ( $post_types as $post_type ) {
-
-			                        	$chk_field_id 		=	'gnpub-instant-index-'.$post_type->name;
-			                        	$chk_field_name 	=	'gnpub_instant_indexing['.$post_type->name.']';
-			                        	$chk_field_val 		=	false;
-
-			                        	if ( isset( $gnpub_options['gnpub_instant_indexing'] ) && isset( $gnpub_options['gnpub_instant_indexing'][ $post_type->name ] ) ) {
-			                        		$chk_field_val 		=	$gnpub_options['gnpub_instant_indexing'][ $post_type->name ];
-			                        	}
-			                        ?>
-
-			                        	<input id="<?php echo esc_attr( $chk_field_id ); ?>" type="checkbox" value="1" name="<?php echo esc_attr( $chk_field_name ); ?>" <?php checked( $chk_field_val, true ); ?> /> 
-			                        	<label for="<?php echo esc_attr( $chk_field_id ); ?>" class="gnpub-hover-pointer"><?php echo esc_html( $post_type->label ); ?></label> <br>
-			                        <?php
-
-			                        }
-
-			                    }
-			                                
-			                ?>
-	                    </div>
-	    			</li>
-	    		</ul>
-	    	</div>
-
-	    	<div class="gnpub-index-tab-heading">
-	    		<h2><?php echo esc_html__( 'Instant Console ( Manual )', 'gn-publisher' ); ?></h2>
-	    	</div>
-
-	    	<div class="gnpub-index-tab-settings-list">
-	    		<ul>
-	    			<li>
-	                    <div class="gnpub-index-tab-label">
-	                        <label for="giapi-url" class="gnpub-index-tab-manual-label" ><?php echo esc_html__('URLs (one per line, up to 50):', 'gn-publisher' ); ?></label>
-	                    </div>    
-	                    <div class="gnpub-index-tab-field">
-	                    	<textarea name="url" id="gnpub-giapi-url" class="regular-text code" style="min-width: 600px;" rows="6"></textarea>
-	                    </div>                                          
-	                </li>
-	                <li>
-	                	<div class="gnpub-index-tab-label">
-	                        <label class="gnpub-index-tab-manual-label"><?php echo esc_html__('Action:', 'gn-publisher' ); ?></label>
-
-	                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-update-action" name="gnpub_instant_index_action" value="update"  <?php echo checked($indexing_action, 'update') ?>   /> <label for="gnpub-index-tab-update-action" class="gnpub-hover-pointer"><?php echo esc_html__('Publish/Update', 'gn-publisher' ); ?></label> <br>
-	                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-remove-action" name="gnpub_instant_index_action" value="remove"   <?php echo checked($indexing_action, 'remove') ?> /> <label for="gnpub-index-tab-remove-action" class="gnpub-hover-pointer"><?php echo esc_html__('Remove', 'gn-publisher' ); ?> </label> <br>
-	                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-status-action" name="gnpub_instant_index_action" value="getstatus" <?php echo checked($indexing_action, 'getstatus') ?> /> <label for="gnpub-index-tab-status-action" class="gnpub-hover-pointer"><?php echo esc_html__('Get status', 'gn-publisher' ); ?> </label>
-	                        <br>
-	                        <br>
-	                        <a class="button button-default" id="gnpub-instant-indexing-send"><?php echo esc_html__('Send For Indexing', 'gn-publisher' ); ?></a>
-	                    </div>
-	                </li>
-	    		</ul>
-	    	</div>
 	    	<?php wp_nonce_field( 'gnpub_save_index_settings_nonce', 'gnpub_save_index_settings_nonce' ); ?>
 	    	<div id="gnpub-index-btn-wrapper" style="margin-top:40px;">
 	      		<input type="submit" name="gnpub_save_index_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
@@ -151,12 +56,133 @@ class GNPUB_Instant_Index {
 	}
 
 	/**
+	 * Render google key file upload template
+	 * @since 1.5.19
+	 * */
+	public static function file_upload_form() {
+		?>
+		<div class="gnpub-index-tab-settings-list">
+    		<ul>
+    			<li>
+                    <div class="gnpub-index-tab-label" style="width: 300px;">
+                        <p class="gnpub-index-tab-heading"><?php echo esc_html__( 'Google JSON Key:', 'gn-publisher' ); ?></p><br>
+                        <small><?php echo esc_html__( 'Upload the Service Account JSON key file you obtained from Google API Console or paste its contents in the field.', 'gn-publisher' ); ?> <a target="_blank" href="https://gnpublisher.com/docs/"><?php echo esc_html__( 'Learn more', 'gn-publisher' ); ?></a></small>
+                    </div> 
+                    <div class="gnpub-index-tab-field">
+                    	<?php 
+                    	$gapi_settings 	=	get_option( 'gnpub_google_index_api_settings' );
+                    	?>
+                    	<textarea name="gnpub_index_json_key" class="regular-text code" style="min-width: 600px;" rows="6"><?php echo esc_textarea( $gapi_settings ); ?></textarea>
+                    	<br>
+                    	<label>
+						<?php echo esc_html__( 'Or upload JSON file: ', 'gn-publisher' ); ?>
+						<input type="file" name="gnpub_index_json_file" />
+					</label>
+                    </div>                                             
+                </li>
+            </ul>
+    	</div>
+		<?php
+	}
+
+	/**
+	 * Render automatic indexing template
+	 * @since 1.5.19
+	 * */
+	public static function automatic_indexing_form(){
+
+		$gnpub_options 		=	get_option( 'gnpub_new_options' );
+		$post_types 		= 	get_post_types( array( 'public' => true ), 'objects' ); 
+
+		?>
+		<div class="gnpub-index-tab-settings-list">
+		    <div>
+				<h2><?php echo esc_html__('Enable On ( Automatic )', 'gn-publisher' ); ?></h2>
+			</div>
+		    <p> 
+		    	<?php echo esc_html__('To instant indexing from these post types automatically in the background when a post is published, edited, or deleted', 'gn-publisher' ); ?>
+		    	<a target="_blank" href="https://gnpublisher.com/docs/"><?php echo esc_html__( 'Learn more', 'gn-publisher' ); ?></a>
+		    </p>
+    		<ul>
+    			<li>
+    				<div class="gnpub-index-tab-label">
+                        <label class="gnpub-index-tab-heading"><?php echo esc_html__( 'Post Types', 'gn-publisher' ); ?></label>
+                    </div>
+                    <div class="gnpub-index-tab-field">
+		                <?php
+		                    if( ! empty( $post_types ) ) {
+
+		                        unset( $post_types['attachment'], $post_types['saswp'], $post_types['saswp_reviews'], $post_types['saswp-collections'], $post_types['saswp_template'], $post_types['saswp_reviews_server'] );
+		                        
+		                        foreach ( $post_types as $post_type ) {
+
+		                        	$chk_field_id 		=	'gnpub-instant-index-'.$post_type->name;
+		                        	$chk_field_name 	=	'gnpub_instant_indexing['.$post_type->name.']';
+		                        	$chk_field_val 		=	false;
+
+		                        	if ( isset( $gnpub_options['gnpub_instant_indexing'] ) && isset( $gnpub_options['gnpub_instant_indexing'][ $post_type->name ] ) ) {
+		                        		$chk_field_val 		=	$gnpub_options['gnpub_instant_indexing'][ $post_type->name ];
+		                        	}
+		                        ?>
+
+		                        	<input id="<?php echo esc_attr( $chk_field_id ); ?>" type="checkbox" value="1" name="<?php echo esc_attr( $chk_field_name ); ?>" <?php checked( $chk_field_val, true ); ?> /> 
+		                        	<label for="<?php echo esc_attr( $chk_field_id ); ?>" class="gnpub-hover-pointer"><?php echo esc_html( $post_type->label ); ?></label> <br>
+		                        <?php
+
+		                        }
+
+		                    }
+		                                
+		                ?>
+                    </div>
+    			</li>
+    		</ul>
+    	</div>
+    	<?php
+	}
+
+	public static function instant_indexing_form() {
+
+		$indexing_action 	= 	isset( $gnpub_options['gnpub_instant_index_action'] ) ? $gnpub_options['gnpub_instant_index_action'] : false; 
+		?>
+		<div class="gnpub-index-tab-heading">
+	    	<h2><?php echo esc_html__( 'Instant Console ( Manual )', 'gn-publisher' ); ?></h2>
+	    </div>
+
+    	<div class="gnpub-index-tab-settings-list">
+    		<ul>
+    			<li>
+                    <div class="gnpub-index-tab-label">
+                        <label for="giapi-url" class="gnpub-index-tab-manual-label" ><?php echo esc_html__('URLs (one per line, up to 50):', 'gn-publisher' ); ?></label>
+                    </div>    
+                    <div class="gnpub-index-tab-field">
+                    	<textarea name="url" id="gnpub-giapi-url" class="regular-text code" style="min-width: 600px;" rows="6"></textarea>
+                    </div>                                          
+                </li>
+                <li>
+                	<div class="gnpub-index-tab-label">
+                        <label class="gnpub-index-tab-manual-label"><?php echo esc_html__('Action:', 'gn-publisher' ); ?></label>
+
+                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-update-action" name="gnpub_instant_index_action" value="update"  <?php echo checked($indexing_action, 'update') ?>   /> <label for="gnpub-index-tab-update-action" class="gnpub-hover-pointer"><?php echo esc_html__('Publish/Update', 'gn-publisher' ); ?></label> <br>
+                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-remove-action" name="gnpub_instant_index_action" value="remove"   <?php echo checked($indexing_action, 'remove') ?> /> <label for="gnpub-index-tab-remove-action" class="gnpub-hover-pointer"><?php echo esc_html__('Remove', 'gn-publisher' ); ?> </label> <br>
+                        <input type="radio" class="gnpub-i-i-action" id="gnpub-index-tab-status-action" name="gnpub_instant_index_action" value="getstatus" <?php echo checked($indexing_action, 'getstatus') ?> /> <label for="gnpub-index-tab-status-action" class="gnpub-hover-pointer"><?php echo esc_html__('Get status', 'gn-publisher' ); ?> </label>
+                        <br>
+                        <br>
+                        <a class="button button-default" id="gnpub-instant-indexing-send"><?php echo esc_html__('Send For Indexing', 'gn-publisher' ); ?></a>
+                    </div>
+                </li>
+    		</ul>
+    	</div>
+		<?php
+	}
+
+	/**
 	 * Enqueue instant index related script
 	 * @since 1.5.19
 	 * */
 	public function gnpub_admin_instant_index_script( $hook_suffix ) {
 
-		if ( $hook_suffix == "settings_page_gn-publisher-settings" ) {
+		if ( $hook_suffix == "settings_page_gn-publisher-settings" || $hook_suffix == 'admin_page_gnpub-setup-wizard' ) {
 
 			$min = defined ( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -188,7 +214,7 @@ class GNPUB_Instant_Index {
 	 * */
 	public function gnpub_save_index_settings_data() {
 	
-		if ( isset( $_POST['gnpub_save_index_settings'] ) && current_user_can( 'manage_options' ) ) {
+		if ( ( isset( $_POST['gnpub_save_index_settings'] ) || isset( $_POST['gnpub_save_setup_wizard_settings'] ) ) && current_user_can( 'manage_options' ) ) {
 
 			if ( ! wp_verify_nonce( $_POST['gnpub_save_index_settings_nonce'], 'gnpub_save_index_settings_nonce' ) ) {
 				return;
