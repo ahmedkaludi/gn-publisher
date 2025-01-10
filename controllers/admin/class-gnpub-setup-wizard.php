@@ -23,7 +23,8 @@ class GNPUB_Setup_Wizard {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ) );
 		add_action( 'admin_menu', array( $this, 'setup_wizard_menu' ) );
-		add_action( 'admin_post_gnpub_save_setup_wizard', array( $this, 'save_step' ) );	
+		add_action( 'admin_post_gnpub_save_setup_wizard', array( $this, 'save_step' ) );
+		add_action( 'wp_ajax_gnpub_setup_wizard_checklist_ajax', array( $this, 'save_checklist_option' ) );	
 
 		$this->wizard_steps();	
 
@@ -148,6 +149,9 @@ class GNPUB_Setup_Wizard {
 
 				<div id="gnpub-setup-wizard-navigation">
 					<?php 
+
+					$checklist_options 				=	get_option( 'gnpub_setup_wizard_checklist' );
+
 					foreach ( $this->wizard_steps as $step_id => $step ) {
 
 						$class 			=	'';
@@ -165,12 +169,11 @@ class GNPUB_Setup_Wizard {
 						if ( $step_id == 0 ){
 							$class 		.=	'gnpub-setup-wizard-step-done gnpub-setup-wizard-origin';
 						}
-						?> 
-							<!-- <a class="gnpub-setup-wizard-origin" href="<?php echo esc_url( $step['url'] ); ?>" title="<?php echo esc_html( $step['label'] ); ?>"></a> -->
-						 <?php	
-						// }else{
+
+						$chk_response 		=	$this->gnpub_prepare_checklist_text( $step['id'] );
+						$check_status 		=	$chk_response['text'];
 						?>
-							<a class="gnpub-setup-wizard-steps <?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( $step['url'] ); ?>" title="<?php echo esc_html( $step['label'] ); ?>"><span></span></a>
+							<a class="gnpub-setup-wizard-steps <?php echo esc_attr( $class ); ?>" title="<?php echo esc_html( $step['label'] ) . esc_attr( $check_status ); ?>" data-label="<?php echo esc_attr( $step['label'] ); ?>"><span></span></a>
 						<?php
 						// }
 					}
@@ -190,12 +193,20 @@ class GNPUB_Setup_Wizard {
 	public function content() {
 
 		$response 			=	$this->get_current_and_next_steps();
+
 		$next_url 			=	'';
 		$next_step_id 		=	'';
+		$previous_url		=	'';
+		$previous_step_id 	=	'';
 		$btn_text 			=	'Save and Continue';
 		if ( ! empty( $response['next'] ) ) {
 			$next_url 		=	$response['next']['url'];	
 			$next_step_id 	=	$response['next']['id'];	
+		}
+
+		if ( ! empty( $response['previous'] ) ) {
+			$previous_url 		=	$response['previous']['url'];	
+			$previous_step_id 	=	$response['previous']['id'];	
 		}
 
 		$current_step_id 	=	$response['current']['id'];
@@ -219,7 +230,7 @@ class GNPUB_Setup_Wizard {
 					<?php 
 					if ( ! empty( $next_url ) ) {
 					?>
-						<a class="gnpub-setup-wizard-skip-btn" href="<?php echo esc_url( $next_url ); ?>"><?php echo esc_html__( 'Skip this Step', 'gn-publisher' ); ?></a>
+						<a class="gnpub-setup-wizard-skip-btn" href="<?php echo esc_url( $previous_url ); ?>"><?php echo esc_html__( 'Back', 'gn-publisher' ); ?></a>
 					<?php	
 					}
 					?>
@@ -281,7 +292,19 @@ class GNPUB_Setup_Wizard {
 	public function footer() {
 
 		$dashboard_url 	=	admin_url('admin.php?page=gn-publisher-settings');
+
+		$total_perc 	=	gnpub_setup_wizard_progress_perc();
+		$class 			=	'';
+		if ( $total_perc == 0 ){
+			$class 		=	'gnpub-d-none';	
+		}
 		?>
+			<div class="gnpub-setup-wizard-progress-container">
+    			<div class="gnpub-setup-wizard-progress-bar" style="width: <?php echo esc_attr($total_perc) ?>%;">
+    				<div class="gnpub-setup-wizard-progress-bar-text <?php echo esc_attr( $class ); ?>"><?php echo esc_html($total_perc) . esc_html__( '% Completed', 'gn-publisher' ); ?></div>
+    			</div>
+			</div>
+
 			<div id="gnpub-setup-wizard-footer">
 				<a href="<?php echo esc_url( $dashboard_url ); ?>"><?php echo esc_html__( 'Return to dashboard', 'gn-publisher' ); ?></a>	
 			</div>
@@ -315,6 +338,9 @@ class GNPUB_Setup_Wizard {
 				if ( $step['id'] == $tab ) {
 					$response['current'] 	=	$this->wizard_steps[$step_key];		
 					$response['current']['index'] 	=	$step_key;
+				}
+				if ( $step['id'] == $tab && isset( $this->wizard_steps[$step_key - 1] ) ) {
+					$response['previous'] 		=	$this->wizard_steps[$step_key - 1];
 				}
 			}	
 
@@ -447,6 +473,103 @@ class GNPUB_Setup_Wizard {
 
 		wp_safe_redirect( $redirect_url );
 
+	}
+
+	/**
+	 * Prepare checklist text and calculate percentage
+	 * @param	$tabid 	string
+	 * @return 	$data 	array
+	 * @since 	1.5.19
+	 * */
+	public function gnpub_prepare_checklist_text( $tab_id ){
+		
+		$perc 						=	gnpub_setup_wizard_progress_perc();
+		$checklist_options 			=	get_option( 'gnpub_setup_wizard_checklist', gnpub_default_checklist_options_data() );
+		$check_status 				=	'';
+		$label 						=	'';
+		$completed_checks 			=	0;
+
+		switch( $tab_id ){
+
+			case 'key_features':
+
+				$total_checks 		=	2;
+
+				if ( ! empty( $checklist_options['gnpub_enable_news_article_schema'] ) ){
+					$completed_checks++;	
+				}
+				if ( ! empty( $checklist_options['gnpub_show_info_featured_img'] ) ){
+					$completed_checks++;	
+				}
+
+				$check_status 		=	' ('.$completed_checks.'/'.$total_checks.')';
+
+			break;
+
+			case 'site_map':
+
+				$total_checks 		=	1;
+
+				if ( ! empty( $checklist_options['gnpub_enable_gnsitemap'] ) ){
+					$completed_checks++;	
+				}
+				
+				$check_status 		=	' ('.$completed_checks.'/'.$total_checks.')';
+
+			break;
+
+		}
+
+
+		$data['text'] 	=	$check_status;
+		$data['perc']	=	$perc;
+
+		return $data;
+
+	}
+	
+	/**
+	 * Ajax callback function to save checklist data
+	 * @since 1.5.19
+	 * */	
+	public function save_checklist_option(){
+		
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error('You are not authorized to perform this task');
+		}
+		if ( ! isset( $_POST['security'] ) ) {
+			wp_send_json_error('You are not authorized to perform this task');
+		}
+		if ( ! wp_verify_nonce( $_POST['security'], 'gnpub_setup_wizard_nonce' ) ) {
+			wp_send_json_error('You are not authorized to perform this task');
+		}
+		
+		if ( isset( $_POST['name'] ) && isset( $_POST['value'] ) ) {
+
+			$wizard_checklist 				=	get_option( 'gnpub_setup_wizard_checklist', gnpub_default_checklist_options_data() );
+			$optname 						=	sanitize_text_field( wp_unslash( $_POST['name'] ) );
+			$optvalue 						=	sanitize_text_field( wp_unslash( $_POST['value'] ) );
+			
+			if ( $optvalue == 'yes' ) {
+				$wizard_checklist[$optname]	=	true;	
+			}else{
+				$wizard_checklist[$optname]	=	false;
+			}
+
+			$tab 							=	'';
+			if ( ! empty( $_POST['tab'] ) ) {
+				$tab 						=	sanitize_text_field( wp_unslash( $_POST['tab'] ) );
+			}
+
+			update_option( 'gnpub_setup_wizard_checklist', $wizard_checklist );
+
+			$response 						=	$this->gnpub_prepare_checklist_text( $tab );
+
+			wp_send_json_success( $response );
+
+		}
+
+		wp_die();
 	}
 }
 

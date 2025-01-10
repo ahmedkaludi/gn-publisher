@@ -38,3 +38,30 @@ function gnpub_default_checklist_options_data(){
 					);
 	return $default;
 }
+
+/**
+ * Calculate setup wizard progress percentage
+ * @since 1.5.19
+ * */
+function gnpub_setup_wizard_progress_perc() {
+	
+	$wizard_checklist  =  get_option( 'gnpub_setup_wizard_checklist', gnpub_default_checklist_options_data() );
+	$total_options     =  0;
+	$chklist_completed =  0;
+	$total_perc        =  0;
+
+	if ( ! empty( $wizard_checklist ) ) {
+	$total_options   =  count( $wizard_checklist );
+	foreach ( $wizard_checklist as $wz_key => $chk_list ) {
+	  if ( ! empty( $chk_list ) ) {
+	    $chklist_completed++;
+	  }  
+	}
+	}
+	if ( $total_options > 0 && $chklist_completed > 0 ) {
+		$total_perc      =  ceil( ( $chklist_completed / $total_options ) * 100 );
+	}
+
+	return $total_perc;
+
+}

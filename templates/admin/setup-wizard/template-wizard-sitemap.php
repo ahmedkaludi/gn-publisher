@@ -46,7 +46,7 @@ if ( ! empty( $sitemap_options ) && ! empty( $sitemap_options['news_sitemap_excl
 			<label for="gnpub_enable_gnsitemap" id="gnpub_gnsitemap_label"><?php echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?></label>
     	</td>
     	<td class="<?php echo esc_attr( $site_chk_box_class ); ?>">
-		    <input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_enable_gnsitemap]" <?php checked( $site_chk_box, true ); ?> value="1" />
+		    <input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_enable_gnsitemap]" <?php checked( $site_chk_box, true ); ?> value="1" data-chk-opt-name="gnpub_enable_gnsitemap" />
 		</td>  
 	</tr>
 	<?php //do_action('gnpub_sitemap_form');  ?>
@@ -138,4 +138,4 @@ if ( $gnpub_enable_gnsitemap == true ) {
 	</table>
 
 </div><!-- gnpub-sitemap-setting-wrapper div end -->
-<input type="hidden" name="tab" value="site_map" />
+<input type="hidden" name="tab" id="gnpub-active-tab" value="site_map" />

@@ -30,7 +30,7 @@ if ( $fimage_chk_box == true ) {
 ?>
 <header>
 	<h1><?php echo esc_html__( 'Key Features', 'gn-publisher' ); ?></h1>
-	<p><?php echo esc_html__( 'Chosse your features which you want to activate or deactivate.', 'gn-publisher' ); ?></p>
+	<p><?php echo esc_html__( 'Choose your features which you want to activate or deactivate.', 'gn-publisher' ); ?></p>
 </header>
 
 <div class="gnpub-setup-wizard-options-wrapper">
@@ -46,7 +46,7 @@ if ( $fimage_chk_box == true ) {
 		          
 		        </td>
 		        <td class="<?php echo esc_attr( $news_chk_box_class ); ?>">
-		        	<input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_enable_news_article_schema]" <?php checked( $news_chk_box, true ); ?> value="1" data-dont-hide="gnpub_enable_news_article_schema" />
+		        	<input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_enable_news_article_schema]" <?php checked( $news_chk_box, true ); ?> value="1" data-dont-hide="gnpub_enable_news_article_schema" data-chk-opt-name="gnpub_enable_news_article_schema" />
 		        </td>
 			</tr>
 			<tr class="gnpub-setup-wizard-chklist-tr">
@@ -58,10 +58,10 @@ if ( $fimage_chk_box == true ) {
 		        	<label for="gnpub_show_info_featured_img"><?php echo esc_html__( 'This will show additional data for featured image like caption , alt text , description etc (if available)', 'gn-publisher.' ); ?></label>
 		        </td>
 		        <td class="<?php echo esc_attr( $fimage_chk_box_class ); ?>">
-		        	<input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_show_info_featured_img]" <?php checked( $fimage_chk_box, true ); ?> value="1" data-dont-hide="gnpub_show_info_featured_img" />
+		        	<input class="gnpub-setup-wizard-chklist-chkbox" type="checkbox" name="gnpub_setup_wizard_checklist[gnpub_show_info_featured_img]" <?php checked( $fimage_chk_box, true ); ?> value="1" data-dont-hide="gnpub_show_info_featured_img" data-chk-opt-name="gnpub_show_info_featured_img" />
 		        </td>
         	</tr>
 		</tbody>
-		<input type="hidden" name="tab" value="key_features" />
+		<input type="hidden" name="tab" id="gnpub-active-tab" value="key_features" />
 	</table>
 </div>
