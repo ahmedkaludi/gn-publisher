@@ -478,7 +478,8 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-exclude-cat-from-feed"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
-      </tr>     
+      </tr>
+      <?php do_action( 'gnpub_render_google_news_follow' ); ?>     
 
       <?php } else { 
      do_action('gnpub_pro_setup_form');
