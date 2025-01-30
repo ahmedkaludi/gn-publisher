@@ -389,7 +389,7 @@ class GNPUB_News_Follow {
 		if ( ! wp_verify_nonce( $_POST['gnpub_gnfollow_nonce'], 'gnpub-gnfollow-settings' ) ) {
 			wp_safe_redirect( $redirect_url );
 		}
-		// echo "<pre>POST===== "; print_r($_POST); die;
+		
 		$shortcode_options 		=	get_option( 'gnpub_shortcode_options', self::gnpub_gnfollow_defaults() );
 		if ( ! empty( $_POST['gnpub_gnfollow_background_color'] ) ) {
 			$shortcode_options['gnpub_gnfollow_background_color'] 	=	sanitize_text_field( wp_unslash( $_POST['gnpub_gnfollow_background_color'] ) );	

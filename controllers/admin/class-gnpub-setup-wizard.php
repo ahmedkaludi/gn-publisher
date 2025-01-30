@@ -365,7 +365,7 @@ class GNPUB_Setup_Wizard {
 		if ( ! wp_verify_nonce( $_POST['security'], 'gnpub-setup-wizard-nonce' ) ) {
 			wp_safe_redirect( $redirect_url );
 		}
-		// echo "<pre>_POST===== "; print_r($_POST); die;
+		
 		if ( isset( $_POST['next_step'] ) ) {
 
 			$next_step 	=	sanitize_text_field( wp_unslash( $_POST['next_step'] ) );

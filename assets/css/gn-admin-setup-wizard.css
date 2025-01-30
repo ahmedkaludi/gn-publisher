@@ -282,10 +282,13 @@ div#gnpub-setup-wizard-finish-wrapper .gnpub-setup-wizard-upgrade-btn {
     transition: all 0.5s;
     font-weight: 600;
 }
-#gnpub-pro-features-list-wrapper td{
+#gnpub-setup-features-list-wrapper{
+    text-align: left;
+}
+#gnpub-setup-features-list-wrapper td{
   padding-right: 20px;
 }
-#gnpub-pro-features-list-wrapper .gnpub-success-status:before{
+#gnpub-setup-features-list-wrapper .gnpub-success-status:before{
   font-size: 25px;
   margin-left: -10px;
 }

@@ -17,7 +17,7 @@ if ( ! defined( 'GNPUB_PRO_VERSION' ) ){
 	?> 
 	<p class="gnpub-thankyou-note-pro"><?php echo esc_html__( 'Please support us by Upgrading to Premium version.', 'gn-publisher' ) ?></p>
 	<h3><?php echo esc_html__( 'Premium Features', 'gn-publisher' ); ?></h3>
-	<table id="gnpub-pro-features-list-wrapper">
+	<table id="gnpub-setup-features-list-wrapper">
     <tbody>
       <tr>
         <td>

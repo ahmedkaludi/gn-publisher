@@ -503,7 +503,6 @@ $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] )
   <?php
     $default_options = array('gnpub_pp_flipboard_com' => false );
     $gnpub_options = get_option( 'gnpub_new_options', $default_options );
-    $gnpub_pp_flipboard_com = $gnpub_options['gnpub_pp_flipboard_com'];
   ?>
   <form action="" method="post">
       <p>

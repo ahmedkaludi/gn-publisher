@@ -11,7 +11,7 @@ $gnpub_options 					=	get_option( 'gnpub_new_options' );
 $gnpub_news_schema 				=	isset( $gnpub_options['gnpub_enable_news_article_schema'] ) ? $gnpub_options['gnpub_enable_news_article_schema']: false;
 
 $checklist_options 				=	get_option( 'gnpub_setup_wizard_checklist' );
-// echo "<pre>checklist_options"; print_r($checklist_options); die;
+
 $news_chk_box 					=	isset( $checklist_options['gnpub_enable_news_article_schema'] ) ? $checklist_options['gnpub_enable_news_article_schema']: false;
 $news_chk_box_class 			=	'gnpub-setup-wizard-chklist-td ';
 $news_chk_box_op_class 			=	'gnpub-setup-wizard-add-opacity ';
