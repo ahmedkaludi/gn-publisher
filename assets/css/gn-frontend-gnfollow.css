@@ -1,10 +1,15 @@
 #gnpub-gnfollow-shortcode-wrapper{
-    border: 1px solid #c6d2d9;
-    padding: 9px;
-    max-width: fit-content;
+
 }
 #gnpub-gnfollow-shortcode-wrapper a{
     text-decoration: none;
+    color: black;
+    border: 1px solid #c6d2d9;
+    padding: 7px 15px 3px 16px;
+    line-height: 1;
+    height: 40px;
+    vertical-align: middle;
+    position: absolute;
 }
 #gnpub-gnfollow-shortcode-wrapper a:focus{
     box-shadow: none;
@@ -15,9 +20,8 @@
     top: 9px;
     left: 5px;
 }
-#gnpub-gnfollow-shortcode-wrapper:hover{
+#gnpub-gnfollow-shortcode-wrapper a:hover{
     border: 1px solid #000;
-    box-shadow: ;
 }
 #gnpub-gnfollow-shortcode-follow-text{
     font-weight: 500;

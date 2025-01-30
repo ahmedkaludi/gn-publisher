@@ -34,11 +34,12 @@ if ( $fimage_chk_box == true ) {
 </header>
 
 <div class="gnpub-setup-wizard-options-wrapper">
+	<span id="gnpub-tick-to-comp"><?php echo esc_html__( 'Tick to Complete', 'gn-publisher' ); ?></span>
 	<table class="form-table gnpub-setup-wizard-form-table">
 		<tbody>
 			<tr class="gnpub-setup-wizard-chklist-tr">
 				<th class="<?php echo esc_attr( $news_chk_box_op_class ); ?>" data-hide="gnpub_enable_news_article_schema">
-					<label for="gnpub_enable_news_article_schema" class="gnpub-hover-pointer">News Article Schema</label>
+					<label for="gnpub_enable_news_article_schema" class="gnpub-hover-pointer"><?php echo esc_html__( 'News Article Schema', 'gn-publisher'); ?></label>
 				</th>
 				<td class="<?php echo esc_attr( $news_chk_box_op_class ); ?>" data-hide="gnpub_enable_news_article_schema">
 		          <input type="checkbox" name="gnpub_enable_news_article_schema" id="gnpub_enable_news_article_schema" <?php checked( $gnpub_news_schema, true ); ?> value="1" />

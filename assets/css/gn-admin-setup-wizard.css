@@ -229,14 +229,14 @@
 .gnpub-setup-wizard-progress-container {
     width: 100%;
     background-color: #f3f3f3;
-    border-radius: 5px;
+    border-radius: 35px;
     overflow: hidden;
-    height: 35px;
+    height: 25px;
     margin-top: 100px;
 }
 .gnpub-setup-wizard-progress-bar {
     height: 100%;
-    background-color: #58bb58;
+    background-color: #113c58;
     width: 0; /* Adjust dynamically */
     transition: width 0.5s ease-in-out;
 /*    padding: 10px;*/
@@ -246,5 +246,46 @@
     color: #fff;
     text-align: center;
     font-size: 14px;
-    padding-top: 10px;
+    padding-top: 4px;
+}
+#gnpub-tick-to-comp{
+    float: right;
+    font-size: 11px;
+    font-weight: 500;
+}
+#gnpub-setup-wizard-finish-wrapper{
+    text-align: center;
+}
+#gnpub-setup-wizard-finish-wrapper .gnpub-thankyou-note{
+    font-size: 18px;
+    padding: 0 10%;
+    line-height: 1.7;
+    color: #000;
+    text-align: center;
+}
+#gnpub-setup-wizard-finish-wrapper .gnpub-thankyou-note-pro{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+div#gnpub-setup-wizard-finish-wrapper .gnpub-setup-wizard-upgrade-btn {
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 20px;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #e93557;
+    border: none;
+    padding: 20px;
+    transition: all 0.5s;
+    font-weight: 600;
+}
+#gnpub-pro-features-list-wrapper td{
+  padding-right: 20px;
+}
+#gnpub-pro-features-list-wrapper .gnpub-success-status:before{
+  font-size: 25px;
+  margin-left: -10px;
 }

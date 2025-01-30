@@ -108,7 +108,7 @@ div#gn-upgrade .button-gnp-ugrade {
   margin: 20px;
   color: #fff;
   border-radius: 4px;
-  background-color: #ec407a;
+  background-color: #e93557;
   border: none;
   padding: 20px;
   transition: all 0.5s;
@@ -525,14 +525,34 @@ div#gn-upgrade .button-gnp-ugrade {
   font-size: 14px;
   font-weight: 700;
   margin-right: 30px;
+  color: black;
 }
 .gnpub-finish-setup-btn{
   background: #e93557;
   color: #fff;
   border: none;
   cursor: pointer;
-  padding: 15px;
+  padding: 6px 9px;
   font-weight: 600;
-  border-radius: 10%;
-  font-size: 15px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+.gnpub-child-set-options{
+  padding-left: 20px !important;
+  border-left: 3px solid #EEe;
+}
+.gnpub-green{
+  color: green;
+}
+#gnpub-pro-features-list-wrapper{
+  position: relative;
+  left: 170px;
+  text-align: left;
+}
+#gnpub-pro-features-list-wrapper td{
+  padding-right: 20px;
+}
+#gnpub-pro-features-list-wrapper .gnpub-success-status:before{
+  font-size: 25px;
+  margin-left: -10px;
 }

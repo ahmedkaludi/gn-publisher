@@ -66,6 +66,9 @@ class GNPUB_Settings {
 									'gnpub_show_info_featured_img'=>false,
 									'gnpub_enable_feed_support' => array('post' => 1),
 									'gnpub_enable_news_article_schema' => false,
+									'gnpub_enable_google_news_follow' => false,
+									'gnpub_enable_google_news_follow_text' => 'Follow us on',
+									'gnpub_enable_google_news_follow_link' => '',
 								);
 			$gnpub_options= get_option( 'gnpub_new_options', $gnpub_defaults);
 			$option_update=false;
@@ -161,6 +164,21 @@ class GNPUB_Settings {
 					$option_update=true;
 				}else{
 					$gnpub_options['gnpub_enable_news_article_schema']= false;
+				}
+
+				if ( isset( $_POST['gnpub_enable_google_news_follow'] ) ) {
+					$gnpub_options['gnpub_enable_google_news_follow'] = true;
+					$option_update=true;
+				}else{
+					$gnpub_options['gnpub_enable_google_news_follow']= false;
+				}
+
+				if ( isset( $_POST['gnpub_enable_google_news_follow_text'] ) ) {
+					$gnpub_options['gnpub_enable_google_news_follow_text'] = sanitize_text_field( wp_unslash( $_POST['gnpub_enable_google_news_follow_text'] ) );
+				}
+
+				if ( isset( $_POST['gnpub_enable_google_news_follow_link'] ) ) {
+					$gnpub_options['gnpub_enable_google_news_follow_link'] = sanitize_text_field( wp_unslash( $_POST['gnpub_enable_google_news_follow_link'] ) );
 				}
 
 			}

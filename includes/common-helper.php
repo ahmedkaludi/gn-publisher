@@ -35,6 +35,9 @@ function gnpub_default_checklist_options_data(){
 						'gnpub_enable_news_article_schema' 		=>	false,
 						'gnpub_show_info_featured_img' 			=>	false,
 						'gnpub_enable_gnsitemap' 				=>	false,
+						'gnpub_gn_status_robot' 				=>	false,
+						'gnpub_gn_status_nas' 					=>	false,
+						'gnpub_gn_status_byline' 				=>	false,
 					);
 	return $default;
 }

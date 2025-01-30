@@ -15,6 +15,7 @@ class GNPUB_News_Follow {
 		// add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_admin_script' ) );	
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_frontend_script' ) );	
+		add_action( 'admin_enqueue_scripts', array( $this, 'load_frontend_script' ) );	
 		add_action( 'gnpub_render_google_news_follow', array( $this, 'google_news_follow' ) );
 		add_shortcode( 'gnpub_google_news_follow', array( $this, 'render_shortocde' ) );
 		add_action( 'admin_post_gnpub_save_gnfollow', array( $this, 'save_gnfollow' ) );
@@ -91,10 +92,39 @@ class GNPUB_News_Follow {
 	 * */
 	public function google_news_follow(){
 
-		$short_code 	=	'[gnpub_google_news_follow text="Follow Us" redirect_link="#"]';
+		$gnpub_options 		=	get_option( 'gnpub_new_options' );
+		$news_follow 		=	isset( $gnpub_options['gnpub_enable_google_news_follow'] ) ? $gnpub_options['gnpub_enable_google_news_follow'] : false;
+		$follow_us 			=	isset( $gnpub_options['gnpub_enable_google_news_follow_text'] ) ? $gnpub_options['gnpub_enable_google_news_follow_text'] : 'Follow us on';
+		$follow_link 		=	isset( $gnpub_options['gnpub_enable_google_news_follow_link'] ) ? $gnpub_options['gnpub_enable_google_news_follow_link'] : '';
+		$short_code 		=	'[gnpub_google_news_follow]';
+		
+		$opt_class 			=	'gnpub-d-none';
+		if ( $news_follow ) {
+			$opt_class 		=	'';
+		}
 	?>
 		<tr>
-	        <th><label class="gnpub-hover-pointer"><?php echo esc_html__( 'Google News Follow', 'gn-publisher' ); ?></label></th>
+	        <th><label for="gnpub_enable_google_news_follow" class="gnpub-hover-pointer"><?php echo esc_html__( 'Google News Follow Button', 'gn-publisher' ); ?></label></th>
+	        <td>
+	          <input type="checkbox" name="gnpub_enable_google_news_follow" id="gnpub_enable_google_news_follow" <?php checked( $news_follow, true ); ?> value="1" />
+	          <label for="gnpub_enable_google_news_follow"><?php echo esc_html__( 'Add Google new follow button for your site', 'gn-publisher.' ); ?> &nbsp; <span class="gnpub-span-lrn-more"> <a target="_blank" style="text-decoration:none;" href="https://gnpublisher.com/docs/"><?php echo esc_html__( 'Learn More', 'gn-publisher' ); ?></a></span></label>
+	          
+	        </td>
+	    </tr>
+	    <tr class="gnpub-google-news-button-opts <?php echo esc_attr( $opt_class ); ?>">
+	    	<th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Google News Follow Text', 'gn-publisher' ); ?></label></th>
+	    	<td>
+	    		<input type="text" name="gnpub_enable_google_news_follow_text" id="gnpub_enable_google_news_follow_text" value="<?php echo esc_attr( $follow_us ); ?>" placeholder="Follow us on" size="60">
+	    	</td>
+	    </tr>
+	    <tr class="gnpub-google-news-button-opts <?php echo esc_attr( $opt_class ); ?>">
+	    	<th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Google News Follow Link', 'gn-publisher' ); ?></label></th>
+	    	<td>
+	    		<input type="text" name="gnpub_enable_google_news_follow_link" id="gnpub_enable_google_news_follow_link" value="<?php echo esc_attr( $follow_link ); ?>" placeholder="Enter google news publisher link" size="60">
+	    	</td>
+	    </tr>
+		<tr class="gnpub-google-news-button-opts <?php echo esc_attr( $opt_class ); ?>">
+	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Shortcode', 'gn-publisher' ); ?></label></th>
 	        <td>
 	          <input type="text" class="gn-input" value="<?php echo esc_attr( $short_code ); ?>" id="gnpub-google-news-follow-code" size="60" readonly>
 	          <div class="gn-tooltip">
@@ -103,6 +133,12 @@ class GNPUB_News_Follow {
 	              <?php echo esc_html__( 'Copy', 'gn-publisher' ); ?>
 	            </button>
 	          </div>
+	        </td>
+	   </tr>
+	   <tr class="gnpub-google-news-button-opts <?php echo esc_attr( $opt_class ); ?>">
+	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Preview', 'gn-publisher' ); ?></label></th>
+	        <td>
+	          <?php echo do_shortcode( $short_code ); ?>
 	        </td>
 	   </tr>
 	<?php
@@ -228,7 +264,7 @@ class GNPUB_News_Follow {
 			'gnpub_gnfollow_text_color' 			=>	'#fff',
 			'gnpub_gnfollow_font_size' 				=>	'14px',
 			'gnpub_gnfollow_redirect_link' 			=>	'#',
-			'gnpub_gnfollow_text_one' 				=>	'Follow Us',
+			'gnpub_gnfollow_text_one' 				=>	'Follow us on',
 			'gnpub_gnfollow_text_two' 				=>	'Google News',
 		);
 
@@ -244,7 +280,7 @@ class GNPUB_News_Follow {
 		$opt_value['bg_color'] 		=	! empty( $shortcode_options['gnpub_gnfollow_background_color'] ) ? $shortcode_options['gnpub_gnfollow_background_color'] : '#000';
 		$opt_value['txt_color'] 	=	! empty( $shortcode_options['gnpub_gnfollow_text_color'] ) ? $shortcode_options['gnpub_gnfollow_text_color'] : '#fff';
 		$opt_value['link'] 			=	! empty( $shortcode_options['gnpub_gnfollow_redirect_link'] ) ? $shortcode_options['gnpub_gnfollow_redirect_link'] : '#';
-		$opt_value['text1'] 		=	! empty( $shortcode_options['gnpub_gnfollow_text_one'] ) ? $shortcode_options['gnpub_gnfollow_text_one'] : 'Follow Us';
+		$opt_value['text1'] 		=	! empty( $shortcode_options['gnpub_gnfollow_text_one'] ) ? $shortcode_options['gnpub_gnfollow_text_one'] : 'Follow us on';
 		$opt_value['text2'] 		=	! empty( $shortcode_options['gnpub_gnfollow_text_two'] ) ? $shortcode_options['gnpub_gnfollow_text_two'] : 'Google News';
 
 		return $opt_value;
@@ -257,23 +293,23 @@ class GNPUB_News_Follow {
 	 * */
 	public function render_shortocde( $attributes, $content = null ) {
 			
-		$attr = shortcode_atts(
-        [
-            'text'     			=> 'Follow Us',
-            'redirect_link'     => '#',
-        ], $attributes );
+		$gnpub_options 		=	get_option( 'gnpub_new_options' );
+		$news_follow 		=	isset( $gnpub_options['gnpub_enable_google_news_follow'] ) ? $gnpub_options['gnpub_enable_google_news_follow'] : false;
+		$follow_us 			=	isset( $gnpub_options['gnpub_enable_google_news_follow_text'] ) ? $gnpub_options['gnpub_enable_google_news_follow_text'] : 'Follow us on';
+		$follow_link 		=	isset( $gnpub_options['gnpub_enable_google_news_follow_link'] ) ? $gnpub_options['gnpub_enable_google_news_follow_link'] : '#';
 		
-		$icon 	=	GNPUB_URL . '/assets/images/google-news-icon.svg';
-
+		$icon 				=	GNPUB_URL . '/assets/images/google-news-icon.svg';
 		$escape_html 		=	'';
+
 		$escape_html 		.=	'<div id="gnpub-gnfollow-shortcode-wrapper">';
-		$escape_html 		.=	'<a href="'.esc_attr( $attr['redirect_link'] ).'" target="__blank">';
+		$escape_html 		.=	'<a href="'.esc_attr( $follow_link ).'" target="__blank">';
 		$escape_html 		.=	'<div>';
-		$escape_html 		.=	'<span id="gnpub-gnfollow-shortcode-follow-text">' . esc_html( $attr['text'] ) . '</span>';
+		$escape_html 		.=	'<span id="gnpub-gnfollow-shortcode-follow-text">' . esc_html( $follow_us ) . '</span>';
 		$escape_html 		.=	'<img src="' . esc_attr( $icon ) . '" />';
 		$escape_html 		.=	'</div>'; // gnpub-gnfollow-shortcode-img-wrapper div end
 		$escape_html 		.=	'</a>';
 		$escape_html 		.=	'</div>'; // gnpub-gnfollow-shortcode-wrapper div end
+		
 
 		return $escape_html;
 

@@ -216,6 +216,10 @@ class GNPUB_Instant_Index {
 	
 		if ( ( isset( $_POST['gnpub_save_index_settings'] ) || isset( $_POST['gnpub_save_setup_wizard_settings'] ) ) && current_user_can( 'manage_options' ) ) {
 
+			if ( ! isset( $_POST['gnpub_save_index_settings_nonce'] ) ) {
+				return;
+			}
+
 			if ( ! wp_verify_nonce( $_POST['gnpub_save_index_settings_nonce'], 'gnpub_save_index_settings_nonce' ) ) {
 				return;
 			}

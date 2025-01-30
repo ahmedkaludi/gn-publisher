@@ -82,9 +82,9 @@ class GNPUB_Setup_Wizard {
 				'url' 		=>	admin_url('admin.php?page=gnpub-setup-wizard&wizard_step=indexing'),
 			),
 			'3'		=>	array(
-				'id' 		=>	'feed',
-				'label' 	=>	'Feed',
-				'url' 		=>	admin_url('admin.php?page=gnpub-setup-wizard&wizard_step=feed'),
+				'id' 		=>	'general_status',
+				'label' 	=>	'General Status',
+				'url' 		=>	admin_url('admin.php?page=gnpub-setup-wizard&wizard_step=general_status'),
 			),
 			'4'		=>	array(
 				'id' 		=>	'finish',
@@ -263,7 +263,7 @@ class GNPUB_Setup_Wizard {
 
 			break;
 
-			case 'feed':
+			case 'general_status':
 
 				require_once dirname( __FILE__ ) . '/../../templates/admin/setup-wizard/template-wizard-feed.php';
 
@@ -511,6 +511,24 @@ class GNPUB_Setup_Wizard {
 				$total_checks 		=	1;
 
 				if ( ! empty( $checklist_options['gnpub_enable_gnsitemap'] ) ){
+					$completed_checks++;	
+				}
+				
+				$check_status 		=	' ('.$completed_checks.'/'.$total_checks.')';
+
+			break;
+
+			case 'general_status':
+
+				$total_checks 		=	3;
+
+				if ( ! empty( $checklist_options['gnpub_gn_status_robot'] ) ){
+					$completed_checks++;	
+				}
+				if ( ! empty( $checklist_options['gnpub_gn_status_nas'] ) ){
+					$completed_checks++;	
+				}
+				if ( ! empty( $checklist_options['gnpub_gn_status_byline'] ) ){
 					$completed_checks++;	
 				}
 				

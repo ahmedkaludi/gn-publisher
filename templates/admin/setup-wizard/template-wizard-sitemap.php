@@ -37,6 +37,7 @@ if ( ! empty( $sitemap_options ) && ! empty( $sitemap_options['news_sitemap_excl
 	<p><?php echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?></p>
 </header>
 <table class="form-table gnpub-setup-wizard-form-table">
+	<span id="gnpub-tick-to-comp"><?php echo esc_html__( 'Tick to Complete', 'gn-publisher' ); ?></span>
 	<tr class="gnpub-setup-wizard-chklist-tr">
         <th class="<?php echo esc_attr( $site_chk_box_op_class ); ?>">
         	<label for="gnpub_enable_gnsitemap" class="gnpub-hover-pointer"><?php echo esc_html__( 'Google News Sitemap', 'gn-publisher' ); ?></label>
@@ -57,6 +58,7 @@ $c_class 	=	'gnpub-d-none';
 if ( $gnpub_enable_gnsitemap == true ) {
 	$c_class 	=	'gnpub-show';	
 } 
+$c_class 	.=	' '.$site_chk_box_op_class;	
 ?>
 <div id="gnpub-sitemap-setting-wrapper" class="<?php echo esc_attr( $c_class ); ?>">
 
