@@ -133,11 +133,6 @@ class GNPUB_Feed {
 			return $content;
 		}
 
-		// $use_featured_image = get_option( 'gnpub_include_featured_image', 1 );
-
-		// if ( empty( $use_featured_image ) ) {
-		// 	return $content;
-		// }
 		$post_id = get_the_ID();
 		$featured_image_url = $this->get_original_feature_image_url( $post_id );
 		$caption = $description = $alt = '';
