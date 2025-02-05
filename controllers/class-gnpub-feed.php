@@ -156,18 +156,19 @@ class GNPUB_Feed {
 		}
 		
 		if ( $featured_image_url ) {
-			$content = "<figure><img src=\"{$featured_image_url}\" class=\"type:primaryImage\"";
+			$content_img = "<figure><img src=\"{$featured_image_url}\" class=\"type:primaryImage\"";
 			if($alt){
-				$content .= " alt=\"{$alt}\"";
+				$content_img .= " alt=\"{$alt}\"";
 			}
-			$content .= " />";
+			$content_img .= " />";
 			if($caption){
-				$content .= "<figcaption>{$caption}</figcaption>";
+				$content_img .= "<figcaption>{$caption}</figcaption>";
 			}
 			if($description){
-				$content .= "<div class=\"image-description\">{$description}</div>";
+				$content_img .= "<div class=\"image-description\">{$description}</div>";
 			}
-			$content .= "</figure>" . $content;
+			$content_img .= "</figure>";
+			$content = $content_img . $content;
 		}
 		return $content;
 	}
