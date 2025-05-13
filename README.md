@@ -2,9 +2,9 @@
 Contributors: gnpublisher  
 Tags: google news, news, rss, feed, feeds  
 Requires at least: 3.5  
-Tested up to: 6.7  
+Tested up to: 6.8  
 Requires PHP: 5.4  
-Stable tag: 1.5.18  
+Stable tag: 1.5.22  
 License: GPLv3  
 License URI: https://www.gnu.org/licenses/gpl-3.0.html  
 
