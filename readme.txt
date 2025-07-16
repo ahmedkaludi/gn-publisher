@@ -4,7 +4,7 @@ Tags: google news, news, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.8
 Requires PHP: 5.4
-Stable tag: 1.5.22
+Stable tag: 1.5.23
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -88,6 +88,10 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 
 == Changelog ==
+
+= 1.5.23 - (16 July 2025) =
+
+* Test : Tested upto WordPress 6.8.2
 
 = 1.5.22 - (13 May 2025) =
 

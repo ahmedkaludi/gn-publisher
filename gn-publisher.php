@@ -40,7 +40,7 @@ function gnpub_feed_bootstrap() {
 		return;
 	}
  
-	define( 'GNPUB_VERSION', '1.5.22' );
+	define( 'GNPUB_VERSION', '1.5.23' );
 	define( 'GNPUB_PATH', plugin_dir_path( __FILE__ ) );
     define( 'GNPUB_URL', plugins_url( '', __FILE__) );
 	define( 'GNPUB_PLUGIN_FILE', __FILE__ );
