@@ -1,0 +1,23 @@
+{
+    "name": "Chris Andrews/gn-publisher",
+    "description": "GN Publisher: The easy way to make Google News Publisher compatible RSS feeds.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0+",
+    "require": {
+        "google/apiclient": "^2.16"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.0-dev"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "php-http/discovery": false
+        },
+        "platform": {
+            "php": "7.4.0"
+        }
+    }
+}
