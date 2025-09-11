@@ -58,7 +58,7 @@ class GNPUB_Apple_News {
 	    <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
 	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'API Key Secret', 'gn-publisher' ); ?></label></th>  
 	        <td>
-	          <input type="text" name="gnpub_apple_news_api_key_secret" id="gnpub-apple-news-api-key-secret" value="<?php echo esc_attr( $gnpub_apple_news_api_key_id ); ?>" placeholder="API Key Secret" size="60">
+	          <input type="text" name="gnpub_apple_news_api_key_secret" id="gnpub-apple-news-api-key-secret" value="<?php echo esc_attr( $gnpub_apple_news_api_key_secret ); ?>" placeholder="API Key Secret" size="60">
 	        </td>
 	    </tr>
 		<?php
