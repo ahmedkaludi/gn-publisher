@@ -17,6 +17,51 @@ class GNPUB_Apple_News {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) ) ;
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ) );
 		add_action( 'wp_ajax_gnpub_apple_news_publish', array( $this, 'gnpub_apple_news_publish_clbk' ) );
+		add_action( 'gnpub_render_apple_news_compatibility', array( $this, 'render_apple_news' ) );
+
+	}
+
+	/**
+	 * Generate apple news options
+	 * @since 	1.5.24
+	 * */
+	public function render_apple_news() {
+		$gnpub_options = get_option( 'gnpub_new_options' );
+		$gnpub_apple_news = isset( $gnpub_options['gnpub_apple_news'] ) ? $gnpub_options['gnpub_apple_news']: false;
+		$gnpub_apple_news_channel_id = isset( $gnpub_options['gnpub_apple_news_channel_id'] ) ? $gnpub_options['gnpub_apple_news_channel_id']: '';
+		$gnpub_apple_news_api_key_id = isset( $gnpub_options['gnpub_apple_news_api_key_id'] ) ? $gnpub_options['gnpub_apple_news_api_key_id']: '';
+		$gnpub_apple_news_api_key_secret = isset( $gnpub_options['gnpub_apple_news_api_key_secret'] ) ? $gnpub_options['gnpub_apple_news_api_key_secret']: '';
+		$gnpub_apple_opt_class      = 'gnpub-d-none';
+		if ( $gnpub_apple_news ) {
+		  $gnpub_apple_opt_class    = '';
+		}
+
+		?>
+		<tr>
+	        <th><label for="gnpub-apple-news" class="gnpub-hover-pointer"><?php esc_html_e( 'Apple News', 'gn-publisher' ); ?></label></th>
+	        <td>
+	          <input type="checkbox" name="gnpub_apple_news" id="gnpub-apple-news" <?php checked( $gnpub_apple_news, true ) ?>/>
+	        </td>
+	    </tr>
+	    <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
+	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Channel ID', 'gn-publisher' ); ?></label></th>  
+	        <td>
+	          <input type="text" name="gnpub_apple_news_channel_id" id="gnpub-apple-news-channel-id" value="<?php echo esc_attr( $gnpub_apple_news_channel_id ); ?>" placeholder="Channel ID" size="60">
+	        </td>
+	    </tr>
+	    <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
+	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'API Key ID', 'gn-publisher' ); ?></label></th>  
+	        <td>
+	          <input type="text" name="gnpub_apple_news_api_key_id" id="gnpub-apple-news-api-key-id" value="<?php echo esc_attr( $gnpub_apple_news_api_key_id ); ?>" placeholder="API Key ID" size="60">
+	        </td>
+	    </tr>
+	    <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
+	        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'API Key Secret', 'gn-publisher' ); ?></label></th>  
+	        <td>
+	          <input type="text" name="gnpub_apple_news_api_key_secret" id="gnpub-apple-news-api-key-secret" value="<?php echo esc_attr( $gnpub_apple_news_api_key_id ); ?>" placeholder="API Key Secret" size="60">
+	        </td>
+	    </tr>
+		<?php
 
 	}
 
@@ -113,8 +158,8 @@ class GNPUB_Apple_News {
 		?>
 		<tr class="gnpub-apple-news-meta-wrapper" >
 			<td>
-				<button type="button" id="gnpub-apple-news-publish-btn" class="button button-primary"><?php echo esc_html__( 'Publish Apple News', 'gn-publisher' ) ?></button>
-				<div class="description"><?php echo esc_html__( 'Click on publish apple news button to publish the article on apple news publisher platform', 'gn-publisher' ); ?></div>
+				<button type="button" id="gnpub-apple-news-publish-btn" class="button button-primary"><?php echo esc_html__( 'Publish to Apple News', 'gn-publisher' ) ?></button>
+				<div class="description gnpub-apple-news-note" style="margin-top: 15px;"><?php echo esc_html__( 'Click on publish apple news button to publish the article on apple news publisher platform', 'gn-publisher' ); ?></div>
 			</td>
 		</tr>
 		<?php	

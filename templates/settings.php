@@ -544,30 +544,7 @@ if ( $gnpub_apple_news ) {
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
-      <tr>
-        <th><label for="gnpub-apple-news" class="gnpub-hover-pointer"><?php esc_html_e( 'Apple News', 'gn-publisher' ); ?></label></th>
-        <td>
-          <input type="checkbox" name="gnpub_apple_news" id="gnpub-apple-news" <?php checked( $gnpub_apple_news, true ) ?>/>
-        </td>
-      </tr>
-      <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
-        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'Channel ID', 'gn-publisher' ); ?></label></th>  
-        <td>
-          <input type="text" name="gnpub_apple_news_channel_id" id="gnpub-apple-news-channel-id" value="<?php echo esc_attr( $gnpub_apple_news_channel_id ); ?>" placeholder="Channel ID" size="60">
-        </td>
-      </tr>
-      <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
-        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'API Key ID', 'gn-publisher' ); ?></label></th>  
-        <td>
-          <input type="text" name="gnpub_apple_news_api_key_id" id="gnpub-apple-news-api-key-id" value="<?php echo esc_attr( $gnpub_apple_news_api_key_id ); ?>" placeholder="API Key ID" size="60">
-        </td>
-      </tr>
-      <tr class="gnpub-apple-news-options <?php echo esc_attr( $gnpub_apple_opt_class ); ?>">
-        <th class="gnpub-child-set-options"><label><?php echo esc_html__( 'API Key Secret', 'gn-publisher' ); ?></label></th>  
-        <td>
-          <input type="text" name="gnpub_apple_news_api_key_secret" id="gnpub-apple-news-api-key-secret" value="<?php echo esc_attr( $gnpub_apple_news_api_key_id ); ?>" placeholder="API Key Secret" size="60">
-        </td>
-      </tr>
+      <?php do_action( 'gnpub_render_apple_news_compatibility' ); ?>
       </table>
       </p> 
       <p class="submit">
