@@ -89,6 +89,14 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 * PHP 5.4 or greater is required, PHP 7.2 or newer is recommended
 * This plugin is compatible with all MySQL versions supported by WordPress
 
+== Screenshots ==
+
+1. The Dashboard Page
+2. Features provided by GN Publisher
+3. Google news feed setup which shows the sample gn feed urls
+4. Compatibilities available with GN Publisher
+5. Indexing settings page
+6. Status of your settings
 
 == Changelog ==
 
