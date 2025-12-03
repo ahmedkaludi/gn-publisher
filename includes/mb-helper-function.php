@@ -357,3 +357,48 @@ function gnpub_expanded_allowed_tags() {
     );
     return $my_allowed;
 }
+
+
+/* * BFCM Banner Integration
+ * Loads assets from assets/css and assets/js
+ */
+add_action('admin_enqueue_scripts', 'gn_publisher_enqueue_bfcm_assets');
+
+function gn_publisher_enqueue_bfcm_assets($hook) { 
+ 
+    if ( $hook !== 'settings_page_gn-publisher-settings') {
+        return;
+    }
+
+    // 2. define settings
+    $expiry_date_str = '2025-12-25 23:59:59'; 
+    $offer_link      = 'https://gnpublisher.com/bfcm-25/';
+
+    // 3. Expiry Check (Server Side)    
+    if ( current_time('timestamp') > strtotime($expiry_date_str) ) {
+        return; 
+    }
+
+    // 4. Register & Enqueue CSS  
+    wp_enqueue_style(
+        'gnpub-bfcm-style', 
+        GNPUB_URL. '/assets/css/bfcm-style.css', 
+        array(), 
+        GNPUB_VERSION
+    );
+
+    // 5. Register & Enqueue JS
+    wp_enqueue_script(
+        'gnpub-bfcm-script', 
+        GNPUB_URL. '/assets/js/bfcm-script.js', 
+        array('jquery'), // jQuery dependency
+        GNPUB_VERSION, 
+        true 
+    );
+
+    // 6. Data Pass (PHP to JS)
+    wp_localize_script('gnpub-bfcm-script', 'bfcmData', array(
+        'targetDate' => $expiry_date_str,
+        'offerLink'  => $offer_link
+    ));
+}
