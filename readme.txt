@@ -100,7 +100,7 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 == Changelog ==
 
-= 1.5.26 - (05 January 2025) =
+= 1.5.26 - (05 January 2026) =
 
 * Remove : Removed BFCM Banner #138
 
