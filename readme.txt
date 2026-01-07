@@ -4,7 +4,7 @@ Tags: google news, news, rss, feed, feeds
 Requires at least: 3.5
 Tested up to: 6.9
 Requires PHP: 5.4
-Stable tag: 1.5.25
+Stable tag: 1.5.26
 License: GPLv3 
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,10 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 6. Status of your settings
 
 == Changelog ==
+
+= 1.5.26 - (05 January 2026) =
+
+* Remove : Removed BFCM Banner #138
 
 = 1.5.25 - (03 December 2025) =
 
