@@ -545,6 +545,7 @@ if ( $gnpub_apple_news ) {
         </td>
       </tr>
       <?php do_action( 'gnpub_render_apple_news_compatibility' ); ?>
+      <?php do_action( 'gnpub_render_yandex_turbo_compatibility' ); ?>
       </table>
       </p> 
       <p class="submit">
@@ -553,6 +554,9 @@ if ( $gnpub_apple_news ) {
         <input type="submit" name="save_gnpub_settings" id="submit" class="button button-primary" value="<?php esc_html_e( 'Save Changes', 'gn-publisher' ); ?>" />
       </p>
   </form> 
+  <?php
+  do_action( 'gnpub_render_compatibility_modals' );
+  ?>
   <?php } else { 
      do_action('gnpub_pro_compat_form');
     

@@ -58,6 +58,7 @@ function gnpub_feed_bootstrap() {
 	require_once GNPUB_PATH . 'controllers/admin/class-gnpub-sitemap.php';
 	require_once GNPUB_PATH . 'controllers/admin/class-gnpub-google-news-follow.php';
 	require_once GNPUB_PATH . 'controllers/admin/class-gnpub-apple-news.php';
+	require_once GNPUB_PATH . 'controllers/admin/class-gnpub-yandex-turbo.php';
 
 
 	new GNPUB_Feed();
