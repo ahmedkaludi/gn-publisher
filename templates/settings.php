@@ -487,17 +487,17 @@ if ( $gnpub_apple_news ) {
         <input type="checkbox" name="gnpub-show-upgrd-toprem-btn-fch" class="gnpub-show-upgrd-toprem-btn-fch" id="gnpub-exclude-cat-from-feed"/>
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
-      </tr>
-      <?php do_action( 'gnpub_render_google_news_follow' ); ?>   
-
+      </tr>  
       <?php } else { 
      do_action('gnpub_pro_setup_form');
     
     } 
+
+    do_action( 'gnpub_render_google_news_follow' );
     ?>
       <tr>
-        <th><label for="gnpub_delete_data_on_uninstall" class="gnpub-hover-pointer"><?php esc_html_e( 'Remove Data On Uninstall', 'gn-publisher' ); ?></label></th>
-        <td>
+        <th style="padding-top: 30px;"><label for="gnpub_delete_data_on_uninstall" class="gnpub-hover-pointer"><?php esc_html_e( 'Remove Data On Uninstall', 'gn-publisher' ); ?></label></th>
+        <td style="padding-top: 30px;">
           <input type="checkbox" name="gnpub_delete_data_on_uninstall" id="gnpub_delete_data_on_uninstall" <?php checked( $gnpub_delete_data, true ); ?> value="1" />
           <label for="gnpub_delete_data_on_uninstall"><?php echo esc_html__( 'This will remove all of its data when the plugin is deleted', 'gn-publisher' ); ?></label>
           
