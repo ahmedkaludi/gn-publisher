@@ -419,6 +419,7 @@ $gnpub_google_rev_snippet = isset($gnpub_options['gnpub_google_rev_snippet']) ? 
 $gnpub_google_rev_snippet_name = isset($gnpub_options['gnpub_google_rev_snippet_name']) ? $gnpub_options['gnpub_google_rev_snippet_name']: '';
 $gnpub_show_info_featured_img = isset($gnpub_options['gnpub_show_info_featured_img']) ? $gnpub_options['gnpub_show_info_featured_img']: '';
 $gnpub_news_schema = isset( $gnpub_options['gnpub_enable_news_article_schema'] ) ? $gnpub_options['gnpub_enable_news_article_schema']: false;
+$gnpub_delete_data = isset( $gnpub_options['gnpub_delete_data_on_uninstall'] ) ? $gnpub_options['gnpub_delete_data_on_uninstall']: false;
 $gnpub_apple_news = isset( $gnpub_options['gnpub_apple_news'] ) ? $gnpub_options['gnpub_apple_news']: false;
 $gnpub_apple_news_channel_id = isset( $gnpub_options['gnpub_apple_news_channel_id'] ) ? $gnpub_options['gnpub_apple_news_channel_id']: '';
 $gnpub_apple_news_api_key_id = isset( $gnpub_options['gnpub_apple_news_api_key_id'] ) ? $gnpub_options['gnpub_apple_news_api_key_id']: '';
@@ -487,7 +488,15 @@ if ( $gnpub_apple_news ) {
         <a class="gn-publisher-pro-btn "  target="_blank" href="https://gnpublisher.com/pricing/#pricing"><?php echo esc_html__('Upgrade to Premium', 'gn-publisher') ?></a>
         </td>
       </tr>
-      <?php do_action( 'gnpub_render_google_news_follow' ); ?>     
+      <?php do_action( 'gnpub_render_google_news_follow' ); ?>   
+      <tr>
+        <th><label for="gnpub_delete_data_on_uninstall" class="gnpub-hover-pointer"><?php esc_html_e( 'Remove Data On Uninstall', 'gn-publisher' ); ?></label></th>
+        <td>
+          <input type="checkbox" name="gnpub_delete_data_on_uninstall" id="gnpub_delete_data_on_uninstall" <?php checked( $gnpub_delete_data, true ); ?> value="1" />
+          <label for="gnpub_delete_data_on_uninstall"><?php echo esc_html__( 'This will remove all of its data when the plugin is deleted', 'gn-publisher.' ); ?></label>
+          
+        </td>
+      </tr>  
 
       <?php } else { 
      do_action('gnpub_pro_setup_form');
