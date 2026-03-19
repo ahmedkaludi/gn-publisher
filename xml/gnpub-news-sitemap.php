@@ -75,18 +75,6 @@ if(!empty($post_types)){
       );
     }
     $results = get_posts($args);
-    if(isset($post_types['attachment']) && $post_types['attachment'] == 'attachment'){
-      $args1 = array(
-        'post_type' => 'attachment',
-        'post_status' => 'inherit',
-        'posts_per_page' => 10,
-        'orderby'          => 'date',
-        'order'          => 'DESC'
-        );
-      $attachment = new WP_Query($args1);
-      $attachment_list = get_posts($attachment);
-      
-    }
 }
 global $TRP_LANGUAGE;
 $active_languages = gnpub_get_active_language_slugs();
