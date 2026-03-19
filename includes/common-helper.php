@@ -33,6 +33,7 @@ function gnpub_default_checklist_options_data(){
 	
 	$default 	=	array(
 						'gnpub_enable_news_article_schema' 		=>	false,
+						'gnpub_delete_data_on_uninstall' 		=>	false,
 						'gnpub_show_info_featured_img' 			=>	false,
 						'gnpub_enable_gnsitemap' 				=>	false,
 						'gnpub_gn_status_robot' 				=>	false,
@@ -83,6 +84,7 @@ function gnpub_save_com_options_ajax() {
  if ( empty( $_POST['security_nonce'] ) ) {
    return;
  }
+ // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
  if ( ! wp_verify_nonce( wp_unslash( $_POST['security_nonce'] ), 'gn-admin-nonce' ) ) {
    return;
  }

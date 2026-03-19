@@ -64,7 +64,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<link><?php gnpub_feed_channel_link(); ?></link>
 		<description><?php gnpub_bloginfo_rss( 'description' ); ?></description>
 		<language><?php bloginfo_rss( 'language' ); ?></language>
-		<generator>GN Publisher: Google News Compatible RSS Feeds v <?php echo GNPUB_VERSION ?> (https://wordpress.org/plugins/gn-publisher/)</generator>
+		<generator><?php echo esc_html( 'GN Publisher: Google News Compatible RSS Feeds v' . GNPUB_VERSION . ' https://wordpress.org/plugins/gn-publisher/' ); ?></generator>
 <?php
 	while ( have_posts() ) :
 		the_post();
@@ -145,7 +145,10 @@ if( function_exists( 'gnpub_pp_translate' ) )
 				</figure>
 			<?php } ?>
 			</header>
-			<?php echo $content; ?>
+			<?php 
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $content; 
+			?>
 			]]></turbo:content>
 			<yandex:related>
 			<?php foreach( $related_posts as $related ) { ?>

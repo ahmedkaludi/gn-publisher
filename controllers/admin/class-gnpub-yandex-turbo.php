@@ -178,7 +178,7 @@ class GNPUB_Yandex_Turbo {
 									type="text"
 									class="gn-input"
 									value="<?php echo esc_url( $gn_category_link ); ?>"
-									id="<?php echo 'gnpub-yandex-turbo-feed-' . $category->term_id; ?>"
+									id="<?php echo 'gnpub-yandex-turbo-feed-' . esc_attr( $category->term_id ); ?>"
 									size="60"
 									readonly
 								>
@@ -187,13 +187,13 @@ class GNPUB_Yandex_Turbo {
 
 									<button
 										class="gn-btn"
-										onclick="gn_copy('<?php echo 'gnpub-yandex-turbo-feed-' . $category->term_id; ?>')"
-										onmouseout="gn_out('<?php echo 'gnpub-yandex-turbo-feed-' . $category->term_id; ?>')"
+										onclick="gn_copy('<?php echo 'gnpub-yandex-turbo-feed-' . esc_attr( $category->term_id ); ?>')"
+										onmouseout="gn_out('<?php echo 'gnpub-yandex-turbo-feed-' . esc_attr( $category->term_id ); ?>')"
 									>
 
 										<span
 											class="gn-tooltiptext"
-											id="<?php echo 'gnpub-yandex-turbo-feed-' . $category->term_id . '-tooltip'; ?>"
+											id="<?php echo 'gnpub-yandex-turbo-feed-' . esc_attr( $category->term_id ) . '-tooltip'; ?>"
 										>
 											<?php echo esc_html__( 'Copy URL', 'gn-publisher' ); ?>
 										</span>

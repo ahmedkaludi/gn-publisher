@@ -5,7 +5,7 @@
  * Uninstalling  Gn Publisher deletes options and data.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 

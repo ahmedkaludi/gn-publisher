@@ -177,7 +177,7 @@ function gnpub_redirect()
 		delete_option('gnpub_activation_redirect' );
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended --Reason: Nonce verification is not required here.
 		if ( !isset( $_GET['activate-multi'] ) ) {
-			wp_redirect("options-general.php?page=gn-publisher-settings&tab=welcome");
+			wp_safe_redirect("options-general.php?page=gn-publisher-settings&tab=welcome");
 			exit;
 		}
 	}
