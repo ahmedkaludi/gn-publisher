@@ -66,7 +66,7 @@ class GNPUB_News_Follow {
 
 			// wp_enqueue_script( 'gn-admin-gnfpllow-script' );
 
-			wp_enqueue_style( 'gn-admin-gnfollow-style', GNPUB_URL . "/assets/css/gn-admin-gnfollow{$min}.css", array(), GNPUB_VERSION, );
+			wp_enqueue_style( 'gn-admin-gnfollow-style', GNPUB_URL . "/assets/css/gn-admin-gnfollow{$min}.css", array(), GNPUB_VERSION );
 			// wp_enqueue_style( 'wp-color-picker' );
         	// wp_enqueue_script( 'wp-color-picker' );	
         	// wp_enqueue_media();

@@ -53,7 +53,7 @@ class GNPUB_Setup_Wizard {
 
 			wp_enqueue_script( 'gn-admin-setup-wizard-script' );
 
-			wp_enqueue_style( 'gn-admin-setup-wizard-style', GNPUB_URL . "/assets/css/gn-admin-setup-wizard{$min}.css", array(), GNPUB_VERSION, );
+			wp_enqueue_style( 'gn-admin-setup-wizard-style', GNPUB_URL . "/assets/css/gn-admin-setup-wizard{$min}.css", array(), GNPUB_VERSION );
 
 		}
 

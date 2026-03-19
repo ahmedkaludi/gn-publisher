@@ -44,7 +44,7 @@ class GNPUB_Sitemap {
 
 			wp_enqueue_script( 'gn-admin-sitemap-script' );
 
-			wp_enqueue_style( 'gn-admin-sitemap-style', GNPUB_URL . "/assets/css/gn-admin-sitemap{$min}.css", array(), GNPUB_VERSION, );
+			wp_enqueue_style( 'gn-admin-sitemap-style', GNPUB_URL . "/assets/css/gn-admin-sitemap{$min}.css", array(), GNPUB_VERSION );
 			
 		}	
 	}
