@@ -57,6 +57,7 @@ Take you Google News Feed experience to next level by using our [GN Publisher PR
 * Compatibility with Flipboard.com
 * Compatibility with PublishPress Authors
 * Compatibility with Translate Press
+* Compatibility with Yandex Turbo
 
 ### Frequently Asked Questions
 
