@@ -125,13 +125,17 @@ function gnpub_publish_feeds( $feed_urls ) {
 
 	$wp_version = get_bloginfo( 'version' );
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-	$user_agent = apply_filters( 'http_headers_useragent', 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ) );
+	$user_agent = sprintf(
+		'WordPress/%s; %s; PubSubHubbub/WebSub',
+		$wp_version,
+		home_url()
+	);
 
 	$args = array(
 		'timeout' => 100,
 		'limit_response_size' => 1048576,
 		'redirection' => 20,
-		'user-agent' => $user_agent . "; PubSubHubbub/WebSub",
+		'user-agent' => $user_agent,
 		'body' => $post_string,
 		'blocking' => false, // We do not need the response.
 		'headers' => array(
