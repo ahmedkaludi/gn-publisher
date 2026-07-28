@@ -1,7 +1,7 @@
 === GN Publisher: Google News Compatible RSS Feeds ===
 Contributors: gnpublisher
 Tags: google news, news, rss, feed, feeds
-Requires at least: 3.5
+Requires at least: 4.7
 Tested up to: 7.0
 Requires PHP: 5.4
 Stable tag: 1.5.28
