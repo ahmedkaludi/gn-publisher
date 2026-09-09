@@ -2,7 +2,7 @@
 Contributors: gnpublisher
 Tags: google news, news, rss, feed, feeds
 Requires at least: 4.7
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 5.4
 Stable tag: 1.5.29
 License: GPLv3 
