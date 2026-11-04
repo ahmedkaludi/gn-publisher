@@ -46,7 +46,7 @@ class GNPUB_Yandex_Turbo {
 					for="gnpub_yandex_turbo"
 					id="gnpub_yandex_turbo_label"
 					data-unchecked="<?php esc_attr_e( 'Enable yandex turbo compability in GN publisher feeds.', 'gn-publisher' ); ?>"
-					data-checked="<?php esc_attr_e( '<b>Enabled</b>', 'gn-publisher' ); ?>"
+					data-checked="<?php echo esc_attr( '<b>' . __( 'Enabled', 'gn-publisher' ) . '</b>' ); ?>"
 				>
 					<?php
 					if ( ! $gnpub_yandex_turbo ) {
@@ -77,10 +77,12 @@ class GNPUB_Yandex_Turbo {
 				<label>
 				    <div class="gn-compat-note">
 				        <?php
-				        printf(
+				        echo wp_kses_post(
+				            sprintf(
 				            /* translators: %s: Yandex Turbo link */
-				            __( 'Use this option when you need feeds for %s', 'gn-publisher' ),
+				            esc_html__( 'Use this option when you need feeds for %s', 'gn-publisher' ),
 				            '<a href="https://webmaster.yandex.com/" target="_blank">' . esc_html__( 'Yandex Turbo', 'gn-publisher' ) . '</a>'
+				            )
 				        );
 				        ?>
 				    </div>

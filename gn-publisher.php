@@ -94,6 +94,7 @@ function gnpub_feed_bootstrap() {
 gnpub_feed_bootstrap();
 
 function gnpub_load_textdomain() {
+	// phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound -- Retained for backward compatibility with custom translation loading.
 	load_plugin_textdomain( 'gn-publisher', false, basename( dirname( GNPUB_PLUGIN_FILE ) ) . '/languages/' );
 }
 
