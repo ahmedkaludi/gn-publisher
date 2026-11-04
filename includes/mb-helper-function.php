@@ -100,9 +100,24 @@ function gnpub_send_feedback() {
         parse_str( $_POST['data'], $form );
     }
 
+    $selected_reason = isset( $form['gnpub_disable_reason'] ) ? $form['gnpub_disable_reason'] : '';
+    $reason_array = [ 'temporary', 'stopped' ];
+    if ( in_array( $selected_reason, $reason_array ) ) {
+        wp_die();
+    } 
+
     $text = '';
     if( isset( $form['gnpub_disable_text'] ) ) {
         $text = implode( "\n\r", $form['gnpub_disable_text'] );
+    }
+
+    $string_count   =   0;
+    if ( function_exists( 'str_word_count' ) ) {
+        $string_count   =   str_word_count( trim( $text ) );
+    }
+    
+    if ( $string_count <= 2 ) {
+        wp_die();    
     }
 
     $headers = array();
