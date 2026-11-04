@@ -78,7 +78,7 @@ class GNPUB_Sitemap {
 	        <th><label for="gnpub_enable_gnsitemap" class="gnpub-hover-pointer"><?php echo esc_html__( 'Google News Sitemap', 'gn-publisher' ); ?></label></th>
 	        <td>
 			<input <?php if(!$gnpub_enable_gnsitemap){ echo 'type="checkbox"';}else{echo 'type="hidden"';}?> name="gnpub_enable_gnsitemap" id="gnpub_enable_gnsitemap" <?php checked( $gnpub_enable_gnsitemap, true ); ?> value="1" />
-			<label for="gnpub_enable_gnsitemap" id="gnpub_gnsitemap_label" data-checked="<?php esc_attr_e( "<b class='gnpub-green'>Enabled</b>", 'gn-publisher' ); ?>" data-unchecked="<?php echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?>"><?php if($gnpub_enable_gnsitemap){  esc_attr_e( "<b class='gnpub-green'>Enabled</b>", 'gn-publisher' );}else{ echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' );} ?></label> 
+			<label for="gnpub_enable_gnsitemap" id="gnpub_gnsitemap_label" data-checked="<?php echo esc_attr( '<b class="gnpub-green">' . __( 'Enabled', 'gn-publisher' ) . '</b>' ); ?>" data-unchecked="<?php esc_attr_e( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?>"><?php if ( $gnpub_enable_gnsitemap ) { echo '<b class="gnpub-green">' . esc_html__( 'Enabled', 'gn-publisher' ) . '</b>'; } else { echo esc_html__( 'You will generally need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); } ?></label> 
 			&nbsp; <a id="gnpub_gnsitemap_config" class="gnpub_config_button" <?php if(!$gnpub_enable_gnsitemap){ echo 'style="display:none";';}?>><?php echo esc_html__( 'Configure Settings', 'gn-publisher' ); ?></a>
 			 <a class="gnpub-disbale-sitemap-link" id="gnpub_disable_link_2" data-id="gnpub_enable_gnsitemap" <?php if(!$gnpub_enable_gnsitemap){ echo 'style="display:none";';}?>><?php echo esc_html__( 'disable', 'gn-publisher' ); ?></a>
 	    	</td>  
@@ -89,7 +89,11 @@ class GNPUB_Sitemap {
 				<span id="gnpub_gnsitemap_close" class="gnpub-sitemap-close ">&times;</span>
 				<p>
 					<p><?php echo esc_html__( 'You will generally only need a News Sitemap when your website is included in Google News.', 'gn-publisher' ); ?></p>
-					<p><?php echo esc_html__( 'Click here', 'gn-publisher' ); ?> <?php echo apply_filters('gnpubpro_sitemap_links','<a href="'.get_site_url().'/gn_sitemap.xml" target="_blank">View your News Sitemap.</a>');?></p>
+					<p>
+						<?php echo esc_html__( 'Click here', 'gn-publisher' );
+						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaping has been done in gnpubpro_sitemap_links hook
+						echo apply_filters('gnpubpro_sitemap_links','<a href="'.get_site_url().'/gn_sitemap.xml" target="_blank">View your News Sitemap.</a>');?>
+					</p>
 					<small><?php echo esc_html__( 'Note : If the above link is not working then update wordpress permalinks.', 'gn-publisher' ); ?> </small>
 
 					<h3><?php echo esc_html__( 'General settings', 'gn-publisher'); ?></h3>
