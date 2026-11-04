@@ -101,7 +101,7 @@ GN Publisher may also be downloaded to your computer and uploaded, installed, an
 
 == Changelog ==
 
-= 1.5.31 - (04 October 2026) =
+= 1.5.31 - (04 November 2026) =
 
 * Improvement : Code improvement #155
 
