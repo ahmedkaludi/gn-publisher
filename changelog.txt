@@ -1,3 +1,7 @@
+= 1.5.32 - (25 November 2026) =
+
+* Enhancement : Added Black Friday / Cyber Monday promotional banner on settings page #157
+
 = 1.5.31 - (04 November 2026) =
 
 * Improvement : Code improvement #155
