@@ -77,6 +77,7 @@ function gnpub_feed_bootstrap() {
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-indexing.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-status.php';
 		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-setup-wizard.php';
+		require_once GNPUB_PATH . 'controllers/admin/class-gnpub-black-friday-banner.php';
 
 
 		register_activation_hook( __FILE__, array( 'GNPUB_Installer', 'install' ) );
